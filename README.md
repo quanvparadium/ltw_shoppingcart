@@ -3,6 +3,12 @@ E-commerce web application built using php routing. Instead of relying on the we
 
 [Live Demo](https://web.archive.org/web/20220907155514/https://tomiwa.com.ng/yemyem/)
 
+## Run this repo
+```
+    cd src/
+    docker compose up -d
+```
+
 ## Features
 - Login and registration system
 - Password reset

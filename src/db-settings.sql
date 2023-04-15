@@ -1,4 +1,7 @@
+CREATE DATABASE IF NOT EXISTS `ecommerce` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `ecommerce`;
 
+GRANT ALL PRIVILEGES ON ecommerce.* TO 'php'@'%';
 
 CREATE TABLE `about` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

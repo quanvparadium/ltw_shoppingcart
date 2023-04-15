@@ -1,9 +1,9 @@
 <?php
 
-$host = '';
-$name = '';
-$user = '';
-$password = '';
+$host = 'mysql';
+$name = 'ecommerce';
+$user = 'php';
+$password = 'php_123456';
 
 try {
 	$pdo = new PDO("mysql:host=$host;dbname=$name", $user, $password);
