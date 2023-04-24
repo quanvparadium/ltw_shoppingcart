@@ -1,0 +1,28 @@
+#footer {
+	position: relative;
+	top: 100px;
+	background-color: #000;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 120px;
+}
+
+#footer .mail-author-icon {
+	margin: 0 20px;
+}
+
+#footer .author-icon {
+	margin-bottom: 20px;
+}
+
+/* Medium devices (tablets, less than 992px) */
+
+/* (landscape phones, less than 768px) */
+@media (max-width: 991.98px) {
+	#footer {
+		padding: 40px 0;
+		flex-direction: column;
+	}
+}

@@ -1,0 +1,49 @@
+.login-wrapper {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.left-content {
+    height: 100vh;
+    width: 34%;
+    background-image: url('../../../assets/imgs/login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.left-content__brand {
+    font-family: 'Ms Madi', cursive;
+    font-size: 100px;
+    font-weight: 700;
+    color: #da5a5a;
+}
+
+.left-content img {
+    width: auto;
+    height: 100%;
+}
+
+.right-content {
+    height: 500px;
+    flex: 1;
+}
+
+@media (max-width: 767.98px) {
+    .login-wrapper {
+        flex-direction: column;
+    }
+    .left-content {
+        height: 300px;
+        width: 100%;
+    }
+    .right-content {
+        height: auto;
+        flex: 1;
+    }
+} 

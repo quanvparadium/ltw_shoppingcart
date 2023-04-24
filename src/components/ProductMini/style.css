@@ -1,0 +1,14 @@
+.product-mini {
+    padding-bottom: 0;
+}
+
+.product-mini .product-name {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product-mini .product-price {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px auto;
+}

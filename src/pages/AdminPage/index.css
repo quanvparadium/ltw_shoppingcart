@@ -1,0 +1,16 @@
+#admin-page {
+	padding-top: 80px;
+	max-width: 200%;
+}
+
+#admin-page .table-data {
+	/* word-break: break-all; */
+}
+
+table {
+	max-height: 100%;
+}
+
+#admin-page .ad-select {
+	margin: 20px 0;
+}

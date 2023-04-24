@@ -1,0 +1,48 @@
+.bloglist-container .breadcrumb {
+    padding-top: 60px;
+}
+
+.blg-img {
+    margin-top: 20px;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bloglist-tea {
+    padding-top: 20px;
+    padding-bottom: 70px;
+}
+
+.bloglist-tea h4 {
+    border-left: 6px solid rgb(255, 145, 77);
+    padding-left: 10px;
+    margin-bottom: 20px;
+
+}
+
+@media (max-width: 991.98px) {
+    .blg-img {
+        height: 400px;
+    }
+
+    .blg-img:first-child {
+        margin-bottom: 40px;
+    }
+
+    .blg-img:nth-child(2) {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .blg-img {
+        height: 200px;
+    }
+
+    .bloglist-container .row {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,14 @@
+#admin-container {
+    margin: -20px -120px;
+}
+
+#admin-menu {
+    background-color: var(--primary-green-color-3);
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    #admin-container {
+        margin: -20px -10px;
+    }
+}

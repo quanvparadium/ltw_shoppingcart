@@ -1,0 +1,55 @@
+.login-btn {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.logincustomer {
+    display: flex;
+    justify-content: center;
+}
+
+.logincustomer-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-btn__btn a {
+    text-decoration: none;
+}
+
+.login-btn__btn{
+    width: 300px;
+    height: 40px;
+    border: none;
+    margin: 8px 0;
+    /* background-color: #0487d9; */
+    background-color: #f0912c;
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.5s ease;
+}
+
+.login-btn__btn:hover {
+    background-color: #e57905;
+
+}
+
+.login-btn__btn a {
+    color: white;
+    width: 1005;
+}
+
+.logincustomer-form > input {
+    margin: 8px 0;
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 14px;
+    border: 1px solid rgb(200, 198, 198);
+    border-radius: 15px;
+}

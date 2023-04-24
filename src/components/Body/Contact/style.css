@@ -1,0 +1,149 @@
+*{
+    margin: auto;
+    padding: auto;
+}
+.container{
+    width: 1280px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav{
+    width: 1280px;
+    height: 80px;
+    color: white;
+    background-color: #01B636;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-item{
+    text-decoration: none;
+    color: white;
+}
+
+.nav-list{
+    padding-left: 0;
+    margin: auto 35px;
+}
+
+.nav-item{
+    list-style: none;
+    margin: 0 35px;
+    display: inline-block;
+}
+
+.left-content{
+    width: 640px;
+    float: left;
+    font-size: large;
+}
+
+.right-content{
+    width: 640px;
+    float: left;
+    font-size: large;
+}
+
+.infomation{
+    width: 550px;
+    height: 600px;
+    margin-bottom: 50px;
+    background-color: white;
+}
+
+.infor-contact{
+    text-align: center;
+    padding-bottom: 50px;
+    margin-top: 60px;
+    padding-top: 20px;
+}
+
+.infor{
+    padding-bottom: 50px;
+    padding-left: 10px;
+    list-style: none;
+}
+
+
+.form{
+    width: 450px;
+    height: 600px;
+    margin-bottom: 50px;
+    background-color: #E3E3E3;
+}
+
+.contact{
+    height: 60px;
+    color: white;
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    background-color: #01B636;
+}
+
+.form__row{
+    padding: 10px 15px 15px 15px;
+    display: flex;
+}
+
+.form__input{
+    flex: 1;
+    height: 35px;
+    border-radius: 3px;
+    border:1px solid #ced4da;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    border-radius:.375rem;
+    transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+.about{
+    flex: 1;
+    height: 100px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    border-radius: 3px;
+    border:1px solid #ced4da;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    border-radius:.375rem;
+    transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+.node_send{
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: #01B636;
+    border-radius: 3px;
+    border:1px solid #ced4da;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    border-radius:.375rem;
+    transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+.hotline{
+    padding-top: 25px;
+    padding-left: 25px;
+    color: red;
+}
+
+.footer{
+    height: 140px;
+    background-color: #01B636;
+    clear: both;
+}
+
+.footer-list{
+    margin: auto 35px;
+    text-align: center;
+}
+
+.footer-list-item{
+    margin: 0 30px;
+    padding-top: 50px;
+    display: inline-block;
+}

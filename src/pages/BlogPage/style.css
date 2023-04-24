@@ -1,0 +1,34 @@
+.blogpage-header {
+    width: 100vw;
+    height: 500px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.blogpage-wrapper .breadcrumb {
+    padding-top: 20px;
+}
+
+.blogpage-wrapper {
+    width: 60%;
+    margin: auto;
+}
+
+.blogpage-wrapper img {
+    width: 100%;
+    padding-top: 40px;
+
+}
+
+.blogpage-wrapper h1 {
+    padding-bottom: 20px;
+    padding-top: 10px;
+    text-align: justify;
+}
+
+.blogpage-wrapper>p {
+    font-weight: 500;
+    padding-bottom: 20px;
+    text-align: justify;
+}

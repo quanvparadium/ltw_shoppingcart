@@ -1,0 +1,105 @@
+.cart-container {
+    height: 100vh;
+    padding-top: 60px;
+    width: 78%;
+    margin: auto;
+    height: 1000px;
+}
+
+
+
+.cart-product {
+    height: 1000px;
+
+    padding-top: 60px;
+}
+
+.cart-payment {
+    background-color: #fff3d9;
+    height: 500px;
+    display: flex;
+    padding: 60px 0;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px;
+    flex: 1;
+    justify-content: space-evenly;
+    border-top: 16px solid black;
+}
+
+.sticky-top {
+    top: 70px;
+}
+
+.cart-brand {
+    font-size: 40px;
+    color: orange;
+}
+
+.cart-payment button {
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    border: 2px solid orange;
+    background-color: orange;
+    color: white;
+
+}
+
+.cart-total {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.product__thumbnail img {
+    width: 100%;
+}
+
+.product__name {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-product__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px !important;
+    border-bottom: 1px solid rgb(222, 222, 222);
+    margin-bottom: 20px !important;
+}
+
+.cart-product__item .product__remove_drink {
+    color: red;
+}
+
+.cart-product__item .product__remove_drink:hover {
+    cursor: pointer;
+}
+
+
+@media (max-width: 767.98px) {
+    .product__name {
+        display: none;
+    }
+}
+
+.checkout {
+    display: flex;
+    justify-content: right;
+    margin-right: 5%;
+}
+
+.checkout button {
+    margin-left: 5%;
+}
+
+.cart-container .breadcrumb {
+    padding-top: 10px;
+}
+
+#cart-page .total-price {
+    font-weight: bold;
+    font-size: 20px;
+    align-self: center;
+}

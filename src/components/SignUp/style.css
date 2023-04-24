@@ -1,0 +1,32 @@
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.signup input {
+    margin: 8px 0;
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 14px;
+    border: 1px solid rgb(200, 198, 198);
+    border-radius: 15px;
+}
+
+.signup-btn{
+    width: 300px;
+    height: 40px;
+    border: none;
+    margin: 8px 0;
+    /* background-color: #0487d9; */
+    background-color: #04b2d9;
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.5s ease;
+}
+
+.signup-btn:hover {
+    background-color: #0487d9;
+
+}
