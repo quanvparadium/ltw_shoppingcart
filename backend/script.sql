@@ -1,385 +1,101 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 04, 2022 lúc 08:05 AM
--- Phiên bản máy phục vụ: 10.4.25-MariaDB
--- Phiên bản PHP: 8.1.10
-
-CREATE DATABASE bk_coffee;
-USE bk_coffee;
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: 172.25.0.2    Database: shop
+-- ------------------------------------------------------
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Cơ sở dữ liệu: `bk_coffee`
+-- Current Database: `shop`
 --
 
--- --------------------------------------------------------
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `shop` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
---
--- Cấu trúc bảng cho bảng `admin`
---
-
-CREATE TABLE `admin` (
-  `ad_id` int(11) NOT NULL,
-  `start_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `admin`
---
-
-INSERT INTO `admin` (`ad_id`, `start_date`) VALUES
-(4, NULL),
-(5, NULL),
-(6, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `article`
---
-
-CREATE TABLE `article` (
-  `article_id` int(11) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `content` varchar(1000) NOT NULL,
-  `date` date NOT NULL,
-  `ad_id` int(11) NOT NULL,
-  `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `article`
---
-
-INSERT INTO `article` (`article_id`, `title`, `content`, `date`, `ad_id`, `image`) VALUES
-(1, 'CÁCH NHẬN BIẾT HƯƠNG VỊ CÀ PHÊ ROBUSTA NGUYÊN CHẤT DỄ DÀNG NHẤT', 'Cùng Arabica, Robusta cũng là loại cà phê nổi tiếng được sử dụng phổ biến ở Việt Nam và nhiều nước khác trên thế giới. Với nhiều đặc điểm riêng, không quá khó để có thể nhận ra hương vị của loại cà phê trứ danh này.\r\n\r\nĐặc điểm cà phê Robusta \r\n\r\nVề hình dạng, hạt cà phê Robusta có hình tròn, đường kính khoảng 10 – 13 mm. Hạt Robusta có màu nâu đậm và hàm lượng caffeine từ 3 - 4%, trong khi đó Arabica chỉ chiếm từ 1 - 2%.\r\n\r\nVề điều kiện trồng, cà phê Robusta sinh trưởng tốt trong vùng có mưa nhiều và nhiều ánh nắng mặt trời. Nhiệt độ thích hợp ở mức 24 - 29 độ C, ưa sống ở những vùng có độ cao dưới 1000 mét, phổ biến ở 850 – 900 mét và ở những vùng có đất đỏ bazan màu mỡ.\r\n\r\nỞ Việt Nam có rất nhiều vùng phù hợp để trồng giống Robusta, đặc biệt là Buôn Ma Thuột, Đắk Lắk, Lâm Đồng, Gia Lai, Đắk Nông,… Đây là những vùng đất mang đến hương vị cà phê Robusta nguyên chất ngon và nổi tiếng. Tuy nhiên, do sự khác biệt về thổ nhưỡng mà hương vị Robusta ở các vùng cũng có sự khác biệt tương đối', '2022-12-03', 4, 'https://file.hstatic.net/1000075078/file/thecoffeehouse_ca_phe_robusta_04_77eebbf64f264751945dd2db61050c4b_grande.jpg'),
-(2, 'BẬT MÍ NHIỆT ĐỘ LÝ TƯỞNG ĐỂ PHA CÀ PHÊ NGON, ĐẬM ĐÀ HƯƠNG VỊ', 'Bạn biết không, nếu khi sử dụng nhiệt độ nước thấp, một số hợp chất chính trong cà phê sẽ không được chiết xuất hiệu quả, dẫn đến cà phê có thể có vị mỏng, nhạt và có cường độ hương vị thấp. Khi nhiệt độ cao hơn, các phân tử hòa tan tăng cường hoạt động, sẽ thúc đẩy chiết xuất các chất khó tan giúp cà phê có hương vị rõ ràng, phong phú và tinh tế hơn. Thế nhưng, mỗi loại cà phê sẽ có một mức nhiệt lý tưởng riêng khi pha chế. Nắm được điều này sẽ giúp bạn có thể pha chế những tách cà phê với hương vị rõ ràng, chuẩn nhất và thưởng thức chúng một cách ưng ý nhất. \r\n\r\nNhiệt độ nước lý tưởng cho từng loại cà phê ngon\r\n\r\nTheo nghiên cứu, nhiệt độ nước lý tưởng để pha cà phê dao động từ khoảng 90 đến 96°C. Tuy nhiên, đối với từng loại cà phê, sẽ có một nhiệt độ tối ưu để các hợp chất được giải phóng một cách cân bằng và tạo nên hương vị tuyệt vời. Chẳng hạn như đối với Espresso và cà phê phin truyền thống, bạn có thể sử dụng ở mức nhiệt độ từ  90 đến 96°C. Tuy nhiên đối với cold brew thì mức ', '2022-12-03', 4, 'https://file.hstatic.net/1000075078/file/thecoffeehouse_caphe_12_ab986d8cb94d48b08ab7d5b7597cbbd9_grande.jpg'),
-(3, 'THE COFFEE HOUSE - QUÁN CÀ PHÊ LÝ TƯỞNG ĐỂ HỘI HỌP BẠN BÈ MÙA TẾT NÀY', 'Một chút thời gian còn lại của những ngày cuối năm, bạn muốn dành cho những người quan trọng mà mình yêu quý, cùng họ chuyện trò và sẻ chia. Hay vào những ngày đầu năm, bạn muốn gặp họ đầu tiên, để chúc cho những người bạn thương mến ngập tràn điều tốt đẹp nhất. Thế nhưng, bạn chưa tìm được một điểm hẹn lý tưởng, tiện cho cả bạn và tiện cho cả đối phương. Là nơi bạn có thể nói tất cả mọi thứ, là nơi bạn có thể thả mình, không phải lo nghĩ, là nơi để bạn thực sự tự do để thư giãn... Nếu vậy, mời bạn ghé Nhà nhé!\r\n\r\nVới 146 cửa hàng phủ sóng trên khắp cả nước, dù bạn ở đâu, bạn cũng có thể tìm cho mình một không gian hẹn hò trên cả tuyệt vời. Từ miền Bắc vào miền Nam, đâu đâu cũng là những không khí ấm áp và hiện đại của Nhà. Tại Hà Nội, TP.Hồ Chí Minh, Đà Nẵng, Khánh Hoà, Hải Phòng, hay cả Huế, Nghệ An, Cần Thơ, Tiền Giang,... bất kỳ đâu bạn cũng đến nhà thuận tiện nhất. \r\n\r\nChính vì có nhiều lợi thế như mặt bằng ở ngay trung tâm thành phố vừa tiện để vui xuân cùng gia đình, hò hẹn cùng', '2022-12-01', 4, 'https://file.hstatic.net/1000075078/article/hn-le-thanh-nghi2_d161f1f7755249cba30f2ecc7a591e47_master_1bbacee733084b93a400eaa54762bf12_master.jpg'),
-(4, '“KHUẤY ĐỂ THẤY TRĂNG\" - KHUẤY LÊN NIỀM HẠNH PHÚC: TRẢI NGHIỆM KHÔNG THỂ BỎ LỠ MÙA TRUNG THU NÀY', '\"Sau khi chứng kiến cái thế giới mà ở đấy mỗi cái nắm tay cũng là điều xa xỉ, người ta liền rục rịch định nghĩa lại về hạnh phúc\", tạp chí Vogue viết. Hạnh phúc giờ đây chỉ gói gọn trong những điều giản đơn. Được xách vali bước lên chuyến bay hồi hương, được nhìn thấy nhau, được tỉ tê kể nhau nghe chuyện to chuyện nhỏ. Đó mới là điều hạnh phúc nhất sau khoảng thời gian lạ lùng vừa qua.\r\n\r\nCho đến thời điểm này, cách nghĩ đó về hạnh phúc dần trở thành một tiêu chuẩn \"bình thường mới\". Tiêu chuẩn này phần nào dự đoán cách mà người trẻ Việt chào đón Trung thu năm nay. Trải qua một năm bị chia cách bất đắc dĩ, giới trẻ giờ đây thêm trân quý những phút giây được sum vầy bên người thân, bạn bè và người thương. Hơn nữa, 2022 cũng là năm đề cao sức khỏe tinh thần, nên sẽ chẳng lạ nếu người trẻ muốn tận hưởng một Trung thu với nhiều trải nghiệm mới mẻ.', '2022-12-03', 5, 'https://lh4.googleusercontent.com/--NPhFBpCpk-OPywizr4rsHUjL075Qeu9WlTxqHsvbKuwIiirM32HwvxwQ-gQkTJhWXkp8wZmrU9v7_NVZz6fDCh17ElcO0KtcqaVzpzeA4_jl7l8fZF3w0cvK_7RAo1qoQ2G6X9XrJq'),
-(5, '“KHUẤY ĐỂ THẤY TRĂNG” - HOT TREND MỞ MÀN MÙA TRUNG THU HẤP DẪN ĐÔNG ĐẢO GIỚI TRẺ', 'Đón trung thu “bling bling\" lần đầu tiên xuất hiện tại The Coffee House \r\nNgày 03/08 vừa qua, The Coffee House tung ra Hi-Tea Bling Bling - bộ sưu tập thức uống dành riêng cho mùa Trung thu này. Và hiệu ứng bling bling - lần đầu tiên được các barista đưa vào thức uống tại The Coffee House, trở thành trải nghiệm không thể bỏ lỡ. \r\n\r\nBởi chỉ cần khuấy nhẹ, những xoáy nước lấp la lấp lánh sắc vàng tựa ánh trăng xuất hiện cực đẹp mắt. Chưa kể, tông đỏ rực rỡ của Hi-Tea Bling Bling hệt như sắc màu của những chiếc đèn lồng đêm rằm. Không khí trung thu rộn ràng tưởng chừng chỉ có ngoài đường phố, lại được The Coffee House gói trọn trong một ly trà.', '2022-12-01', 5, 'https://lh4.googleusercontent.com/vaRooj9KjBkJxh9-eBJ5JQya-LFY1BRr6ZCQDrHr_zWjq7ol1z9xEF2CAf3U8saUvtraqAGPctZsOr-miysqt3j-lEiBq8NTXRxgVEPCl5c6ZlL8Y-HGYUc1O6ZnoVZ8UgcYJPC75P85'),
-(6, '10 LỢI ÍCH KHÔNG NGỜ CỦA TRÀ HOA HIBISCUS', 'Với rất nhiều lợi ích vượt trội, trà hoa Hibiscus được nhiều chị em ưu tiên chọn lựa để tăng cường sức khỏe, cải thiện sắc đẹp và giúp tinh thần thêm hứng khởi.\r\n\r\nNhững năm gần đây, người tiêu dùng Việt quan tâm nhiều hơn đến các sản phẩm có nguồn gốc thiên nhiên, nhất là thức uống từ thảo mộc tốt cho sức khỏe. Trong đó, trà hoa Hibiscus nổi lên như thành phần quen thuộc trong rất nhiều các loại thức uống. Loại hoa này có công dụng gì mà lại được ưa chuộng đến vậy?\r\n\r\nBổ sung vitamin C, tăng cường miễn dịch\r\nHibiscus được biết đến là có hàm lượng lớn vitamin (A, C, D, E…) và khoáng chất dồi dào. Vậy nên vào những ngày thời tiết oi bức, thưởng thức một ly nước chiết xuất từ hoa Hibiscus sẽ giúp giải nhiệt, thanh mát cơ thể, cảm thấy tươi mới và giảm đi những căng thẳng, mệt mỏi. Đặc biệt, nguồn vitamin C cao trong trà Atiso đỏ (tên gọi khác của Hibiscus) giúp bạn tăng cường sức đề kháng, bảo vệ hệ miễn dịch, nâng cao sức khỏe trong tiết trời mùa hè nắng gắt, nóng nực.', '2022-12-03', 6, 'https://file.hstatic.net/1000075078/file/pr_06_bbeb9c0f3b7a4571a79c6000ccc90513_grande.jpg');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `comment`
---
-
-CREATE TABLE `comment` (
-  `comment_id` int(11) NOT NULL,
-  `content` varchar(255) NOT NULL,
-  `date` date NOT NULL,
-  `cus_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `contains`
---
-
-CREATE TABLE `contains` (
-  `drink_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `drink_count` int(11) NOT NULL,
-  `size` enum('s','m','l') NOT NULL,
-  `topping` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `contains`
---
-
-INSERT INTO `contains` (`drink_id`, `order_id`, `drink_count`, `size`, `topping`) VALUES
-(8, 17, 1, 's', 'Đào ngâm'),
-(9, 17, 3, 's', 'Đào ngâm'),
-(11, 16, 2, 's', 'Trân châu trắng,Foam Cheese'),
-(12, 16, 1, 's', 'Trân châu trắng');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `customer`
---
-
-CREATE TABLE `customer` (
-  `cus_id` int(11) NOT NULL,
-  `point` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `customer`
---
-
-INSERT INTO `customer` (`cus_id`, `point`) VALUES
-(1, 0),
-(2, 0),
-(3, 0),
-(8, 0),
-(9, 0),
-(10, 0);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `drink`
---
-
-CREATE TABLE `drink` (
-  `drink_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `price` int(11) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `type` varchar(100) NOT NULL,
-  `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `drink`
---
-
-INSERT INTO `drink` (`drink_id`, `name`, `price`, `description`, `type`, `image`) VALUES
-(1, 'Bạc Xỉu', 30000, 'Bạc sỉu chính là \"Ly sữa trắng kèm một chút cà phê\". Thức uống này rất phù hợp những ai vừa muốn trải nghiệm chút vị đắng của cà phê vừa muốn thưởng thức vị ngọt béo ngậy từ sữa.', 'coffee', 'https://product.hstatic.net/1000075078/product/1639377904_bac-siu_83abc895d7b748ecb20b45f095a0146e.jpg'),
-(2, 'Bạc Xỉu Nóng', 35000, 'Bạc sỉu chính là \"Ly sữa trắng kèm một chút cà phê\". Thức uống này rất phù hợp những ai vừa muốn trải nghiệm chút vị đắng của cà phê vừa muốn thưởng thức vị ngọt béo ngậy từ sữa.', 'coffee', 'https://product.hstatic.net/1000075078/product/1639377926_bacsiunong_549b1856611e41619554531f0a6212c2.jpg'),
-(3, 'Cà Phê Đen Đá', 40000, 'Không ngọt ngào như Bạc sỉu hay Cà phê sữa, Cà phê đen mang trong mình phong vị trầm lắng, thi vị hơn. Người ta thường phải ngồi rất lâu mới cảm nhận được hết hương thơm ngào ngạt, phảng phất mùi cacao và cái đắng mượt mà trôi tuột xuống vòm họng.', 'coffee', 'https://product.hstatic.net/1000075078/product/1639377797_ca-phe-den-da_e0b2289e9c0a406b8488a7225e960a50.jpg'),
-(4, 'Cà Phê Đen Nóng', 35000, 'Không ngọt ngào như Bạc sỉu hay Cà phê sữa, Cà phê đen mang trong mình phong vị trầm lắng, thi vị hơn. Người ta thường phải ngồi rất lâu mới cảm nhận được hết hương thơm ngào ngạt, phảng phất mùi cacao và cái đắng mượt mà trôi tuột xuống vòm họng.', 'coffee', 'https://product.hstatic.net/1000075078/product/1639377816_ca-phe-den-nong_cbc97f6b04a547a19524eb98695f38cd.jpg'),
-(5, 'Caramel Macchiato Đá', 49000, 'Caramel Macchiato sẽ mang đến một sự ngạc nhiên thú vị khi vị thơm béo của bọt sữa, sữa tươi, vị đắng thanh thoát của cà phê Espresso hảo hạng và vị ngọt đậm của sốt caramel được gói gọn trong một tách cà phê.', 'coffee', 'https://product.hstatic.net/1000075078/product/caramel-macchiato_143623_d55e3cbce14942d0aff49e63f3668ace.jpg'),
-(6, 'Espresso Đá', 45000, 'Một tách Espresso nguyên bản được bắt đầu bởi những hạt Arabica chất lượng, phối trộn với tỉ lệ cân đối hạt Robusta, cho ra vị ngọt caramel, vị chua dịu và sánh đặc.', 'coffee', 'https://product.hstatic.net/1000075078/product/cfdenda-espressoda_185438_e68eefdf888443cfa1434483c32ec8ca.jpg'),
-(7, 'Trà Long Nhãn Hạt Sen', 49000, 'Thức uống mang hương vị của nhãn, của sen, của trà Oolong đầy thanh mát cho tất cả các thành viên trong dịp Tết này. An lành, thư thái và đậm đà chính là những gì The Coffee House mong muốn gửi trao đến bạn và gia đình.', 'tea', 'https://product.hstatic.net/1000075078/product/1649378747_tra-sen-nhan_3bdd362a971643fba012be48201f6d57.jpg'),
-(8, 'Trà Hạt Sen Nóng', 55000, 'Nền trà oolong hảo hạng kết hợp cùng hạt sen tươi, bùi bùi thơm ngon. Trà hạt sen là thức uống thanh mát, nhẹ nhàng phù hợp cho cả buổi sáng và chiều tối.', 'tea', 'https://product.hstatic.net/1000075078/product/tra-sen-nong_025153_dcc06a854de340679b1e5a0d146330e4.jpg'),
-(9, 'Trà Sữa Sô Cô La (Nóng)', 55000, 'Trong tiết trời se lạnh, còn gì tuyệt hơn khi được nhâm nhi ly Trà Sữa Sô Cô La ấm nóng. Hương vị trà Oolong nướng quen thuộc kết hợp cùng sô cô la ngọt ngào, thêm topping marshmallow mềm mịn, cứ uống là ghiền.', 'tea', 'https://product.hstatic.net/1000075078/product/s_more_choco_8d886aa96be3428c8ebc9ecc5dcaa3cb.jpg'),
-(10, 'Trà Đen Macchiato', 55000, 'Trà đen được ủ mới mỗi ngày, giữ nguyên được vị chát mạnh mẽ đặc trưng của lá trà, phủ bên trên là lớp Macchiato \"homemade\" bồng bềnh quyến rũ vị phô mai mặn mặn mà béo béo.', 'tea', 'https://product.hstatic.net/1000075078/product/tra-den-matchiato_430281_e6f452a8781d483aae7241b555ab1913.jpg'),
-(11, 'Hi Tea Xoài Aloe Vera', 49000, 'Vị ngọt thanh, thơm phức từ xoài chín mọng kết hợp cùng vị chua đặc trưng của trà hoa Hibiscus tự nhiên, sẽ khiến bạn khó lòng quên được thức uống “chân ái” mùa hè này. Đặc biệt, topping Aloe Vera tự nhiên không chỉ nhâm nhi vui miệng mà còn giúp bạn “nân', 'tea', 'https://product.hstatic.net/1000075078/product/1655199358_xoai-aloe-vera_684f148fce734572bcd58267b59119e8.jpg'),
-(12, 'Hi Tea Đá Tuyết Yuzu Vải', 55000, 'Vị trà hoa Hibiscus chua chua, kết hợp cùng đá tuyết Yuzu mát lạnh tái tê, thêm miếng vải căng mọng, ngọt ngào sẽ khiến bạn thích thú ngay từ lần thử đầu tiên.', 'tea', 'https://product.hstatic.net/1000075078/product/1653291175_da-tuyet-vai_25e9cb8e303a4b61999a279308faaee5.jpg');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `orders`
---
-
-CREATE TABLE `orders` (
-  `order_id` int(11) NOT NULL,
-  `receiver_name` varchar(100) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL,
-  `ship_fee` int(11) DEFAULT NULL,
-  `cus_id` int(11) DEFAULT NULL,
-  `status` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`order_id`, `receiver_name`, `address`, `ship_fee`, `cus_id`, `status`) VALUES
-(14, NULL, NULL, NULL, NULL, 'init'),
-(15, NULL, NULL, NULL, NULL, 'init'),
-(16, NULL, NULL, NULL, NULL, 'init'),
-(17, NULL, NULL, NULL, NULL, 'init');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `replies`
---
+USE `shop`;
 
-CREATE TABLE `replies` (
-  `ad_id` int(11) NOT NULL,
-  `cus_id` int(11) NOT NULL,
-  `comment_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `user`
---
-
-CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  UNIQUE (`username`),
-  `password` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `role` enum('cus','ad') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `user`
---
-
-INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `address`, `role`) VALUES
-(1, 'manh', '123', 'Nguyễn Văn Mạnh', 'TP Thủ Đức', 'cus'),
-(2, 'linh', '123', 'Nguyễn Thị Linh', 'Huyện Bình Chánh', 'cus'),
-(3, 'hung', '123', 'Nguyễn Hoàng Hùng', 'Quận 1', 'cus'),
-(4, 'hoang', '123', 'Nguyễn Văn Hoàng', 'Quận 3', 'ad'),
-(5, 'van', '123', 'Nguyễn Hoàng Vân', 'Quận 10', 'ad'),
-(6, 'vinh', '123', 'Nguyễn Hoàng Vinh', 'Quận 5', 'ad'),
-(8, 'toan123', '123', 'Nguyễn Huy Toàn', 'TP Dĩ An', 'cus'),
-(9, 'Lanh45', '888', 'Hoàng Lan Anh', 'Quận 5', 'cus'),
-(10, 'John', '678', 'John DuDucent', 'Quận 12', 'cus');
-
---
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`ad_id`);
-
---
--- Chỉ mục cho bảng `article`
---
-ALTER TABLE `article`
-  ADD PRIMARY KEY (`article_id`),
-  ADD KEY `ad_id` (`ad_id`);
-
---
--- Chỉ mục cho bảng `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`comment_id`,`cus_id`),
-  ADD KEY `cus_id` (`cus_id`);
-
---
--- Chỉ mục cho bảng `contains`
---
-ALTER TABLE `contains`
-  ADD PRIMARY KEY (`drink_id`,`order_id`),
-  ADD KEY `order_id` (`order_id`);
-
---
--- Chỉ mục cho bảng `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`cus_id`);
-
---
--- Chỉ mục cho bảng `drink`
---
-ALTER TABLE `drink`
-  ADD PRIMARY KEY (`drink_id`);
-
---
--- Chỉ mục cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `cus_id` (`cus_id`);
-
---
--- Chỉ mục cho bảng `replies`
---
-ALTER TABLE `replies`
-  ADD PRIMARY KEY (`ad_id`,`cus_id`,`comment_id`),
-  ADD KEY `cus_id` (`cus_id`),
-  ADD KEY `comment_id` (`comment_id`);
-
---
--- Chỉ mục cho bảng `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `article`
---
-ALTER TABLE `article`
-  MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT cho bảng `comment`
---
-ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT cho bảng `drink`
+-- Table structure for table `books`
 --
-ALTER TABLE `drink`
-  MODIFY `drink_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
---
--- AUTO_INCREMENT cho bảng `orders`
---
-ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `books` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `user_rating` double NOT NULL,
+  `reviews` double NOT NULL,
+  `price` double NOT NULL,
+  `year` int NOT NULL,
+  `genre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3008 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- AUTO_INCREMENT cho bảng `user`
+-- Dumping data for table `books`
 --
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
---
--- Các ràng buộc cho các bảng đã đổ
---
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (10,'JJ Smith',4.7,17350,8,2016,'Non Fiction\r'),(11,'Stephen King',4.6,2052,22,2011,'Fiction\r'),(12,'Jordan B. Peterson',4.7,18979,15,2018,'Non Fiction\r'),(1984,'George Orwell',4.7,21424,6,2017,'Fiction\r'),(1985,'000 Awesome Facts (About Everything!) (National Geographic Kids)\"',0,4.8,7665,12,'2019'),(1986,'George R. R. Martin',4.4,12643,11,2011,'Fiction\r'),(1987,'George R. R. Martin',4.7,19735,30,2014,'Fiction\r'),(1988,'Amor Towles',4.7,19699,15,2017,'Fiction\r'),(1989,' Lies',0,0,4.7,5983,'3'),(1990,'Fredrik Backman',4.6,23848,8,2016,'Fiction\r'),(1991,'Fredrik Backman',4.6,23848,8,2017,'Fiction\r'),(1992,'Larry Schweikart',4.6,460,2,2010,'Non Fiction\r'),(1993,'Jaycee Dugard',4.6,4149,32,2011,'Non Fiction\r'),(1994,'Madeleine L\'Engle',4.5,5153,5,2018,'Fiction\r'),(1995,' Think Like a Man: What Men Really Think About Love',0,0,0,0,'4.6'),(1996,' Mandalas',0,0,0,5,'2313'),(1997,'Blue Star Coloring',4.6,2925,6,2015,'Non Fiction\r'),(1998,'Blue Star Coloring',4.4,2951,6,2015,'Non Fiction\r'),(1999,' Animals',0,0,4.5,2426,'8'),(2000,'Ron Chernow',4.8,9198,13,2016,'Non Fiction\r'),(2001,'Anthony Doerr',4.6,36348,14,2014,'Fiction\r'),(2002,'Anthony Doerr',4.6,36348,14,2015,'Fiction\r'),(2003,'Veronica Roth',3.9,6310,13,2013,'Fiction\r'),(2004,'Chris Kyle',4.6,15921,9,2015,'Non Fiction\r'),(2005,'Khaled Hosseini',4.3,12159,13,2013,'Fiction\r'),(2006,'Glenn Beck',4.6,798,5,2009,'Non Fiction\r'),(2007,'Neil deGrasse Tyson',4.7,9374,9,2017,'Non Fiction\r'),(2008,' Vol. 1\"',0,4.2,491,14,'2010'),(2009,'DK',4.6,5360,5,2015,'Non Fiction\r'),(2010,'Angie Grace',4.6,1909,11,2015,'Non Fiction\r'),(2011,'Ina Garten',4.8,1296,24,2012,'Non Fiction\r'),(2012,' How Easy Is That?: Fabulous Recipes & Easy Tips\"',0,4.7,615,21,'2010'),(2013,'Michelle Obama',4.8,61133,11,2018,'Non Fiction\r'),(2014,'Michelle Obama',4.8,61133,11,2019,'Non Fiction\r'),(2015,'Atul Gawande',4.8,11113,15,2015,'Non Fiction\r'),(2016,'Ta-Nehisi Coates',4.7,10070,13,2015,'Non Fiction\r'),(2017,'Ta-Nehisi Coates',4.7,10070,13,2016,'Non Fiction\r'),(2018,'Bruce Springsteen',4.7,3729,18,2016,'Non Fiction\r'),(2019,' Book 4)\"',0,4.6,9769,13,'2009'),(2020,' Truth and Treasure\"',0,4.5,471,8,'2010'),(2021,' Brown Bear',0,0,4.9,14344,'5'),(2022,' Brown Bear',0,0,4.9,14344,'5'),(2023,' Book 6)\"',0,4.8,4505,0,'2011'),(2024,'Sasha O\'Hara',4.6,10369,4,2016,'Non Fiction\r'),(2025,'David Goggins',4.8,16244,18,2019,'Non Fiction\r'),(2026,'Thomas Piketty',4.5,2884,28,2014,'Non Fiction\r'),(2027,'Suzanne Collins',4.7,22614,11,2010,'Fiction\r'),(2028,'Suzanne Collins',4.7,22614,11,2011,'Fiction\r'),(2029,'Suzanne Collins',4.7,22614,11,2012,'Fiction\r'),(2030,'Chrissy Teigen',4.7,4761,16,2016,'Non Fiction\r'),(2031,'Francis Chan',4.7,1542,14,2009,'Non Fiction\r'),(2032,'Francis Chan',4.7,1542,14,2010,'Non Fiction\r'),(2033,'Francis Chan',4.7,1542,14,2011,'Non Fiction\r'),(2034,'Kevin Kwan',4.3,6143,8,2018,'Fiction\r'),(2035,'Marjorie Sarnat',4.8,4022,4,2015,'Non Fiction\r'),(2036,'Marjorie Sarnat',4.8,3871,5,2015,'Non Fiction\r'),(2037,'Abraham Verghese',4.6,4866,11,2010,'Fiction\r'),(2038,'Abraham Verghese',4.6,4866,11,2011,'Fiction\r'),(2039,' Love',0,0,0,5,'1329'),(2040,' Misfits',0,0,4.4,4642,'13'),(2041,'Charlaine Harris',4.6,1541,4,2009,'Fiction\r'),(2042,' Book 10)\"',0,4.3,1924,8,'2010'),(2043,' Book 11)\"',0,4.2,2094,4,'2011'),(2044,'Rod Campbell',4.8,10922,5,2015,'Fiction\r'),(2045,'Rod Campbell',4.8,10922,5,2016,'Fiction\r'),(2046,'Rod Campbell',4.8,10922,5,2017,'Fiction\r'),(2047,'Rod Campbell',4.8,10922,5,2018,'Fiction\r'),(2048,'George W. Bush',4.6,2137,17,2010,'Non Fiction\r'),(2049,' Passion',0,0,4.6,1651,'15'),(2050,' 5th Edition: DSM-5\"',0,4.5,6679,105,'2013'),(2051,' 5th Edition: DSM-5\"',0,4.5,6679,105,'2014'),(2052,' Book 8\"',0,4.8,6812,0,'2013'),(2053,'Jeff Kinney',4.8,3837,15,2009,'Fiction\r'),(2054,'Jeff Kinney',4.8,6540,22,2014,'Fiction\r'),(2055,'M Prefontaine',4.6,7955,5,2019,'Non Fiction\r'),(2056,'Veronica Roth',4.6,27098,15,2013,'Fiction\r'),(2057,'Veronica Roth',4.6,27098,15,2014,'Fiction\r'),(2058,'Veronica Roth',4.5,17684,6,2014,'Fiction\r'),(2059,' Humanity',0,0,0,5,'37'),(2060,'Stephen King',4.7,15845,13,2013,'Fiction\r'),(2061,' Book 4) (Volume 4)\"',0,4.8,3181,12,'2009'),(2062,'Dav Pilkey',4.9,5062,6,2018,'Fiction\r'),(2063,'Dav Pilkey',4.9,4786,8,2017,'Fiction\r'),(2064,'Dav Pilkey',4.9,7235,4,2018,'Fiction\r'),(2065,'Dav Pilkey',4.9,7235,4,2019,'Fiction\r'),(2066,'Dav Pilkey',4.9,12619,8,2019,'Fiction\r'),(2067,'Dav Pilkey',4.9,9089,8,2019,'Fiction\r'),(2068,'Dav Pilkey',4.9,5470,6,2018,'Fiction\r'),(2069,'Jeff Kinney',4.8,5118,20,2016,'Fiction\r'),(2070,'Marty Noble',4.6,2134,5,2015,'Non Fiction\r'),(2071,'Daniel H. Pink',4.5,2525,16,2010,'Non Fiction\r'),(2072,'David Zinczenko',4.5,720,1,2009,'Non Fiction\r'),(2073,' Not That! Thousands of Simple Food Swaps that Can Save You 10',20,30,0,4,'956'),(2074,' Revised Edition\"',0,4.5,6346,9,'2011'),(2075,' Revised Edition\"',0,4.5,6346,9,'2012'),(2076,'Stephenie Meyer',4.7,5505,7,2009,'Fiction\r'),(2077,'Stephenie Meyer',4.7,5505,18,2009,'Fiction\r'),(2078,'Tara Westover',4.7,28729,15,2018,'Non Fiction\r'),(2079,'Tara Westover',4.7,28729,15,2019,'Non Fiction\r'),(2080,' Mindfulness and Meditation',0,0,4.7,5413,'9'),(2081,'Ray Bradbury',4.6,10721,8,2016,'Fiction\r'),(2082,'Ray Bradbury',4.6,10721,8,2018,'Fiction\r'),(2083,'J.K. Rowling',4.7,4370,15,2016,'Fiction\r'),(2084,'Bob Woodward',4.4,6042,2,2018,'Non Fiction\r'),(2085,'E L James',4.4,23631,7,2012,'Fiction\r'),(2086,'E L James',4.5,20262,11,2012,'Fiction\r'),(2087,'E L James',3.8,47265,14,2012,'Fiction\r'),(2088,'E L James',3.8,47265,14,2013,'Fiction\r'),(2089,'E L James',4.5,13964,32,2012,'Fiction\r'),(2090,'Michael Wolff',4.2,13677,6,2018,'Non Fiction\r'),(2091,'Roger Priddy',4.7,17323,4,2014,'Non Fiction\r'),(2092,'Roger Priddy',4.7,17323,4,2015,'Non Fiction\r'),(2093,'Roger Priddy',4.7,17323,4,2016,'Non Fiction\r'),(2094,'Roger Priddy',4.7,17323,4,2017,'Non Fiction\r'),(2095,'Roger Priddy',4.7,17323,4,2018,'Non Fiction\r'),(2096,'Michael Pollan',4.4,1555,9,2010,'Non Fiction\r'),(2097,'RH Disney',4.7,3642,0,2014,'Fiction\r'),(2098,' McCain and Palin',0,0,4.4,1215,'9'),(2099,'George R.R. Martin',4.6,5594,5,2011,'Fiction\r'),(2100,'George R.R. Martin',4.6,5594,5,2012,'Fiction\r'),(2101,'George R.R. Martin',4.6,5594,5,2013,'Fiction\r'),(2102,'Peter A. Lillback',4.5,408,20,2010,'Non Fiction\r'),(2103,'Brian Kilmeade',4.6,4799,16,2013,'Non Fiction\r'),(2104,'Giles Andreae',4.8,14038,4,2015,'Fiction\r'),(2105,'Giles Andreae',4.8,14038,4,2016,'Fiction\r'),(2106,'Giles Andreae',4.8,14038,4,2017,'Fiction\r'),(2107,'Giles Andreae',4.8,14038,4,2018,'Fiction\r'),(2108,'Giles Andreae',4.8,14038,4,2019,'Fiction\r'),(2109,' Stop Apologizing: A Shame-Free Plan for Embracing and Achieving Your Goals\"',0,4.6,7660,12,'2019'),(2110,' Wash Your Face: Stop Believing the Lies About Who You Are So You Can Become Who You Were Meant to Be\"',0,4.6,22288,12,'2018'),(2111,' Wash Your Face: Stop Believing the Lies About Who You Are So You Can Become Who You Were Meant to Be\"',0,4.6,22288,12,'2019'),(2112,' Inspired by Thomas Paine\"',0,4.6,1365,11,'2009'),(2113,'Harper Lee',3.6,14982,19,2015,'Fiction\r'),(2114,'Adam Mansbach',4.8,9568,9,2011,'Fiction\r'),(2115,'Sarah Palin',4.6,1636,6,2009,'Non Fiction\r'),(2116,'Gillian Flynn',4,57271,10,2012,'Fiction\r'),(2117,'Gillian Flynn',4,57271,10,2013,'Fiction\r'),(2118,'Gillian Flynn',4,57271,9,2014,'Fiction\r'),(2119,'Pretty Simple Press',4.6,10141,6,2019,'Non Fiction\r'),(2120,'Jim Collins',4.5,3457,14,2009,'Non Fiction\r'),(2121,'Jim Collins',4.5,3457,14,2010,'Non Fiction\r'),(2122,'Jim Collins',4.5,3457,14,2011,'Non Fiction\r'),(2123,'Jim Collins',4.5,3457,14,2012,'Non Fiction\r'),(2124,'Margaret Wise Brown',4.8,8837,5,2017,'Fiction\r'),(2125,'Margaret Wise Brown',4.8,8837,5,2018,'Fiction\r'),(2126,'Margaret Wise Brown',4.8,8837,5,2019,'Fiction\r'),(2127,' Goodnight Construction Site (Hardcover Books for Toddlers',0,0,4.9,7038,'7'),(2128,' Goodnight Construction Site (Hardcover Books for Toddlers',0,0,4.9,7038,'7'),(2129,' Carbs',0,0,4.6,5972,'10'),(2130,'E L James',4.4,25624,14,2015,'Fiction\r'),(2131,'Raina Telgemeier',4.8,5476,7,2019,'Non Fiction\r'),(2132,'Lin-Manuel Miranda',4.9,5867,54,2016,'Non Fiction\r'),(2133,' Happy',0,0,4.8,4148,'11'),(2134,' Book 2)\"',0,4.9,19622,30,'2016'),(2135,' Parts 1 & 2',0,0,4,23973,'12'),(2136,' Book 4) (4)\"',0,4.9,7758,18,'2019'),(2137,' Book 3)\"',0,4.9,3146,30,'2017'),(2138,' Book 1)\"',0,4.9,10052,22,'2016'),(2139,'Scholastic',4.7,3564,9,2015,'Non Fiction\r'),(2140,'J. K. Rowling',4.8,13471,52,2016,'Fiction\r'),(2141,'Mitch Albom',4.8,1930,4,2009,'Non Fiction\r'),(2142,'Todd Burpo',4.7,15779,10,2011,'Non Fiction\r'),(2143,'Todd Burpo',4.7,15779,10,2012,'Non Fiction\r'),(2144,'J. D. Vance',4.4,15526,14,2016,'Non Fiction\r'),(2145,'J. D. Vance',4.4,15526,14,2017,'Non Fiction\r'),(2146,'Joanna Gaines',4.8,3776,22,2018,'Non Fiction\r'),(2147,'Dale Carnegie',4.7,25001,11,2014,'Non Fiction\r'),(2148,'Dale Carnegie',4.7,25001,11,2015,'Non Fiction\r'),(2149,'Dale Carnegie',4.7,25001,11,2016,'Non Fiction\r'),(2150,'Dale Carnegie',4.7,25001,11,2017,'Non Fiction\r'),(2151,'Dale Carnegie',4.7,25001,11,2018,'Non Fiction\r'),(2152,'Howard Stern',4.3,5272,16,2019,'Non Fiction\r'),(2153,'Brandon Stanton',4.8,3490,15,2013,'Non Fiction\r'),(2154,'Brandon Stanton',4.8,3490,15,2014,'Non Fiction\r'),(2155,'Brandon Stanton',4.9,2812,17,2015,'Non Fiction\r'),(2156,' Flawed Coping Mechanisms',0,0,0,5,'4896'),(2157,' Brave & Beautiful: A Coloring Book for Girls\"',0,4.8,9737,7,'2019'),(2158,' Alex Cross\"',0,4.6,1320,7,'2009'),(2159,'Ann Whitford Paul',4.8,16643,4,2017,'Fiction\r'),(2160,'Ann Whitford Paul',4.8,16643,4,2019,'Fiction\r'),(2161,'Gayle Forman',4.3,7153,9,2014,'Fiction\r'),(2162,' Terror',0,0,4.4,4571,'21'),(2163,'Dan Brown',4.1,29651,14,2013,'Fiction\r'),(2164,'Christopher Paolini',4.6,5299,20,2011,'Fiction\r'),(2165,'Jennifer Smith',4.4,7396,13,2019,'Non Fiction\r'),(2166,'Jennifer Smith',4.4,7396,13,2018,'Non Fiction\r'),(2167,'Lysa TerKeurst',4.8,7062,12,2019,'Non Fiction\r'),(2168,'Sarah Young',4.9,19576,8,2011,'Non Fiction\r'),(2169,'Sarah Young',4.9,19576,8,2012,'Non Fiction\r'),(2170,'Sarah Young',4.9,19576,8,2013,'Non Fiction\r'),(2171,'Sarah Young',4.9,19576,8,2014,'Non Fiction\r'),(2172,'Sarah Young',4.9,19576,8,2015,'Non Fiction\r'),(2173,'Sarah Young',4.9,19576,8,2016,'Non Fiction\r'),(2174,'RH Disney',4.6,978,0,2014,'Fiction\r'),(2175,'Stephen King',4.5,4748,12,2013,'Fiction\r'),(2176,'David Grann',4.6,8393,17,2017,'Non Fiction\r'),(2177,'Bill O\'Reilly',4.5,11391,12,2013,'Non Fiction\r'),(2178,'Bill O\'Reilly',4.6,8634,25,2012,'Non Fiction\r'),(2179,'Bill O\'Reilly',4.7,9342,10,2011,'Non Fiction\r'),(2180,'Bill O\'Reilly',4.7,9342,10,2012,'Non Fiction\r'),(2181,'Bill O\'Reilly',4.6,10927,6,2014,'Non Fiction\r'),(2182,'Bill O\'Reilly',4.6,5235,5,2015,'Non Fiction\r'),(2183,'Bill O\'Reilly',4.8,8916,6,2016,'Non Fiction\r'),(2184,'Anthony Bourdain',4.8,2507,8,2018,'Non Fiction\r'),(2185,'Rob Elliott',4.5,3673,4,2013,'Non Fiction\r'),(2186,'Rob Elliott',4.5,3673,4,2014,'Non Fiction\r'),(2187,'Rob Elliott',4.5,3673,4,2015,'Non Fiction\r'),(2188,' LGBT Childrens Book)\"',0,4.9,11881,13,'2018'),(2189,'Rob Elliott',4.6,6990,4,2013,'Non Fiction\r'),(2190,'Rob Elliott',4.6,6990,4,2014,'Non Fiction\r'),(2191,'Rob Elliott',4.6,6990,4,2015,'Non Fiction\r'),(2192,'Rob Elliott',4.6,6990,4,2016,'Non Fiction\r'),(2193,'Rob Elliott',4.6,6990,4,2017,'Non Fiction\r'),(2194,' Work',0,0,4.5,6132,'13'),(2195,'Walter Isaacson',4.5,3014,21,2017,'Non Fiction\r'),(2196,'Paper Peony Press',4.4,7550,6,2018,'Non Fiction\r'),(2197,'Mark R. Levin',4.8,3828,15,2009,'Non Fiction\r'),(2198,'Keith Richards',4.5,2752,18,2010,'Non Fiction\r'),(2199,'Chris Cleave',4.1,1467,10,2010,'Fiction\r'),(2200,'Alice Schertle',4.9,1884,0,2014,'Fiction\r'),(2201,'Celeste Ng',4.5,25706,12,2018,'Fiction\r'),(2202,'John Green',4.5,8491,7,2014,'Fiction\r'),(2203,' Hell',0,0,4.2,1649,'13'),(2204,'Robert Munsch',4.8,18613,5,2014,'Fiction\r'),(2205,'Robert Munsch',4.8,18613,5,2015,'Fiction\r'),(2206,'Joanna Gaines',4.8,9867,16,2018,'Non Fiction\r'),(2207,'Ina Garten',4.5,1386,20,2014,'Non Fiction\r'),(2208,'Admiral William H. McRaven',4.7,10199,11,2017,'Non Fiction\r'),(2209,' Vol. 2\"',0,4.8,2926,27,'2009'),(2210,'Rupi Kaur',4.7,17739,8,2016,'Non Fiction\r'),(2211,'Rupi Kaur',4.7,17739,8,2017,'Non Fiction\r'),(2212,'Rupi Kaur',4.7,17739,8,2018,'Non Fiction\r'),(2213,'Adam Gasiewski',4.4,3113,6,2017,'Non Fiction\r'),(2214,'Carol S. Dweck',4.6,5542,10,2014,'Non Fiction\r'),(2215,'Carol S. Dweck',4.6,5542,10,2015,'Non Fiction\r'),(2216,'Carol S. Dweck',4.6,5542,10,2016,'Non Fiction\r'),(2217,'Suzanne Collins',4.5,26741,8,2010,'Fiction\r'),(2218,'Suzanne Collins',4.5,26741,8,2011,'Fiction\r'),(2219,'Suzanne Collins',4.5,26741,8,2012,'Fiction\r'),(2220,'111 Answers to Everything\"',0,4.8,5347,16,'2019'),(2221,'Amy Shields',4.8,7866,11,2019,'Non Fiction\r'),(2222,'Stephenie Meyer',4.6,5680,10,2009,'Fiction\r'),(2223,'Elie Wiesel',4.7,5178,9,2016,'Non Fiction\r'),(2224,'Mark Owen',4.6,8093,14,2012,'Non Fiction\r'),(2225,'Pete Souza',4.9,3192,22,2017,'Non Fiction\r'),(2226,' the Places You\'ll Go!\"',0,4.9,21834,8,'2012'),(2227,' the Places You\'ll Go!\"',0,4.9,21834,8,'2013'),(2228,' the Places You\'ll Go!\"',0,4.9,21834,8,'2014'),(2229,' the Places You\'ll Go!\"',0,4.9,21834,8,'2015'),(2230,' the Places You\'ll Go!\"',0,4.9,21834,8,'2016'),(2231,' the Places You\'ll Go!\"',0,4.9,21834,8,'2017'),(2232,' the Places You\'ll Go!\"',0,4.9,21834,8,'2018'),(2233,' the Places You\'ll Go!\"',0,4.9,21834,8,'2019'),(2234,'Jeff Kinney',4.8,6169,7,2015,'Fiction\r'),(2235,'Elizabeth Strout',4.2,4519,12,2009,'Fiction\r'),(2236,'Ann Voskamp',4.6,3163,13,2011,'Non Fiction\r'),(2237,'Ann Voskamp',4.6,3163,13,2012,'Non Fiction\r'),(2238,' Building Resilience',0,0,4.5,1831,'9'),(2239,'Dan Brown',4.3,18904,13,2017,'Fiction\r'),(2240,'Christina Baker Kline',4.6,21930,11,2014,'Fiction\r'),(2241,'Malcolm Gladwell',4.6,10426,20,2009,'Non Fiction\r'),(2242,'Malcolm Gladwell',4.6,10426,20,2010,'Non Fiction\r'),(2243,'Naomi Kleinberg',4.7,10820,5,2018,'Non Fiction\r'),(2244,'Naomi Kleinberg',4.7,10820,5,2019,'Non Fiction\r'),(2245,'Rick Riordan',4.8,548,2,2010,'Fiction\r'),(2246,'Wizards RPG Team',4.8,16990,27,2017,'Fiction\r'),(2247,'Wizards RPG Team',4.8,16990,27,2018,'Fiction\r'),(2248,'Wizards RPG Team',4.8,16990,27,2019,'Fiction\r'),(2249,'Scholastic',4.7,3503,9,2016,'Fiction\r'),(2250,'Eben Alexander',4.3,13616,10,2012,'Non Fiction\r'),(2251,'Eben Alexander',4.3,13616,10,2013,'Non Fiction\r'),(2252,' 6th Edition\"',0,4.5,8580,46,'2009'),(2253,' 6th Edition\"',0,4.5,8580,46,'2010'),(2254,' 6th Edition\"',0,4.5,8580,46,'2011'),(2255,' 6th Edition\"',0,4.5,8580,46,'2012'),(2256,' 6th Edition\"',0,4.5,8580,46,'2013'),(2257,' 6th Edition\"',0,4.5,8580,46,'2014'),(2258,' 6th Edition\"',0,4.5,8580,46,'2015'),(2259,' 6th Edition\"',0,4.5,8580,46,'2016'),(2260,' 6th Edition\"',0,4.5,8580,46,'2017'),(2261,' 6th Edition\"',0,4.5,8580,46,'2018'),(2262,'Golden Books',4.8,4757,4,2017,'Fiction\r'),(2263,'Susan Cain',4.6,10009,20,2012,'Non Fiction\r'),(2264,'Susan Cain',4.6,10009,7,2013,'Non Fiction\r'),(2265,'David Platt',4.7,1985,9,2010,'Non Fiction\r'),(2266,'David Platt',4.7,1985,9,2011,'Non Fiction\r'),(2267,'Ernest Cline',4.6,22536,12,2017,'Fiction\r'),(2268,'Ernest Cline',4.6,22536,12,2018,'Fiction\r'),(2269,'Rush Limbaugh',4.9,7150,12,2013,'Fiction\r'),(2270,'Rush Limbaugh',4.9,3836,12,2014,'Fiction\r'),(2271,' Fat',0,0,0,5,'7802'),(2272,' Fat',0,0,0,5,'7802'),(2273,'Tatiana de Rosnay',4.6,3619,10,2010,'Fiction\r'),(2274,' Colors',0,0,0,0,' Pre-Reading…\"'),(2275,' Colors',0,0,0,0,' Pre-Reading…\"'),(2276,' mindfulness coloring)\"',0,4.7,9366,9,'2015'),(2277,'Justin Halpern',4.7,1265,11,2010,'Non Fiction\r'),(2278,'Tucker Carlson',4.8,3923,16,2018,'Non Fiction\r'),(2279,'Ian K. Smith M.D.',4.1,2272,6,2013,'Non Fiction\r'),(2280,'Charlaine Harris',4.7,973,25,2009,'Fiction\r'),(2281,' Knowledge',0,0,4.6,220,'17'),(2282,'Walter Isaacson',4.6,7827,20,2011,'Non Fiction\r'),(2283,'Walter Isaacson',4.6,7827,20,2012,'Non Fiction\r'),(2284,'Nathan W. Pyle',4.9,9382,6,2019,'Fiction\r'),(2285,'Gallup',4,5069,17,2009,'Non Fiction\r'),(2286,'Gallup',4,5069,17,2010,'Non Fiction\r'),(2287,'Gallup',4,5069,17,2011,'Non Fiction\r'),(2288,'Gallup',4,5069,17,2012,'Non Fiction\r'),(2289,'Gallup',4,5069,17,2013,'Non Fiction\r'),(2290,'Gallup',4,5069,17,2014,'Non Fiction\r'),(2291,'Gallup',4,5069,17,2015,'Non Fiction\r'),(2292,'Gallup',4,5069,17,2016,'Non Fiction\r'),(2293,'Gallup',4,5069,17,2017,'Non Fiction\r'),(2294,' Patriotic Prostitutes',0,0,4.5,1583,'18'),(2295,'Chip Heath',4.6,1907,13,2010,'Non Fiction\r'),(2296,'John Grisham',4.5,23114,18,2013,'Fiction\r'),(2297,'Doug Lemov',4.4,637,20,2010,'Non Fiction\r'),(2298,'Doug Lemov',4.4,637,20,2011,'Non Fiction\r'),(2299,'Mike Moreno',4.3,2314,22,2011,'Non Fiction\r'),(2300,' Incredible Sex and Becoming Superhuman\"',0,4.3,4587,21,'2011'),(2301,'Gary Chapman',4.7,3477,28,2010,'Non Fiction\r'),(2302,'Gary Chapman',4.7,3477,28,2011,'Non Fiction\r'),(2303,'Gary Chapman',4.7,3477,28,2012,'Non Fiction\r'),(2304,'Gary Chapman',4.7,3477,28,2013,'Non Fiction\r'),(2305,'Gary Chapman',4.7,3477,28,2014,'Non Fiction\r'),(2306,'Gary Chapman',4.8,25554,8,2015,'Non Fiction\r'),(2307,'Gary Chapman',4.8,25554,8,2016,'Non Fiction\r'),(2308,'Gary Chapman',4.8,25554,8,2017,'Non Fiction\r'),(2309,'Gary Chapman',4.8,25554,8,2018,'Non Fiction\r'),(2310,'Gary Chapman',4.8,25554,8,2019,'Non Fiction\r'),(2311,'W. Cleon Skousen',4.8,1680,12,2009,'Non Fiction\r'),(2312,'Stephen R. Covey',4.6,9325,24,2009,'Non Fiction\r'),(2313,'Stephen R. Covey',4.6,9325,24,2011,'Non Fiction\r'),(2314,'Stephen R. Covey',4.6,9325,24,2012,'Non Fiction\r'),(2315,'Stephen R. Covey',4.6,9325,24,2013,'Non Fiction\r'),(2316,'Stephen R. Covey',4.7,4725,16,2015,'Non Fiction\r'),(2317,'Stephen R. Covey',4.7,4725,16,2016,'Non Fiction\r'),(2318,'Stephen R. Covey',4.7,4725,16,2017,'Non Fiction\r'),(2319,'Paulo Coelho',4.7,35799,39,2014,'Fiction\r'),(2320,'Edward Klein',4.6,2580,9,2012,'Non Fiction\r'),(2321,'Garth Stein',4.7,11813,10,2010,'Fiction\r'),(2322,'Garth Stein',4.7,11813,10,2011,'Fiction\r'),(2323,'Michael Lewis',4.7,3536,17,2010,'Non Fiction\r'),(2324,'Rick Riordan',4.8,6600,11,2014,'Fiction\r'),(2325,' Preventing Disease',0,0,4.2,1789,'14'),(2326,' Mind',0,0,4.8,12361,'12'),(2327,'Bill Simmons',4.7,858,53,2009,'Non Fiction\r'),(2328,'Markus Zusak',4.6,23148,6,2013,'Fiction\r'),(2329,'Markus Zusak',4.6,23148,6,2014,'Fiction\r'),(2330,'B. J. Novak',4.8,8081,8,2014,'Fiction\r'),(2331,'B. J. Novak',4.8,8081,8,2015,'Fiction\r'),(2332,'Daniel James Brown',4.8,23358,12,2014,'Non Fiction\r'),(2333,'Daniel James Brown',4.8,23358,12,2015,'Non Fiction\r'),(2334,'J.K. Rowling',3.3,9372,12,2012,'Fiction\r'),(2335,'Thomas Campbell',4.7,4633,21,2011,'Non Fiction\r'),(2336,'Amy Ramos',4.3,13061,6,2018,'Non Fiction\r'),(2337,'Amy Ramos',4.3,13061,6,2019,'Non Fiction\r'),(2338,'John Grisham',4.3,3523,13,2010,'Fiction\r'),(2339,'Delegates of the Constitutional',4.8,2774,0,2016,'Non Fiction\r'),(2340,'Jon Stewart',4.4,440,11,2010,'Non Fiction\r'),(2341,'Drew Daywalt',4.8,8922,9,2013,'Fiction\r'),(2342,'Drew Daywalt',4.8,8922,9,2014,'Fiction\r'),(2343,'Drew Daywalt',4.8,8922,9,2015,'Fiction\r'),(2344,' 2 Steps to Keep It Off Forever\"',0,4.1,2023,15,'2011'),(2345,'Muriel Barbery',4,1859,11,2009,'Fiction\r'),(2346,'John Green',4.7,50482,13,2012,'Fiction\r'),(2347,'John Green',4.7,50482,13,2013,'Fiction\r'),(2348,'John Green',4.7,50482,7,2014,'Fiction\r'),(2349,'John Green',4.7,50482,13,2014,'Fiction\r'),(2350,'Patrick Lencioni',4.6,3207,6,2009,'Non Fiction\r'),(2351,'Patrick Lencioni',4.6,3207,6,2010,'Non Fiction\r'),(2352,'Patrick Lencioni',4.6,3207,6,2011,'Non Fiction\r'),(2353,'Patrick Lencioni',4.6,3207,6,2012,'Non Fiction\r'),(2354,'Patrick Lencioni',4.6,3207,6,2013,'Non Fiction\r'),(2355,'Gary Chapman',4.6,803,9,2009,'Non Fiction\r'),(2356,'Don Miguel Ruiz',4.7,23308,6,2013,'Non Fiction\r'),(2357,'Don Miguel Ruiz',4.7,23308,6,2015,'Non Fiction\r'),(2358,'Don Miguel Ruiz',4.7,23308,6,2016,'Non Fiction\r'),(2359,'Don Miguel Ruiz',4.7,23308,6,2017,'Non Fiction\r'),(2360,'Don Miguel Ruiz',4.7,23308,6,2018,'Non Fiction\r'),(2361,'Don Miguel Ruiz',4.7,23308,6,2019,'Non Fiction\r'),(2362,'Jeff Kinney',4.8,5836,0,2017,'Fiction\r'),(2363,'Paula Hawkins',4.1,79446,18,2015,'Fiction\r'),(2364,'Paula Hawkins',4.1,79446,7,2016,'Fiction\r'),(2365,'Stieg Larsson',4.7,7747,14,2010,'Fiction\r'),(2366,'Stieg Larsson',4.7,7747,14,2011,'Fiction\r'),(2367,'Stieg Larsson',4.7,7251,9,2010,'Fiction\r'),(2368,'Stieg Larsson',4.7,7251,16,2009,'Fiction\r'),(2369,'Stieg Larsson',4.4,10559,2,2009,'Fiction\r'),(2370,'Stieg Larsson',4.4,10559,2,2010,'Fiction\r'),(2371,'Sandra Boynton',4.8,5249,5,2016,'Fiction\r'),(2372,'Sandra Boynton',4.8,5249,5,2017,'Fiction\r'),(2373,'Donna Tartt',3.9,33844,20,2013,'Fiction\r'),(2374,'Donna Tartt',3.9,33844,20,2014,'Fiction\r'),(2375,'F. Scott Fitzgerald',4.4,11616,7,2012,'Fiction\r'),(2376,'F. Scott Fitzgerald',4.4,11616,7,2013,'Fiction\r'),(2377,'F. Scott Fitzgerald',4.4,11616,7,2014,'Fiction\r'),(2378,'John Grisham',4.5,13609,14,2019,'Fiction\r'),(2379,'Mary Ann Shaffer',4.7,8587,10,2009,'Fiction\r'),(2380,'Margaret Atwood',4.3,29442,7,2017,'Fiction\r'),(2381,'Jonathan Cahn',4.6,11098,13,2012,'Fiction\r'),(2382,'Angie Thomas',4.8,9947,11,2018,'Fiction\r'),(2383,'Kathryn Stockett',4.8,13871,6,2009,'Fiction\r'),(2384,'Kathryn Stockett',4.8,13871,6,2010,'Fiction\r'),(2385,'Kathryn Stockett',4.8,13871,8,2011,'Fiction\r'),(2386,'Kathryn Stockett',4.8,13871,7,2011,'Fiction\r'),(2387,' Book 4)\"',0,4.8,6982,14,'2013'),(2388,'Suzanne Collins',4.7,32122,14,2010,'Fiction\r'),(2389,'Suzanne Collins',4.7,32122,8,2011,'Fiction\r'),(2390,'Suzanne Collins',4.7,32122,8,2012,'Fiction\r'),(2391,'Suzanne Collins',4.8,16949,30,2011,'Fiction\r'),(2392,'Suzanne Collins',4.8,16949,30,2012,'Fiction\r'),(2393,'Rebecca Skloot',4.7,9289,13,2010,'Non Fiction\r'),(2394,'Rebecca Skloot',4.7,9289,9,2011,'Non Fiction\r'),(2395,'Rebecca Skloot',4.7,9289,9,2012,'Non Fiction\r'),(2396,'Laurel Randolph',4.3,7368,7,2017,'Non Fiction\r'),(2397,'Laurel Randolph',4.3,7368,7,2018,'Non Fiction\r'),(2398,'Randy Pausch',4.7,4028,9,2009,'Non Fiction\r'),(2399,' Book 5)\"',0,4.8,4628,7,'2009'),(2400,' Book 5)\"',0,4.8,4628,7,'2010'),(2401,'Patrick Thorpe',4.9,5396,20,2013,'Fiction\r'),(2402,'Daniel Lipkowitz',4.4,4247,13,2011,'Non Fiction\r'),(2403,'Daniel Lipkowitz',4.4,4247,13,2012,'Non Fiction\r'),(2404,'Marie Kondō',4.5,22641,11,2015,'Non Fiction\r'),(2405,'Marie Kondō',4.5,22641,11,2016,'Non Fiction\r'),(2406,'Marie Kondō',4.5,22641,11,2017,'Non Fiction\r'),(2407,'Marie Kondō',4.5,22641,11,2019,'Non Fiction\r'),(2408,'John Grisham',4.4,6222,18,2011,'Fiction\r'),(2409,' Book 1)\"',0,4.8,4506,14,'2010'),(2410,'Dan Brown',4.2,8747,19,2009,'Fiction\r'),(2411,'Stephen Kendrick',4.8,1655,13,2009,'Non Fiction\r'),(2412,'Chip Gaines',4.9,7861,5,2016,'Non Fiction\r'),(2413,' Book 3)\"',0,4.8,6247,10,'2012'),(2414,'Andy Weir',4.7,39459,9,2015,'Fiction\r'),(2415,'James Dashner',4.5,10101,8,2014,'Fiction\r'),(2416,'Jeff Kinney',4.8,5898,8,2018,'Fiction\r'),(2417,'The Washington Post',4.6,2744,12,2019,'Non Fiction\r'),(2418,'Kristin Hannah',4.8,49288,11,2015,'Fiction\r'),(2419,'Kristin Hannah',4.8,49288,11,2016,'Fiction\r'),(2420,'The College Board',4.4,1201,40,2010,'Non Fiction\r'),(2421,'The College Board',4.4,1201,40,2011,'Non Fiction\r'),(2422,'The College Board',4.4,1201,40,2012,'Non Fiction\r'),(2423,'The College Board',4.4,1201,40,2013,'Non Fiction\r'),(2424,'The College Board',4.4,1201,40,2014,'Non Fiction\r'),(2425,' 2016 Edition (Official Study Guide for the New Sat)\"',0,4.3,807,36,'2016'),(2426,'Paula McLain',4.3,3759,16,2011,'Fiction\r'),(2427,' Scrumptious Celebrations\"',0,4.8,2663,17,'2013'),(2428,' Freezer Food',16,0,0,5,'3428'),(2429,'Ree Drummond',4.8,2876,21,2012,'Non Fiction\r'),(2430,' Heal Your Gut',0,0,4.5,3601,'18'),(2431,'Dr. Steven R Gundry MD',4.4,7058,17,2018,'Non Fiction\r'),(2432,'Deborah Diesen',4.8,9784,5,2017,'Fiction\r'),(2433,'Deborah Diesen',4.8,9784,5,2018,'Fiction\r'),(2434,'Charles Duhigg',4.6,10795,21,2012,'Non Fiction\r'),(2435,'James Patterson',4.3,10191,18,2018,'Fiction\r'),(2436,'John Grisham',4.3,14493,18,2012,'Fiction\r'),(2437,' Book 1)\"',0,4.6,2186,12,'2010'),(2438,' Volume 2)\"',0,4.6,1204,14,'2010'),(2439,' Book 3)\"',0,4.8,2091,12,'2012'),(2440,'William P. Young',4.6,19720,8,2009,'Fiction\r'),(2441,'William P. Young',4.6,19720,8,2017,'Fiction\r'),(2442,'Stephenie Meyer',4.6,2122,0,2010,'Fiction\r'),(2443,'Alex Michaelides',4.5,27536,14,2019,'Fiction\r'),(2444,' Book 2)\"',0,4.8,4290,10,'2011'),(2445,'Mark Manson',4.6,26490,15,2017,'Non Fiction\r'),(2446,'Mark Manson',4.6,26490,15,2018,'Non Fiction\r'),(2447,'Mark Manson',4.6,26490,15,2019,'Non Fiction\r'),(2448,'Rupi Kaur',4.7,5487,9,2017,'Non Fiction\r'),(2449,' Book 7)\"',0,4.7,6377,7,'2012'),(2450,' Book 2)\"',0,4.7,1463,10,'2011'),(2451,'Audrey Niffenegger',4.4,3759,6,2009,'Fiction\r'),(2452,'Malcolm Gladwell',4.4,3503,9,2009,'Non Fiction\r'),(2453,'Dave Ramsey',4.7,11550,10,2019,'Non Fiction\r'),(2454,'Stephenie Meyer',4.7,3801,82,2009,'Fiction\r'),(2455,' Book 5)\"',0,4.8,3796,12,'2010'),(2456,'Dinah Bucholz',4.7,9030,10,2019,'Non Fiction\r'),(2457,'Eric Carle',4.9,19546,5,2013,'Fiction\r'),(2458,'Eric Carle',4.9,19546,5,2014,'Fiction\r'),(2459,'Eric Carle',4.9,19546,5,2015,'Fiction\r'),(2460,'Eric Carle',4.9,19546,5,2016,'Fiction\r'),(2461,'Eric Carle',4.9,19546,5,2017,'Fiction\r'),(2462,'Eric Carle',4.9,19546,5,2018,'Fiction\r'),(2463,'Eric Carle',4.9,19546,5,2019,'Fiction\r'),(2464,'Melissa Hartwig Urban',4.6,7508,16,2015,'Non Fiction\r'),(2465,'Melissa Hartwig Urban',4.6,7508,16,2016,'Non Fiction\r'),(2466,'Melissa Hartwig Urban',4.6,7508,16,2017,'Non Fiction\r'),(2467,'Emily Winfield Martin',4.9,8842,10,2016,'Fiction\r'),(2468,'Emily Winfield Martin',4.9,8842,10,2017,'Fiction\r'),(2469,'Emily Winfield Martin',4.9,8842,10,2018,'Fiction\r'),(2470,'Emily Winfield Martin',4.9,8842,10,2019,'Fiction\r'),(2471,'Craig Smith',4.8,30183,4,2018,'Fiction\r'),(2472,'Craig Smith',4.8,30183,4,2019,'Fiction\r'),(2473,'David McCullough',4.7,6169,16,2015,'Non Fiction\r'),(2474,' Pastimes and Politics [Deckled Edge]\"',0,4.7,7034,15,'2013'),(2475,' Fast and Slow\"',0,4.6,11034,19,'2011'),(2476,' Fast and Slow\"',0,4.6,11034,19,'2012'),(2477,'Jay Asher',4.5,7932,9,2017,'Fiction\r'),(2478,'Jon Meacham',4.5,1904,23,2012,'Non Fiction\r'),(2479,'Greg Mortenson',4.3,3319,11,2009,'Non Fiction\r'),(2480,'Greg Mortenson',4.3,3319,11,2010,'Non Fiction\r'),(2481,'Thug Kitchen',4.6,11128,23,2014,'Non Fiction\r'),(2482,'Thug Kitchen',4.6,11128,23,2015,'Non Fiction\r'),(2483,'Thug Kitchen',4.6,11128,23,2016,'Non Fiction\r'),(2484,'Thug Kitchen',4.6,11128,23,2017,'Non Fiction\r'),(2485,'Tina Fey',4.3,5977,12,2011,'Non Fiction\r'),(2486,'Harper Lee',4.8,26234,0,2013,'Fiction\r'),(2487,'Harper Lee',4.8,26234,0,2014,'Fiction\r'),(2488,'Harper Lee',4.8,26234,0,2015,'Fiction\r'),(2489,'Harper Lee',4.8,26234,0,2016,'Fiction\r'),(2490,'Harper Lee',4.8,26234,7,2019,'Fiction\r'),(2491,' Routines',0,0,0,0,'4.6'),(2492,' Book Thirteen)\"',0,4.8,2282,21,'2010'),(2493,'Edward M. Kennedy',4.5,438,15,2009,'Non Fiction\r'),(2494,' Book 1)\"',0,4.7,11676,9,'2009'),(2495,'DK',4.5,2586,5,2014,'Fiction\r'),(2496,' Resilience',0,0,4.8,29673,'16'),(2497,' Resilience',0,0,4.8,29673,'16'),(2498,' Resilience',0,0,4.8,29673,'16'),(2499,' Resilience',0,0,4.8,29673,'13'),(2500,' Resilience',0,0,4.8,29673,'16'),(2501,'Stephen King',4.3,6740,20,2009,'Fiction\r'),(2502,'Mark R. Levin',4.9,5956,11,2019,'Non Fiction\r'),(2503,'Silly Bear',4.8,6108,4,2019,'Non Fiction\r'),(2504,' Left Out',0,0,4.7,4585,'9'),(2505,'Alan Moore',4.8,3829,42,2009,'Fiction\r'),(2506,'Sara Gruen',4.5,8958,12,2011,'Fiction\r'),(2507,'Hillary Rodham Clinton',4.6,5492,18,2017,'Non Fiction\r'),(2508,'Randall Munroe',4.7,9292,17,2014,'Non Fiction\r'),(2509,'Dr. Seuss',4.7,1873,14,2015,'Fiction\r'),(2510,'Adir Levy',4.8,8170,13,2019,'Fiction\r'),(2511,'Heidi Murkoff',4.4,3341,9,2011,'Non Fiction\r'),(2512,' Lose the Weight',0,0,4.4,7497,'6'),(2513,' Lose the Weight',0,0,4.4,7497,'6'),(2514,'Paul Kalanithi',4.8,13779,14,2016,'Non Fiction\r'),(2515,'Delia Owens',4.8,87841,15,2019,'Fiction\r'),(2516,'Maurice Sendak',4.8,9967,13,2009,'Fiction\r'),(2517,'The Staff of The Late Show with',4.6,6669,12,2018,'Non Fiction\r'),(2518,'Cheryl Strayed',4.4,17044,18,2012,'Non Fiction\r'),(2519,'Ken Follett',4.5,10760,15,2012,'Fiction\r'),(2520,'Geneen Roth',4.2,1302,11,2010,'Non Fiction\r'),(2521,'R. J. Palacio',4.8,21625,9,2013,'Fiction\r'),(2522,'R. J. Palacio',4.8,21625,9,2014,'Fiction\r'),(2523,'R. J. Palacio',4.8,21625,9,2015,'Fiction\r'),(2524,'R. J. Palacio',4.8,21625,9,2016,'Fiction\r'),(2525,'R. J. Palacio',4.8,21625,9,2017,'Fiction\r'),(2526,'Jeff Kinney',4.9,9413,8,2019,'Fiction\r'),(2527,'Jen Sincero',4.7,14331,8,2016,'Non Fiction\r'),(2528,'Jen Sincero',4.7,14331,8,2017,'Non Fiction\r'),(2529,'Jen Sincero',4.7,14331,8,2018,'Non Fiction\r'),(2530,'Jen Sincero',4.7,14331,8,2019,'Non Fiction\r');
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Các ràng buộc cho bảng `admin`
+-- Current Database: `shop`
 --
-ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`ad_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Các ràng buộc cho bảng `article`
---
-ALTER TABLE `article`
-  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`ad_id`) REFERENCES `admin` (`ad_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `shop` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
---
--- Các ràng buộc cho bảng `comment`
---
-ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`cus_id`) REFERENCES `customer` (`cus_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+USE `shop`;
 
 --
--- Các ràng buộc cho bảng `contains`
+-- Table structure for table `books`
 --
-ALTER TABLE `contains`
-  ADD CONSTRAINT `contains_ibfk_1` FOREIGN KEY (`drink_id`) REFERENCES `drink` (`drink_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `contains_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Các ràng buộc cho bảng `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`cus_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `books` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `user_rating` double NOT NULL,
+  `reviews` double NOT NULL,
+  `price` double NOT NULL,
+  `year` int NOT NULL,
+  `genre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3008 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Các ràng buộc cho bảng `orders`
+-- Dumping data for table `books`
 --
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`cus_id`) REFERENCES `customer` (`cus_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Các ràng buộc cho bảng `replies`
---
-ALTER TABLE `replies`
-  ADD CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`ad_id`) REFERENCES `admin` (`ad_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`cus_id`) REFERENCES `customer` (`cus_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `replies_ibfk_3` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (10,'JJ Smith',4.7,17350,8,2016,'Non Fiction\r'),(11,'Stephen King',4.6,2052,22,2011,'Fiction\r'),(12,'Jordan B. Peterson',4.7,18979,15,2018,'Non Fiction\r'),(1984,'George Orwell',4.7,21424,6,2017,'Fiction\r'),(1985,'000 Awesome Facts (About Everything!) (National Geographic Kids)\"',0,4.8,7665,12,'2019'),(1986,'George R. R. Martin',4.4,12643,11,2011,'Fiction\r'),(1987,'George R. R. Martin',4.7,19735,30,2014,'Fiction\r'),(1988,'Amor Towles',4.7,19699,15,2017,'Fiction\r'),(1989,' Lies',0,0,4.7,5983,'3'),(1990,'Fredrik Backman',4.6,23848,8,2016,'Fiction\r'),(1991,'Fredrik Backman',4.6,23848,8,2017,'Fiction\r'),(1992,'Larry Schweikart',4.6,460,2,2010,'Non Fiction\r'),(1993,'Jaycee Dugard',4.6,4149,32,2011,'Non Fiction\r'),(1994,'Madeleine L\'Engle',4.5,5153,5,2018,'Fiction\r'),(1995,' Think Like a Man: What Men Really Think About Love',0,0,0,0,'4.6'),(1996,' Mandalas',0,0,0,5,'2313'),(1997,'Blue Star Coloring',4.6,2925,6,2015,'Non Fiction\r'),(1998,'Blue Star Coloring',4.4,2951,6,2015,'Non Fiction\r'),(1999,' Animals',0,0,4.5,2426,'8'),(2000,'Ron Chernow',4.8,9198,13,2016,'Non Fiction\r'),(2001,'Anthony Doerr',4.6,36348,14,2014,'Fiction\r'),(2002,'Anthony Doerr',4.6,36348,14,2015,'Fiction\r'),(2003,'Veronica Roth',3.9,6310,13,2013,'Fiction\r'),(2004,'Chris Kyle',4.6,15921,9,2015,'Non Fiction\r'),(2005,'Khaled Hosseini',4.3,12159,13,2013,'Fiction\r'),(2006,'Glenn Beck',4.6,798,5,2009,'Non Fiction\r'),(2007,'Neil deGrasse Tyson',4.7,9374,9,2017,'Non Fiction\r'),(2008,' Vol. 1\"',0,4.2,491,14,'2010'),(2009,'DK',4.6,5360,5,2015,'Non Fiction\r'),(2010,'Angie Grace',4.6,1909,11,2015,'Non Fiction\r'),(2011,'Ina Garten',4.8,1296,24,2012,'Non Fiction\r'),(2012,' How Easy Is That?: Fabulous Recipes & Easy Tips\"',0,4.7,615,21,'2010'),(2013,'Michelle Obama',4.8,61133,11,2018,'Non Fiction\r'),(2014,'Michelle Obama',4.8,61133,11,2019,'Non Fiction\r'),(2015,'Atul Gawande',4.8,11113,15,2015,'Non Fiction\r'),(2016,'Ta-Nehisi Coates',4.7,10070,13,2015,'Non Fiction\r'),(2017,'Ta-Nehisi Coates',4.7,10070,13,2016,'Non Fiction\r'),(2018,'Bruce Springsteen',4.7,3729,18,2016,'Non Fiction\r'),(2019,' Book 4)\"',0,4.6,9769,13,'2009'),(2020,' Truth and Treasure\"',0,4.5,471,8,'2010'),(2021,' Brown Bear',0,0,4.9,14344,'5'),(2022,' Brown Bear',0,0,4.9,14344,'5'),(2023,' Book 6)\"',0,4.8,4505,0,'2011'),(2024,'Sasha O\'Hara',4.6,10369,4,2016,'Non Fiction\r'),(2025,'David Goggins',4.8,16244,18,2019,'Non Fiction\r'),(2026,'Thomas Piketty',4.5,2884,28,2014,'Non Fiction\r'),(2027,'Suzanne Collins',4.7,22614,11,2010,'Fiction\r'),(2028,'Suzanne Collins',4.7,22614,11,2011,'Fiction\r'),(2029,'Suzanne Collins',4.7,22614,11,2012,'Fiction\r'),(2030,'Chrissy Teigen',4.7,4761,16,2016,'Non Fiction\r'),(2031,'Francis Chan',4.7,1542,14,2009,'Non Fiction\r'),(2032,'Francis Chan',4.7,1542,14,2010,'Non Fiction\r'),(2033,'Francis Chan',4.7,1542,14,2011,'Non Fiction\r'),(2034,'Kevin Kwan',4.3,6143,8,2018,'Fiction\r'),(2035,'Marjorie Sarnat',4.8,4022,4,2015,'Non Fiction\r'),(2036,'Marjorie Sarnat',4.8,3871,5,2015,'Non Fiction\r'),(2037,'Abraham Verghese',4.6,4866,11,2010,'Fiction\r'),(2038,'Abraham Verghese',4.6,4866,11,2011,'Fiction\r'),(2039,' Love',0,0,0,5,'1329'),(2040,' Misfits',0,0,4.4,4642,'13'),(2041,'Charlaine Harris',4.6,1541,4,2009,'Fiction\r'),(2042,' Book 10)\"',0,4.3,1924,8,'2010'),(2043,' Book 11)\"',0,4.2,2094,4,'2011'),(2044,'Rod Campbell',4.8,10922,5,2015,'Fiction\r'),(2045,'Rod Campbell',4.8,10922,5,2016,'Fiction\r'),(2046,'Rod Campbell',4.8,10922,5,2017,'Fiction\r'),(2047,'Rod Campbell',4.8,10922,5,2018,'Fiction\r'),(2048,'George W. Bush',4.6,2137,17,2010,'Non Fiction\r'),(2049,' Passion',0,0,4.6,1651,'15'),(2050,' 5th Edition: DSM-5\"',0,4.5,6679,105,'2013'),(2051,' 5th Edition: DSM-5\"',0,4.5,6679,105,'2014'),(2052,' Book 8\"',0,4.8,6812,0,'2013'),(2053,'Jeff Kinney',4.8,3837,15,2009,'Fiction\r'),(2054,'Jeff Kinney',4.8,6540,22,2014,'Fiction\r'),(2055,'M Prefontaine',4.6,7955,5,2019,'Non Fiction\r'),(2056,'Veronica Roth',4.6,27098,15,2013,'Fiction\r'),(2057,'Veronica Roth',4.6,27098,15,2014,'Fiction\r'),(2058,'Veronica Roth',4.5,17684,6,2014,'Fiction\r'),(2059,' Humanity',0,0,0,5,'37'),(2060,'Stephen King',4.7,15845,13,2013,'Fiction\r'),(2061,' Book 4) (Volume 4)\"',0,4.8,3181,12,'2009'),(2062,'Dav Pilkey',4.9,5062,6,2018,'Fiction\r'),(2063,'Dav Pilkey',4.9,4786,8,2017,'Fiction\r'),(2064,'Dav Pilkey',4.9,7235,4,2018,'Fiction\r'),(2065,'Dav Pilkey',4.9,7235,4,2019,'Fiction\r'),(2066,'Dav Pilkey',4.9,12619,8,2019,'Fiction\r'),(2067,'Dav Pilkey',4.9,9089,8,2019,'Fiction\r'),(2068,'Dav Pilkey',4.9,5470,6,2018,'Fiction\r'),(2069,'Jeff Kinney',4.8,5118,20,2016,'Fiction\r'),(2070,'Marty Noble',4.6,2134,5,2015,'Non Fiction\r'),(2071,'Daniel H. Pink',4.5,2525,16,2010,'Non Fiction\r'),(2072,'David Zinczenko',4.5,720,1,2009,'Non Fiction\r'),(2073,' Not That! Thousands of Simple Food Swaps that Can Save You 10',20,30,0,4,'956'),(2074,' Revised Edition\"',0,4.5,6346,9,'2011'),(2075,' Revised Edition\"',0,4.5,6346,9,'2012'),(2076,'Stephenie Meyer',4.7,5505,7,2009,'Fiction\r'),(2077,'Stephenie Meyer',4.7,5505,18,2009,'Fiction\r'),(2078,'Tara Westover',4.7,28729,15,2018,'Non Fiction\r'),(2079,'Tara Westover',4.7,28729,15,2019,'Non Fiction\r'),(2080,' Mindfulness and Meditation',0,0,4.7,5413,'9'),(2081,'Ray Bradbury',4.6,10721,8,2016,'Fiction\r'),(2082,'Ray Bradbury',4.6,10721,8,2018,'Fiction\r'),(2083,'J.K. Rowling',4.7,4370,15,2016,'Fiction\r'),(2084,'Bob Woodward',4.4,6042,2,2018,'Non Fiction\r'),(2085,'E L James',4.4,23631,7,2012,'Fiction\r'),(2086,'E L James',4.5,20262,11,2012,'Fiction\r'),(2087,'E L James',3.8,47265,14,2012,'Fiction\r'),(2088,'E L James',3.8,47265,14,2013,'Fiction\r'),(2089,'E L James',4.5,13964,32,2012,'Fiction\r'),(2090,'Michael Wolff',4.2,13677,6,2018,'Non Fiction\r'),(2091,'Roger Priddy',4.7,17323,4,2014,'Non Fiction\r'),(2092,'Roger Priddy',4.7,17323,4,2015,'Non Fiction\r'),(2093,'Roger Priddy',4.7,17323,4,2016,'Non Fiction\r'),(2094,'Roger Priddy',4.7,17323,4,2017,'Non Fiction\r'),(2095,'Roger Priddy',4.7,17323,4,2018,'Non Fiction\r'),(2096,'Michael Pollan',4.4,1555,9,2010,'Non Fiction\r'),(2097,'RH Disney',4.7,3642,0,2014,'Fiction\r'),(2098,' McCain and Palin',0,0,4.4,1215,'9'),(2099,'George R.R. Martin',4.6,5594,5,2011,'Fiction\r'),(2100,'George R.R. Martin',4.6,5594,5,2012,'Fiction\r'),(2101,'George R.R. Martin',4.6,5594,5,2013,'Fiction\r'),(2102,'Peter A. Lillback',4.5,408,20,2010,'Non Fiction\r'),(2103,'Brian Kilmeade',4.6,4799,16,2013,'Non Fiction\r'),(2104,'Giles Andreae',4.8,14038,4,2015,'Fiction\r'),(2105,'Giles Andreae',4.8,14038,4,2016,'Fiction\r'),(2106,'Giles Andreae',4.8,14038,4,2017,'Fiction\r'),(2107,'Giles Andreae',4.8,14038,4,2018,'Fiction\r'),(2108,'Giles Andreae',4.8,14038,4,2019,'Fiction\r'),(2109,' Stop Apologizing: A Shame-Free Plan for Embracing and Achieving Your Goals\"',0,4.6,7660,12,'2019'),(2110,' Wash Your Face: Stop Believing the Lies About Who You Are So You Can Become Who You Were Meant to Be\"',0,4.6,22288,12,'2018'),(2111,' Wash Your Face: Stop Believing the Lies About Who You Are So You Can Become Who You Were Meant to Be\"',0,4.6,22288,12,'2019'),(2112,' Inspired by Thomas Paine\"',0,4.6,1365,11,'2009'),(2113,'Harper Lee',3.6,14982,19,2015,'Fiction\r'),(2114,'Adam Mansbach',4.8,9568,9,2011,'Fiction\r'),(2115,'Sarah Palin',4.6,1636,6,2009,'Non Fiction\r'),(2116,'Gillian Flynn',4,57271,10,2012,'Fiction\r'),(2117,'Gillian Flynn',4,57271,10,2013,'Fiction\r'),(2118,'Gillian Flynn',4,57271,9,2014,'Fiction\r'),(2119,'Pretty Simple Press',4.6,10141,6,2019,'Non Fiction\r'),(2120,'Jim Collins',4.5,3457,14,2009,'Non Fiction\r'),(2121,'Jim Collins',4.5,3457,14,2010,'Non Fiction\r'),(2122,'Jim Collins',4.5,3457,14,2011,'Non Fiction\r'),(2123,'Jim Collins',4.5,3457,14,2012,'Non Fiction\r'),(2124,'Margaret Wise Brown',4.8,8837,5,2017,'Fiction\r'),(2125,'Margaret Wise Brown',4.8,8837,5,2018,'Fiction\r'),(2126,'Margaret Wise Brown',4.8,8837,5,2019,'Fiction\r'),(2127,' Goodnight Construction Site (Hardcover Books for Toddlers',0,0,4.9,7038,'7'),(2128,' Goodnight Construction Site (Hardcover Books for Toddlers',0,0,4.9,7038,'7'),(2129,' Carbs',0,0,4.6,5972,'10'),(2130,'E L James',4.4,25624,14,2015,'Fiction\r'),(2131,'Raina Telgemeier',4.8,5476,7,2019,'Non Fiction\r'),(2132,'Lin-Manuel Miranda',4.9,5867,54,2016,'Non Fiction\r'),(2133,' Happy',0,0,4.8,4148,'11'),(2134,' Book 2)\"',0,4.9,19622,30,'2016'),(2135,' Parts 1 & 2',0,0,4,23973,'12'),(2136,' Book 4) (4)\"',0,4.9,7758,18,'2019'),(2137,' Book 3)\"',0,4.9,3146,30,'2017'),(2138,' Book 1)\"',0,4.9,10052,22,'2016'),(2139,'Scholastic',4.7,3564,9,2015,'Non Fiction\r'),(2140,'J. K. Rowling',4.8,13471,52,2016,'Fiction\r'),(2141,'Mitch Albom',4.8,1930,4,2009,'Non Fiction\r'),(2142,'Todd Burpo',4.7,15779,10,2011,'Non Fiction\r'),(2143,'Todd Burpo',4.7,15779,10,2012,'Non Fiction\r'),(2144,'J. D. Vance',4.4,15526,14,2016,'Non Fiction\r'),(2145,'J. D. Vance',4.4,15526,14,2017,'Non Fiction\r'),(2146,'Joanna Gaines',4.8,3776,22,2018,'Non Fiction\r'),(2147,'Dale Carnegie',4.7,25001,11,2014,'Non Fiction\r'),(2148,'Dale Carnegie',4.7,25001,11,2015,'Non Fiction\r'),(2149,'Dale Carnegie',4.7,25001,11,2016,'Non Fiction\r'),(2150,'Dale Carnegie',4.7,25001,11,2017,'Non Fiction\r'),(2151,'Dale Carnegie',4.7,25001,11,2018,'Non Fiction\r'),(2152,'Howard Stern',4.3,5272,16,2019,'Non Fiction\r'),(2153,'Brandon Stanton',4.8,3490,15,2013,'Non Fiction\r'),(2154,'Brandon Stanton',4.8,3490,15,2014,'Non Fiction\r'),(2155,'Brandon Stanton',4.9,2812,17,2015,'Non Fiction\r'),(2156,' Flawed Coping Mechanisms',0,0,0,5,'4896'),(2157,' Brave & Beautiful: A Coloring Book for Girls\"',0,4.8,9737,7,'2019'),(2158,' Alex Cross\"',0,4.6,1320,7,'2009'),(2159,'Ann Whitford Paul',4.8,16643,4,2017,'Fiction\r'),(2160,'Ann Whitford Paul',4.8,16643,4,2019,'Fiction\r'),(2161,'Gayle Forman',4.3,7153,9,2014,'Fiction\r'),(2162,' Terror',0,0,4.4,4571,'21'),(2163,'Dan Brown',4.1,29651,14,2013,'Fiction\r'),(2164,'Christopher Paolini',4.6,5299,20,2011,'Fiction\r'),(2165,'Jennifer Smith',4.4,7396,13,2019,'Non Fiction\r'),(2166,'Jennifer Smith',4.4,7396,13,2018,'Non Fiction\r'),(2167,'Lysa TerKeurst',4.8,7062,12,2019,'Non Fiction\r'),(2168,'Sarah Young',4.9,19576,8,2011,'Non Fiction\r'),(2169,'Sarah Young',4.9,19576,8,2012,'Non Fiction\r'),(2170,'Sarah Young',4.9,19576,8,2013,'Non Fiction\r'),(2171,'Sarah Young',4.9,19576,8,2014,'Non Fiction\r'),(2172,'Sarah Young',4.9,19576,8,2015,'Non Fiction\r'),(2173,'Sarah Young',4.9,19576,8,2016,'Non Fiction\r'),(2174,'RH Disney',4.6,978,0,2014,'Fiction\r'),(2175,'Stephen King',4.5,4748,12,2013,'Fiction\r'),(2176,'David Grann',4.6,8393,17,2017,'Non Fiction\r'),(2177,'Bill O\'Reilly',4.5,11391,12,2013,'Non Fiction\r'),(2178,'Bill O\'Reilly',4.6,8634,25,2012,'Non Fiction\r'),(2179,'Bill O\'Reilly',4.7,9342,10,2011,'Non Fiction\r'),(2180,'Bill O\'Reilly',4.7,9342,10,2012,'Non Fiction\r'),(2181,'Bill O\'Reilly',4.6,10927,6,2014,'Non Fiction\r'),(2182,'Bill O\'Reilly',4.6,5235,5,2015,'Non Fiction\r'),(2183,'Bill O\'Reilly',4.8,8916,6,2016,'Non Fiction\r'),(2184,'Anthony Bourdain',4.8,2507,8,2018,'Non Fiction\r'),(2185,'Rob Elliott',4.5,3673,4,2013,'Non Fiction\r'),(2186,'Rob Elliott',4.5,3673,4,2014,'Non Fiction\r'),(2187,'Rob Elliott',4.5,3673,4,2015,'Non Fiction\r'),(2188,' LGBT Childrens Book)\"',0,4.9,11881,13,'2018'),(2189,'Rob Elliott',4.6,6990,4,2013,'Non Fiction\r'),(2190,'Rob Elliott',4.6,6990,4,2014,'Non Fiction\r'),(2191,'Rob Elliott',4.6,6990,4,2015,'Non Fiction\r'),(2192,'Rob Elliott',4.6,6990,4,2016,'Non Fiction\r'),(2193,'Rob Elliott',4.6,6990,4,2017,'Non Fiction\r'),(2194,' Work',0,0,4.5,6132,'13'),(2195,'Walter Isaacson',4.5,3014,21,2017,'Non Fiction\r'),(2196,'Paper Peony Press',4.4,7550,6,2018,'Non Fiction\r'),(2197,'Mark R. Levin',4.8,3828,15,2009,'Non Fiction\r'),(2198,'Keith Richards',4.5,2752,18,2010,'Non Fiction\r'),(2199,'Chris Cleave',4.1,1467,10,2010,'Fiction\r'),(2200,'Alice Schertle',4.9,1884,0,2014,'Fiction\r'),(2201,'Celeste Ng',4.5,25706,12,2018,'Fiction\r'),(2202,'John Green',4.5,8491,7,2014,'Fiction\r'),(2203,' Hell',0,0,4.2,1649,'13'),(2204,'Robert Munsch',4.8,18613,5,2014,'Fiction\r'),(2205,'Robert Munsch',4.8,18613,5,2015,'Fiction\r'),(2206,'Joanna Gaines',4.8,9867,16,2018,'Non Fiction\r'),(2207,'Ina Garten',4.5,1386,20,2014,'Non Fiction\r'),(2208,'Admiral William H. McRaven',4.7,10199,11,2017,'Non Fiction\r'),(2209,' Vol. 2\"',0,4.8,2926,27,'2009'),(2210,'Rupi Kaur',4.7,17739,8,2016,'Non Fiction\r'),(2211,'Rupi Kaur',4.7,17739,8,2017,'Non Fiction\r'),(2212,'Rupi Kaur',4.7,17739,8,2018,'Non Fiction\r'),(2213,'Adam Gasiewski',4.4,3113,6,2017,'Non Fiction\r'),(2214,'Carol S. Dweck',4.6,5542,10,2014,'Non Fiction\r'),(2215,'Carol S. Dweck',4.6,5542,10,2015,'Non Fiction\r'),(2216,'Carol S. Dweck',4.6,5542,10,2016,'Non Fiction\r'),(2217,'Suzanne Collins',4.5,26741,8,2010,'Fiction\r'),(2218,'Suzanne Collins',4.5,26741,8,2011,'Fiction\r'),(2219,'Suzanne Collins',4.5,26741,8,2012,'Fiction\r'),(2220,'111 Answers to Everything\"',0,4.8,5347,16,'2019'),(2221,'Amy Shields',4.8,7866,11,2019,'Non Fiction\r'),(2222,'Stephenie Meyer',4.6,5680,10,2009,'Fiction\r'),(2223,'Elie Wiesel',4.7,5178,9,2016,'Non Fiction\r'),(2224,'Mark Owen',4.6,8093,14,2012,'Non Fiction\r'),(2225,'Pete Souza',4.9,3192,22,2017,'Non Fiction\r'),(2226,' the Places You\'ll Go!\"',0,4.9,21834,8,'2012'),(2227,' the Places You\'ll Go!\"',0,4.9,21834,8,'2013'),(2228,' the Places You\'ll Go!\"',0,4.9,21834,8,'2014'),(2229,' the Places You\'ll Go!\"',0,4.9,21834,8,'2015'),(2230,' the Places You\'ll Go!\"',0,4.9,21834,8,'2016'),(2231,' the Places You\'ll Go!\"',0,4.9,21834,8,'2017'),(2232,' the Places You\'ll Go!\"',0,4.9,21834,8,'2018'),(2233,' the Places You\'ll Go!\"',0,4.9,21834,8,'2019'),(2234,'Jeff Kinney',4.8,6169,7,2015,'Fiction\r'),(2235,'Elizabeth Strout',4.2,4519,12,2009,'Fiction\r'),(2236,'Ann Voskamp',4.6,3163,13,2011,'Non Fiction\r'),(2237,'Ann Voskamp',4.6,3163,13,2012,'Non Fiction\r'),(2238,' Building Resilience',0,0,4.5,1831,'9'),(2239,'Dan Brown',4.3,18904,13,2017,'Fiction\r'),(2240,'Christina Baker Kline',4.6,21930,11,2014,'Fiction\r'),(2241,'Malcolm Gladwell',4.6,10426,20,2009,'Non Fiction\r'),(2242,'Malcolm Gladwell',4.6,10426,20,2010,'Non Fiction\r'),(2243,'Naomi Kleinberg',4.7,10820,5,2018,'Non Fiction\r'),(2244,'Naomi Kleinberg',4.7,10820,5,2019,'Non Fiction\r'),(2245,'Rick Riordan',4.8,548,2,2010,'Fiction\r'),(2246,'Wizards RPG Team',4.8,16990,27,2017,'Fiction\r'),(2247,'Wizards RPG Team',4.8,16990,27,2018,'Fiction\r'),(2248,'Wizards RPG Team',4.8,16990,27,2019,'Fiction\r'),(2249,'Scholastic',4.7,3503,9,2016,'Fiction\r'),(2250,'Eben Alexander',4.3,13616,10,2012,'Non Fiction\r'),(2251,'Eben Alexander',4.3,13616,10,2013,'Non Fiction\r'),(2252,' 6th Edition\"',0,4.5,8580,46,'2009'),(2253,' 6th Edition\"',0,4.5,8580,46,'2010'),(2254,' 6th Edition\"',0,4.5,8580,46,'2011'),(2255,' 6th Edition\"',0,4.5,8580,46,'2012'),(2256,' 6th Edition\"',0,4.5,8580,46,'2013'),(2257,' 6th Edition\"',0,4.5,8580,46,'2014'),(2258,' 6th Edition\"',0,4.5,8580,46,'2015'),(2259,' 6th Edition\"',0,4.5,8580,46,'2016'),(2260,' 6th Edition\"',0,4.5,8580,46,'2017'),(2261,' 6th Edition\"',0,4.5,8580,46,'2018'),(2262,'Golden Books',4.8,4757,4,2017,'Fiction\r'),(2263,'Susan Cain',4.6,10009,20,2012,'Non Fiction\r'),(2264,'Susan Cain',4.6,10009,7,2013,'Non Fiction\r'),(2265,'David Platt',4.7,1985,9,2010,'Non Fiction\r'),(2266,'David Platt',4.7,1985,9,2011,'Non Fiction\r'),(2267,'Ernest Cline',4.6,22536,12,2017,'Fiction\r'),(2268,'Ernest Cline',4.6,22536,12,2018,'Fiction\r'),(2269,'Rush Limbaugh',4.9,7150,12,2013,'Fiction\r'),(2270,'Rush Limbaugh',4.9,3836,12,2014,'Fiction\r'),(2271,' Fat',0,0,0,5,'7802'),(2272,' Fat',0,0,0,5,'7802'),(2273,'Tatiana de Rosnay',4.6,3619,10,2010,'Fiction\r'),(2274,' Colors',0,0,0,0,' Pre-Reading…\"'),(2275,' Colors',0,0,0,0,' Pre-Reading…\"'),(2276,' mindfulness coloring)\"',0,4.7,9366,9,'2015'),(2277,'Justin Halpern',4.7,1265,11,2010,'Non Fiction\r'),(2278,'Tucker Carlson',4.8,3923,16,2018,'Non Fiction\r'),(2279,'Ian K. Smith M.D.',4.1,2272,6,2013,'Non Fiction\r'),(2280,'Charlaine Harris',4.7,973,25,2009,'Fiction\r'),(2281,' Knowledge',0,0,4.6,220,'17'),(2282,'Walter Isaacson',4.6,7827,20,2011,'Non Fiction\r'),(2283,'Walter Isaacson',4.6,7827,20,2012,'Non Fiction\r'),(2284,'Nathan W. Pyle',4.9,9382,6,2019,'Fiction\r'),(2285,'Gallup',4,5069,17,2009,'Non Fiction\r'),(2286,'Gallup',4,5069,17,2010,'Non Fiction\r'),(2287,'Gallup',4,5069,17,2011,'Non Fiction\r'),(2288,'Gallup',4,5069,17,2012,'Non Fiction\r'),(2289,'Gallup',4,5069,17,2013,'Non Fiction\r'),(2290,'Gallup',4,5069,17,2014,'Non Fiction\r'),(2291,'Gallup',4,5069,17,2015,'Non Fiction\r'),(2292,'Gallup',4,5069,17,2016,'Non Fiction\r'),(2293,'Gallup',4,5069,17,2017,'Non Fiction\r'),(2294,' Patriotic Prostitutes',0,0,4.5,1583,'18'),(2295,'Chip Heath',4.6,1907,13,2010,'Non Fiction\r'),(2296,'John Grisham',4.5,23114,18,2013,'Fiction\r'),(2297,'Doug Lemov',4.4,637,20,2010,'Non Fiction\r'),(2298,'Doug Lemov',4.4,637,20,2011,'Non Fiction\r'),(2299,'Mike Moreno',4.3,2314,22,2011,'Non Fiction\r'),(2300,' Incredible Sex and Becoming Superhuman\"',0,4.3,4587,21,'2011'),(2301,'Gary Chapman',4.7,3477,28,2010,'Non Fiction\r'),(2302,'Gary Chapman',4.7,3477,28,2011,'Non Fiction\r'),(2303,'Gary Chapman',4.7,3477,28,2012,'Non Fiction\r'),(2304,'Gary Chapman',4.7,3477,28,2013,'Non Fiction\r'),(2305,'Gary Chapman',4.7,3477,28,2014,'Non Fiction\r'),(2306,'Gary Chapman',4.8,25554,8,2015,'Non Fiction\r'),(2307,'Gary Chapman',4.8,25554,8,2016,'Non Fiction\r'),(2308,'Gary Chapman',4.8,25554,8,2017,'Non Fiction\r'),(2309,'Gary Chapman',4.8,25554,8,2018,'Non Fiction\r'),(2310,'Gary Chapman',4.8,25554,8,2019,'Non Fiction\r'),(2311,'W. Cleon Skousen',4.8,1680,12,2009,'Non Fiction\r'),(2312,'Stephen R. Covey',4.6,9325,24,2009,'Non Fiction\r'),(2313,'Stephen R. Covey',4.6,9325,24,2011,'Non Fiction\r'),(2314,'Stephen R. Covey',4.6,9325,24,2012,'Non Fiction\r'),(2315,'Stephen R. Covey',4.6,9325,24,2013,'Non Fiction\r'),(2316,'Stephen R. Covey',4.7,4725,16,2015,'Non Fiction\r'),(2317,'Stephen R. Covey',4.7,4725,16,2016,'Non Fiction\r'),(2318,'Stephen R. Covey',4.7,4725,16,2017,'Non Fiction\r'),(2319,'Paulo Coelho',4.7,35799,39,2014,'Fiction\r'),(2320,'Edward Klein',4.6,2580,9,2012,'Non Fiction\r'),(2321,'Garth Stein',4.7,11813,10,2010,'Fiction\r'),(2322,'Garth Stein',4.7,11813,10,2011,'Fiction\r'),(2323,'Michael Lewis',4.7,3536,17,2010,'Non Fiction\r'),(2324,'Rick Riordan',4.8,6600,11,2014,'Fiction\r'),(2325,' Preventing Disease',0,0,4.2,1789,'14'),(2326,' Mind',0,0,4.8,12361,'12'),(2327,'Bill Simmons',4.7,858,53,2009,'Non Fiction\r'),(2328,'Markus Zusak',4.6,23148,6,2013,'Fiction\r'),(2329,'Markus Zusak',4.6,23148,6,2014,'Fiction\r'),(2330,'B. J. Novak',4.8,8081,8,2014,'Fiction\r'),(2331,'B. J. Novak',4.8,8081,8,2015,'Fiction\r'),(2332,'Daniel James Brown',4.8,23358,12,2014,'Non Fiction\r'),(2333,'Daniel James Brown',4.8,23358,12,2015,'Non Fiction\r'),(2334,'J.K. Rowling',3.3,9372,12,2012,'Fiction\r'),(2335,'Thomas Campbell',4.7,4633,21,2011,'Non Fiction\r'),(2336,'Amy Ramos',4.3,13061,6,2018,'Non Fiction\r'),(2337,'Amy Ramos',4.3,13061,6,2019,'Non Fiction\r'),(2338,'John Grisham',4.3,3523,13,2010,'Fiction\r'),(2339,'Delegates of the Constitutional',4.8,2774,0,2016,'Non Fiction\r'),(2340,'Jon Stewart',4.4,440,11,2010,'Non Fiction\r'),(2341,'Drew Daywalt',4.8,8922,9,2013,'Fiction\r'),(2342,'Drew Daywalt',4.8,8922,9,2014,'Fiction\r'),(2343,'Drew Daywalt',4.8,8922,9,2015,'Fiction\r'),(2344,' 2 Steps to Keep It Off Forever\"',0,4.1,2023,15,'2011'),(2345,'Muriel Barbery',4,1859,11,2009,'Fiction\r'),(2346,'John Green',4.7,50482,13,2012,'Fiction\r'),(2347,'John Green',4.7,50482,13,2013,'Fiction\r'),(2348,'John Green',4.7,50482,7,2014,'Fiction\r'),(2349,'John Green',4.7,50482,13,2014,'Fiction\r'),(2350,'Patrick Lencioni',4.6,3207,6,2009,'Non Fiction\r'),(2351,'Patrick Lencioni',4.6,3207,6,2010,'Non Fiction\r'),(2352,'Patrick Lencioni',4.6,3207,6,2011,'Non Fiction\r'),(2353,'Patrick Lencioni',4.6,3207,6,2012,'Non Fiction\r'),(2354,'Patrick Lencioni',4.6,3207,6,2013,'Non Fiction\r'),(2355,'Gary Chapman',4.6,803,9,2009,'Non Fiction\r'),(2356,'Don Miguel Ruiz',4.7,23308,6,2013,'Non Fiction\r'),(2357,'Don Miguel Ruiz',4.7,23308,6,2015,'Non Fiction\r'),(2358,'Don Miguel Ruiz',4.7,23308,6,2016,'Non Fiction\r'),(2359,'Don Miguel Ruiz',4.7,23308,6,2017,'Non Fiction\r'),(2360,'Don Miguel Ruiz',4.7,23308,6,2018,'Non Fiction\r'),(2361,'Don Miguel Ruiz',4.7,23308,6,2019,'Non Fiction\r'),(2362,'Jeff Kinney',4.8,5836,0,2017,'Fiction\r'),(2363,'Paula Hawkins',4.1,79446,18,2015,'Fiction\r'),(2364,'Paula Hawkins',4.1,79446,7,2016,'Fiction\r'),(2365,'Stieg Larsson',4.7,7747,14,2010,'Fiction\r'),(2366,'Stieg Larsson',4.7,7747,14,2011,'Fiction\r'),(2367,'Stieg Larsson',4.7,7251,9,2010,'Fiction\r'),(2368,'Stieg Larsson',4.7,7251,16,2009,'Fiction\r'),(2369,'Stieg Larsson',4.4,10559,2,2009,'Fiction\r'),(2370,'Stieg Larsson',4.4,10559,2,2010,'Fiction\r'),(2371,'Sandra Boynton',4.8,5249,5,2016,'Fiction\r'),(2372,'Sandra Boynton',4.8,5249,5,2017,'Fiction\r'),(2373,'Donna Tartt',3.9,33844,20,2013,'Fiction\r'),(2374,'Donna Tartt',3.9,33844,20,2014,'Fiction\r'),(2375,'F. Scott Fitzgerald',4.4,11616,7,2012,'Fiction\r'),(2376,'F. Scott Fitzgerald',4.4,11616,7,2013,'Fiction\r'),(2377,'F. Scott Fitzgerald',4.4,11616,7,2014,'Fiction\r'),(2378,'John Grisham',4.5,13609,14,2019,'Fiction\r'),(2379,'Mary Ann Shaffer',4.7,8587,10,2009,'Fiction\r'),(2380,'Margaret Atwood',4.3,29442,7,2017,'Fiction\r'),(2381,'Jonathan Cahn',4.6,11098,13,2012,'Fiction\r'),(2382,'Angie Thomas',4.8,9947,11,2018,'Fiction\r'),(2383,'Kathryn Stockett',4.8,13871,6,2009,'Fiction\r'),(2384,'Kathryn Stockett',4.8,13871,6,2010,'Fiction\r'),(2385,'Kathryn Stockett',4.8,13871,8,2011,'Fiction\r'),(2386,'Kathryn Stockett',4.8,13871,7,2011,'Fiction\r'),(2387,' Book 4)\"',0,4.8,6982,14,'2013'),(2388,'Suzanne Collins',4.7,32122,14,2010,'Fiction\r'),(2389,'Suzanne Collins',4.7,32122,8,2011,'Fiction\r'),(2390,'Suzanne Collins',4.7,32122,8,2012,'Fiction\r'),(2391,'Suzanne Collins',4.8,16949,30,2011,'Fiction\r'),(2392,'Suzanne Collins',4.8,16949,30,2012,'Fiction\r'),(2393,'Rebecca Skloot',4.7,9289,13,2010,'Non Fiction\r'),(2394,'Rebecca Skloot',4.7,9289,9,2011,'Non Fiction\r'),(2395,'Rebecca Skloot',4.7,9289,9,2012,'Non Fiction\r'),(2396,'Laurel Randolph',4.3,7368,7,2017,'Non Fiction\r'),(2397,'Laurel Randolph',4.3,7368,7,2018,'Non Fiction\r'),(2398,'Randy Pausch',4.7,4028,9,2009,'Non Fiction\r'),(2399,' Book 5)\"',0,4.8,4628,7,'2009'),(2400,' Book 5)\"',0,4.8,4628,7,'2010'),(2401,'Patrick Thorpe',4.9,5396,20,2013,'Fiction\r'),(2402,'Daniel Lipkowitz',4.4,4247,13,2011,'Non Fiction\r'),(2403,'Daniel Lipkowitz',4.4,4247,13,2012,'Non Fiction\r'),(2404,'Marie Kondō',4.5,22641,11,2015,'Non Fiction\r'),(2405,'Marie Kondō',4.5,22641,11,2016,'Non Fiction\r'),(2406,'Marie Kondō',4.5,22641,11,2017,'Non Fiction\r'),(2407,'Marie Kondō',4.5,22641,11,2019,'Non Fiction\r'),(2408,'John Grisham',4.4,6222,18,2011,'Fiction\r'),(2409,' Book 1)\"',0,4.8,4506,14,'2010'),(2410,'Dan Brown',4.2,8747,19,2009,'Fiction\r'),(2411,'Stephen Kendrick',4.8,1655,13,2009,'Non Fiction\r'),(2412,'Chip Gaines',4.9,7861,5,2016,'Non Fiction\r'),(2413,' Book 3)\"',0,4.8,6247,10,'2012'),(2414,'Andy Weir',4.7,39459,9,2015,'Fiction\r'),(2415,'James Dashner',4.5,10101,8,2014,'Fiction\r'),(2416,'Jeff Kinney',4.8,5898,8,2018,'Fiction\r'),(2417,'The Washington Post',4.6,2744,12,2019,'Non Fiction\r'),(2418,'Kristin Hannah',4.8,49288,11,2015,'Fiction\r'),(2419,'Kristin Hannah',4.8,49288,11,2016,'Fiction\r'),(2420,'The College Board',4.4,1201,40,2010,'Non Fiction\r'),(2421,'The College Board',4.4,1201,40,2011,'Non Fiction\r'),(2422,'The College Board',4.4,1201,40,2012,'Non Fiction\r'),(2423,'The College Board',4.4,1201,40,2013,'Non Fiction\r'),(2424,'The College Board',4.4,1201,40,2014,'Non Fiction\r'),(2425,' 2016 Edition (Official Study Guide for the New Sat)\"',0,4.3,807,36,'2016'),(2426,'Paula McLain',4.3,3759,16,2011,'Fiction\r'),(2427,' Scrumptious Celebrations\"',0,4.8,2663,17,'2013'),(2428,' Freezer Food',16,0,0,5,'3428'),(2429,'Ree Drummond',4.8,2876,21,2012,'Non Fiction\r'),(2430,' Heal Your Gut',0,0,4.5,3601,'18'),(2431,'Dr. Steven R Gundry MD',4.4,7058,17,2018,'Non Fiction\r'),(2432,'Deborah Diesen',4.8,9784,5,2017,'Fiction\r'),(2433,'Deborah Diesen',4.8,9784,5,2018,'Fiction\r'),(2434,'Charles Duhigg',4.6,10795,21,2012,'Non Fiction\r'),(2435,'James Patterson',4.3,10191,18,2018,'Fiction\r'),(2436,'John Grisham',4.3,14493,18,2012,'Fiction\r'),(2437,' Book 1)\"',0,4.6,2186,12,'2010'),(2438,' Volume 2)\"',0,4.6,1204,14,'2010'),(2439,' Book 3)\"',0,4.8,2091,12,'2012'),(2440,'William P. Young',4.6,19720,8,2009,'Fiction\r'),(2441,'William P. Young',4.6,19720,8,2017,'Fiction\r'),(2442,'Stephenie Meyer',4.6,2122,0,2010,'Fiction\r'),(2443,'Alex Michaelides',4.5,27536,14,2019,'Fiction\r'),(2444,' Book 2)\"',0,4.8,4290,10,'2011'),(2445,'Mark Manson',4.6,26490,15,2017,'Non Fiction\r'),(2446,'Mark Manson',4.6,26490,15,2018,'Non Fiction\r'),(2447,'Mark Manson',4.6,26490,15,2019,'Non Fiction\r'),(2448,'Rupi Kaur',4.7,5487,9,2017,'Non Fiction\r'),(2449,' Book 7)\"',0,4.7,6377,7,'2012'),(2450,' Book 2)\"',0,4.7,1463,10,'2011'),(2451,'Audrey Niffenegger',4.4,3759,6,2009,'Fiction\r'),(2452,'Malcolm Gladwell',4.4,3503,9,2009,'Non Fiction\r'),(2453,'Dave Ramsey',4.7,11550,10,2019,'Non Fiction\r'),(2454,'Stephenie Meyer',4.7,3801,82,2009,'Fiction\r'),(2455,' Book 5)\"',0,4.8,3796,12,'2010'),(2456,'Dinah Bucholz',4.7,9030,10,2019,'Non Fiction\r'),(2457,'Eric Carle',4.9,19546,5,2013,'Fiction\r'),(2458,'Eric Carle',4.9,19546,5,2014,'Fiction\r'),(2459,'Eric Carle',4.9,19546,5,2015,'Fiction\r'),(2460,'Eric Carle',4.9,19546,5,2016,'Fiction\r'),(2461,'Eric Carle',4.9,19546,5,2017,'Fiction\r'),(2462,'Eric Carle',4.9,19546,5,2018,'Fiction\r'),(2463,'Eric Carle',4.9,19546,5,2019,'Fiction\r'),(2464,'Melissa Hartwig Urban',4.6,7508,16,2015,'Non Fiction\r'),(2465,'Melissa Hartwig Urban',4.6,7508,16,2016,'Non Fiction\r'),(2466,'Melissa Hartwig Urban',4.6,7508,16,2017,'Non Fiction\r'),(2467,'Emily Winfield Martin',4.9,8842,10,2016,'Fiction\r'),(2468,'Emily Winfield Martin',4.9,8842,10,2017,'Fiction\r'),(2469,'Emily Winfield Martin',4.9,8842,10,2018,'Fiction\r'),(2470,'Emily Winfield Martin',4.9,8842,10,2019,'Fiction\r'),(2471,'Craig Smith',4.8,30183,4,2018,'Fiction\r'),(2472,'Craig Smith',4.8,30183,4,2019,'Fiction\r'),(2473,'David McCullough',4.7,6169,16,2015,'Non Fiction\r'),(2474,' Pastimes and Politics [Deckled Edge]\"',0,4.7,7034,15,'2013'),(2475,' Fast and Slow\"',0,4.6,11034,19,'2011'),(2476,' Fast and Slow\"',0,4.6,11034,19,'2012'),(2477,'Jay Asher',4.5,7932,9,2017,'Fiction\r'),(2478,'Jon Meacham',4.5,1904,23,2012,'Non Fiction\r'),(2479,'Greg Mortenson',4.3,3319,11,2009,'Non Fiction\r'),(2480,'Greg Mortenson',4.3,3319,11,2010,'Non Fiction\r'),(2481,'Thug Kitchen',4.6,11128,23,2014,'Non Fiction\r'),(2482,'Thug Kitchen',4.6,11128,23,2015,'Non Fiction\r'),(2483,'Thug Kitchen',4.6,11128,23,2016,'Non Fiction\r'),(2484,'Thug Kitchen',4.6,11128,23,2017,'Non Fiction\r'),(2485,'Tina Fey',4.3,5977,12,2011,'Non Fiction\r'),(2486,'Harper Lee',4.8,26234,0,2013,'Fiction\r'),(2487,'Harper Lee',4.8,26234,0,2014,'Fiction\r'),(2488,'Harper Lee',4.8,26234,0,2015,'Fiction\r'),(2489,'Harper Lee',4.8,26234,0,2016,'Fiction\r'),(2490,'Harper Lee',4.8,26234,7,2019,'Fiction\r'),(2491,' Routines',0,0,0,0,'4.6'),(2492,' Book Thirteen)\"',0,4.8,2282,21,'2010'),(2493,'Edward M. Kennedy',4.5,438,15,2009,'Non Fiction\r'),(2494,' Book 1)\"',0,4.7,11676,9,'2009'),(2495,'DK',4.5,2586,5,2014,'Fiction\r'),(2496,' Resilience',0,0,4.8,29673,'16'),(2497,' Resilience',0,0,4.8,29673,'16'),(2498,' Resilience',0,0,4.8,29673,'16'),(2499,' Resilience',0,0,4.8,29673,'13'),(2500,' Resilience',0,0,4.8,29673,'16'),(2501,'Stephen King',4.3,6740,20,2009,'Fiction\r'),(2502,'Mark R. Levin',4.9,5956,11,2019,'Non Fiction\r'),(2503,'Silly Bear',4.8,6108,4,2019,'Non Fiction\r'),(2504,' Left Out',0,0,4.7,4585,'9'),(2505,'Alan Moore',4.8,3829,42,2009,'Fiction\r'),(2506,'Sara Gruen',4.5,8958,12,2011,'Fiction\r'),(2507,'Hillary Rodham Clinton',4.6,5492,18,2017,'Non Fiction\r'),(2508,'Randall Munroe',4.7,9292,17,2014,'Non Fiction\r'),(2509,'Dr. Seuss',4.7,1873,14,2015,'Fiction\r'),(2510,'Adir Levy',4.8,8170,13,2019,'Fiction\r'),(2511,'Heidi Murkoff',4.4,3341,9,2011,'Non Fiction\r'),(2512,' Lose the Weight',0,0,4.4,7497,'6'),(2513,' Lose the Weight',0,0,4.4,7497,'6'),(2514,'Paul Kalanithi',4.8,13779,14,2016,'Non Fiction\r'),(2515,'Delia Owens',4.8,87841,15,2019,'Fiction\r'),(2516,'Maurice Sendak',4.8,9967,13,2009,'Fiction\r'),(2517,'The Staff of The Late Show with',4.6,6669,12,2018,'Non Fiction\r'),(2518,'Cheryl Strayed',4.4,17044,18,2012,'Non Fiction\r'),(2519,'Ken Follett',4.5,10760,15,2012,'Fiction\r'),(2520,'Geneen Roth',4.2,1302,11,2010,'Non Fiction\r'),(2521,'R. J. Palacio',4.8,21625,9,2013,'Fiction\r'),(2522,'R. J. Palacio',4.8,21625,9,2014,'Fiction\r'),(2523,'R. J. Palacio',4.8,21625,9,2015,'Fiction\r'),(2524,'R. J. Palacio',4.8,21625,9,2016,'Fiction\r'),(2525,'R. J. Palacio',4.8,21625,9,2017,'Fiction\r'),(2526,'Jeff Kinney',4.9,9413,8,2019,'Fiction\r'),(2527,'Jen Sincero',4.7,14331,8,2016,'Non Fiction\r'),(2528,'Jen Sincero',4.7,14331,8,2017,'Non Fiction\r'),(2529,'Jen Sincero',4.7,14331,8,2018,'Non Fiction\r'),(2530,'Jen Sincero',4.7,14331,8,2019,'Non Fiction\r');
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-04-24 17:43:13

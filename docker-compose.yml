@@ -4,6 +4,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - ./backend/script.sql:/docker-entrypoint-initdb.d/a.sql
+      - ./backend/sub.sql:/docker-entrypoint-initdb.d/b.sql
     environment:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_USER=php
@@ -15,18 +16,10 @@ services:
       dockerfile: Dockerfile
 
     volumes:
-      - ./backend/BKCoffee/:/var/www/html/
+      - ./backend/BKCoffee/api:/var/www/html/
 
     depends_on:
       - mysql
       
     ports:
       - 80:80
-
-  frontend:
-    image: nginx
-    volumes:
-      - ./build:/usr/share/nginx/html
-    
-    ports:
-      - 8080:80
