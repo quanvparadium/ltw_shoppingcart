@@ -1,6 +1,6 @@
-import Footer from '../../Footer'
-import {Header} from '../../Header'
+import { Header } from '../../Header'
 import { useState, useEffect } from 'react'
+import { Layout } from 'antd'
 
 
 export const DefaultLayout = (props) => {
@@ -10,22 +10,22 @@ export const DefaultLayout = (props) => {
         window.scrollTo({
             top: 0,
             behavior: "smooth"
-          });
-    },[page])
+        });
+    }, [page])
     const handleClick = () => {
-      if (page === 1) {
-        setPage(0)
-      }
-      else setPage(1)
+        if (page === 1) {
+            setPage(0)
+        }
+        else setPage(1)
     }
+
     return (
-        <div> 
+        <Layout>
             <Header />
-                <div>{props.children}</div>
-            <Footer/>
+            <div>{props.children}</div>
             <p className='to-top' onClick={handleClick}>
                 <i className="fa-sharp fa-solid fa-chevron-up"></i>
             </p>
-        </div>
+        </Layout>
     )
 }

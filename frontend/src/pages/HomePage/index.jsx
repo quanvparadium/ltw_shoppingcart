@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react"
-import { Product } from "../../components/Product"
-// import { products } from "../../data"
-// import { blog } from "../../data"
-import banner from '../../assets/imgs/banner.png'
-import banner2 from '../../assets/imgs/banner2.png'
 import { getArticles } from '../../api/article'
 import './style.css'
 import { getDrinks } from "../../api"
 import { getUserByName } from '../../api/user'
-import { BlogContainer } from "../../components/Blog"
+import { Layout, Typography, Card, Space, Row } from "antd"
+import axios from 'axios'
 
 export const HomePage = () => {
-    const [drinks, setDrinks] = useState([]);
-    const [news, setNews] = useState([]);
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:80/books.php").then(res => {
+            setBooks(res.data)
+        })
+    }, [])
 
     useEffect(() => {
         Promise.resolve(getUserByName()).then(data => {
@@ -30,57 +31,26 @@ export const HomePage = () => {
 
 
     return (
-        <div className="home-container">
-            <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active" data-bs-interval="10000">
-                        <img src={banner} className="d-block w-100" alt="..." />
-                    </div>
-                    <div className="carousel-item" data-bs-interval="10000">
-                        <img src={banner2} className="d-block w-100" alt="..." />
-                    </div>
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button>
-            </div>
-            <div className="container row holic">
-                <span><a href="/shop">Tea Holic</a></span>
+        <Layout.Content className="site-layout" style={{ padding: '16px 50px' }}>
+            <div style={{ padding: 24, minHeight: 380, background: "white" }}>
+                <Typography.Title level={4}>Nhà sách LTW</Typography.Title>
 
-                {
-                    drinks.filter(item => item.type === 'tea').map((item, index) => (index <= 3) ? (
-                        <div key={index} className="col-sm-12 col-md-6 col-lg-4 col-xl-3 center">
-                            <Product product={item} />
-                        </div>
-                    ) : "")
-                }
-            </div>
-            <div className="container row holic">
-                <span><a href="/shop">Coffee Holic</a></span>
+                <Space>
+                    {books.map((data) => {
+                        const chunkSize = 4
 
-                {
-                    drinks.filter(item => item.type === 'coffee').map((item, index) => (index <= 3) ? (
-                        <div key={index} className="col-sm-12 col-md-6 col-lg-4 col-xl-3 center">
-                            <Product product={item} />
-                        </div>
-                    ) : "")
-                }
+                        return <Row>
+                            <Card
+                                hoverable
+                                style={{ width: 240 }}
+                                cover={<img alt="example" src="https://salt.tikicdn.com/cache/750x750/ts/product/19/57/d2/f8e8ac1e83c74d24ef57d5e1a8194be7.jpg.webp" />}
+                            >
+                                <Card.Meta title={data.name} description={data.genre} />
+                            </Card>
+                        </Row>
+                    })}
+                </Space>
             </div>
-            <div className="container holic row blog">
-                <span><a href="/blog">Blog</a></span>
-                {
-                    news.slice(0, 3).map((item, index) => (
-                        <div key={index} className="col-sm-12 col-md-6 col-lg-4 center">
-                            <BlogContainer blog={item} />
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
+        </Layout.Content>
     )
 }
