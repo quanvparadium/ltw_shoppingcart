@@ -111,7 +111,7 @@ async function signUp(username, password, name, email, address) {
 
 async function getAllUser(type) {
 	const res = await fetch(urlUser + actions.read_all + "&type=" + type);
-	const data = await res.json();
+	const data = await res.jsxon();
 
 	return data;
 }

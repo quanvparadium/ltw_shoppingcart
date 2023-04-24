@@ -1,6 +1,6 @@
 import { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../../api/user.js";
+import { login } from "../../../api/user.jsx";
 
 const LoginCustomer = memo(() => {
 	const [username, setUsername] = useState("");

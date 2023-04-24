@@ -12,5 +12,5 @@ for root, directories, files in os.walk(directory_path):
                 new_file_contents = file_contents.replace('.js', '.jsx')
             with open(new_file_path, 'w') as new_file:
                 new_file.write(new_file_contents)
-
-            print(f"File {filename} converted to {filename[:-2] + 'jsx'}")
+            os.remove(file_path)
+            print(f"File {filename} converted to {filename[:-2] + 'jsx'} and deleted")

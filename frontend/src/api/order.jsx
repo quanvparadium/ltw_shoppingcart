@@ -12,7 +12,7 @@ const actions = {
 
 async function getOrders() {
 	const res = await fetch(urlOrder + actions.read);
-	const data = await res.json();
+	const data = await res.jsxon();
 
 	return data;
 }
@@ -20,7 +20,7 @@ async function getOrders() {
 async function getOrderById(id) {
 	// const url = urlOrder + actions.read + '&id=' + id;
 	// const res = await fetch(url);
-	// const data = await res.json();
+	// const data = await res.jsxon();
 
 	// return data;
 }
@@ -28,7 +28,7 @@ async function getOrderById(id) {
 async function getOrderByUserId(id) {
 	// const url = urlOrder + actions.read + '&user_id=' + id;
 	// const res = await fetch(url);
-	// const data = await res.json();
+	// const data = await res.jsxon();
 
 	// return data;
 }
@@ -41,14 +41,14 @@ async function getDrinksByOrderId() {
 	}
 	const url = urlOrder + actions.read + '&order_id=' + id;
 	const res = await fetch(url);
-	const data = await res.json();
+	const data = await res.jsxon();
 
 	return data;
 }
 
 async function initOrder() {
 	const res = await fetch(urlOrder + actions.init);
-	const orderId = await res.json();
+	const orderId = await res.jsxon();
 
 	return orderId["max(order_id)"];
 }

@@ -12,14 +12,14 @@ const actions = {
 
 async function getDrinks() {
 	const res = await fetch(urlDrink + actions.read);
-	const data = await res.json();
+	const data = await res.jsxon();
 
 	return data;
 }
 async function getDrinkById(id) {
 	const url = urlDrink + actions.read + '&id=' + id;
 	const res = await fetch(url);
-	const data = await res.json();
+	const data = await res.jsxon();
 
 	return data;
 }

@@ -22,7 +22,7 @@ async function fetchData(url, action, formData) {
 		method: 'POST',
 		body: formData,
 	});
-	const data = await response.json();
+	const data = await response.jsxon();
 	return data;
 }
 

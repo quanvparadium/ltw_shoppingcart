@@ -12,7 +12,7 @@ const actions = {
 
 async function getArticles() {
 	const res = await fetch(urlArt + actions.read);
-	const data = await res.json();
+	const data = await res.jsxon();
 
 	return data;
 }
