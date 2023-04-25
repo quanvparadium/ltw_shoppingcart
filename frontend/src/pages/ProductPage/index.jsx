@@ -33,7 +33,7 @@ export const ProductPage = () => {
                                 <Typography.Title level={3} style={{ margin: "8px 0" }}>{book.name}</Typography.Title>
                                 <Rate disabled defaultValue={Math.max(Math.floor(Math.random() * 5), 1)} />
 
-                                <Price price={book.price} original_price={book.original_price} discount_rate={book.discount_rate} />
+                                <Price price={book.price.toString()} original_price={book.original_price} discount_rate={book.discount_rate} />
 
                                 <Form style={{ marginTop: "24px" }}>
                                     <Form.Item label="Số lượng">

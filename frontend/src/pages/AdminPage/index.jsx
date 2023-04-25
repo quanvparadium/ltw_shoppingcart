@@ -3,6 +3,7 @@ import { getArticles } from '../../api/article'
 import { getDrinks, getOrders } from "../../api"
 import { useEffect, useRef, useState } from "react"
 import { getAllUser } from '../../api/user';
+import { getBooks} from '../../api/books';
 import { takeAction } from '../../api/admin';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ function AdminPage() {
 	const [news, setNews] = useState([]);
 	const [orders, setOrders] = useState([]);
 	const [ren, setRen] = useState(true);
+	const [books, setBooks] = useState([]);
 
 	const tableRef = useRef();
 	const tableRef2 = useRef();
@@ -52,6 +54,17 @@ function AdminPage() {
 			'name',
 			'address',
 			'role'
+		],
+		books: [
+			'book_id',
+			'name',
+			'author_name',
+			'short_description',
+			'price',
+			'discount',
+			'discount_rate',
+			'original_price',
+			'thumbnail'
 		]
 	}
 
@@ -59,12 +72,19 @@ function AdminPage() {
 		drinks: 'drink',
 		news: 'article',
 		customers: 'user',
-		admins: 'user'
+		admins: 'user',
+		books: 'books'
 	}
 
 	const handleAdSelect = (key) => {
 		switch (key)
 		{
+			case "books":
+				console.log("book");
+				getBooks().then(data => {
+					setDisplay(data);
+				});
+			break;			
 			case "drinks":
 				Promise.resolve(getDrinks()).then(data => {
 					setDisplay(data);
@@ -78,6 +98,7 @@ function AdminPage() {
 			case "customers":
 				Promise.resolve(getAllUser("cus")).then(data => {
 					setDisplay(data);
+					console.log("dlosdf");
 				});
 				break;
 			case "admins":
@@ -120,8 +141,10 @@ function AdminPage() {
 		}
 
 		//console.log(data);
-
-		if (select === 'drinks')
+		if (select === "books"){
+			cmd = `update&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
+		}
+		else if (select === 'drinks')
 		{
 			cmd = `update drink 
 			set
@@ -151,6 +174,8 @@ function AdminPage() {
 			name='${data[3]}',
 			address='${data[4]}',
 			role='${data[5]}' where user_id=${id}`;
+			// cmd = `update&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
+
 		}
 		// else if ()
 		// {
@@ -164,11 +189,18 @@ function AdminPage() {
 			}
 
 		}).catch(e => {
-			alert("Đã có lỗi xảy ra!\nVui lòng kiểm tra lại dữ liệu!");
+			// alert("Đã có lỗi xảy ra!\nVui lòng kiểm tra lại dữ liệu!");
 		});
 	}
 	const handleDelete = (id) => {
-		const cmd = `delete from ${tabSqlNameList[select]} where ${colList[select][0]}=${id}`;
+		// if (${tabSqlNameList[select]} == ){
+
+		// }
+		let cmd = "";
+		if (tabSqlNameList[select] === "books"){
+			cmd = `delete&${colList[select][0]}=${id}`;
+
+		}
 		console.log(cmd)
 		takeAction(cmd).then(() => {
 			alert("Xoá thành công!");
@@ -184,13 +216,15 @@ function AdminPage() {
 		const data = [];
 		let cmd = "";
 
-		for (let i = 0; i < cols.length - 1; i++)
+		for (let i = 0; i < cols.length; i++)
 		{
 			data[i] = row.cells[i].innerText;
 		}
 
 		//console.log(data);
-
+		if (select === 'books'){
+			cmd = `create&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
+		}
 		if (select === 'drinks')
 		{
 			cmd = `insert into drink 
@@ -213,6 +247,7 @@ function AdminPage() {
 			(username, password, name, address, role)
 			values
 			('${data[1]}','${data[2]}','${data[3]}','${data[4]}','cus');\n`;
+			cmd = `create&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}`;
 
 			const cmd1 = `insert into customer (cus_id) select user_id from user where username='${data[1]}'`
 			cmd += cmd1;
@@ -238,7 +273,6 @@ function AdminPage() {
 			})
 			.catch(e => {
 				console.log(e)
-				alert("Đã có lỗi xảy ra!\nVui lòng kiểm tra lại dữ liệu!");
 			});
 	}
 

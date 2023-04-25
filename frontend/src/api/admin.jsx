@@ -1,5 +1,7 @@
 import { fetchData, objToFormData, sendRequest } from ".";
-const urlAdmin = `http://php_apache/BKCoffee/api/admin.php`;
+const urlAdmin = `http://localhost/admin.php`;
+const urlBook = `http://localhost/books_q.php`;
+
 const actions = {
 	create: '?action=create',
 	read: '?action=read',
@@ -8,10 +10,10 @@ const actions = {
 }
 
 const takeAction = async (command) => {
-	const data = { command: command };
-	const formData = objToFormData(data);
-
-	const res = fetchData(urlAdmin, "", formData);
+	// const data = { command: command };
+	// const formData = objToFormData(data);
+	const res = fetchData(`http://localhost/books_q.php?action=` + command, "");
+	console.log(res);
 	return res;
 }
 

@@ -1,5 +1,5 @@
 import { fetchData, objToFormData, sendRequest } from ".";
-const urlUser = `http://php_apache/BKCoffee/api/user.php`;
+const urlUser = `http://localhost/user.php`;
 const actions = {
 	create: '?action=create',
 	read: '?action=read',
@@ -111,7 +111,7 @@ async function signUp(username, password, name, email, address) {
 
 async function getAllUser(type) {
 	const res = await fetch(urlUser + actions.read_all + "&type=" + type);
-	const data = await res.jsxon();
+	const data = await res.json();
 
 	return data;
 }

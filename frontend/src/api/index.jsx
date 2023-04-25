@@ -19,10 +19,10 @@ function sendRequest(url, action, formData) {
 
 async function fetchData(url, action, formData) {
 	const response = await fetch(url + action, {
-		method: 'POST',
+		method: 'GET',
 		body: formData,
 	});
-	const data = await response.jsxon();
+	const data = await response.json();
 	return data;
 }
 
