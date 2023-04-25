@@ -1,9 +1,26 @@
 <?php
-require_once __DIR__ . '/../database/database.php';
+
 header('Content-type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: X-Requested-With");
+
+class Database
+{
+    private $servername = 'localhost';
+    private $username = 'root';
+    private $password = '';
+    private $dbname = 'shop';
+    public function __construct(){}
+
+    public function connect()
+    {
+        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+
+        return $conn;
+    }
+}
+
 
 class User
 {
@@ -21,12 +38,7 @@ class User
 
 		$customers = [];
 		while ($row = $data->fetch_assoc()) {
-			$data1 = $conn->query("select point from customer where cus_id={$row['user_id']}");
-			$data1 = $data1->fetch_assoc();
-
-			if (isset($data1)) {
-				$customers[] = array_merge($row, $data1);
-			}
+			$customers[] = $row;
 		}
 
 		$conn->close();
@@ -40,11 +52,7 @@ class User
 
 		$admins = [];
 		while ($row = $data->fetch_assoc()) {
-			$data1 = $conn->query("select start_date from admin where ad_id={$row['user_id']}");
-			$data1 = $data1->fetch_assoc();
-			if (isset($data1)) {
-				$admins[] = array_merge($row, $data1);
-			}
+			$admins[] = $row;
 		}
 
 		$conn->close();
