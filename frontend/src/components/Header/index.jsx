@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppContext } from '../../context'
 import './style.css'
 import { Avatar, Badge, Button, Col, Input, Layout, Row, Space, Typography } from 'antd';
 import { AmazonOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import { MainContext } from '../context';
 
 
 export const Header = () => {
-
     // const user = useAppContext()
     const navigate = useNavigate()
+    const { cart, updateCart } = useContext(MainContext)
 
     const handleUserClick = (e) => {
         e.preventDefault();
@@ -32,11 +33,12 @@ export const Header = () => {
         <Layout.Header>
             <Row >
                 <Col span={16}>
-                    <Space>
-                        <Avatar icon={<AmazonOutlined />} />
-                        <Typography.Title level={4} style={{ margin: 0, color: "white" }}>LẬP TRÌNH WEB</Typography.Title>
-                    </Space>
-
+                    <Link to={"/"}>
+                        <Space>
+                            <Avatar icon={<AmazonOutlined />} />
+                            <Typography.Title level={4} style={{ margin: 0, color: "white" }}>LẬP TRÌNH WEB</Typography.Title>
+                        </Space>
+                    </Link>
                 </Col>
                 <Col span={8}>
                     <Row justify={"space-between"}>
@@ -46,8 +48,15 @@ export const Header = () => {
                         }}>
                             <Input.Search />
                         </Col>
-                        <Col>
-                            <Badge count={0} showZero>
+                        <Col onClick={() => {
+                            const newCart = {
+                                ...cart,
+                                open: !cart.open
+                            }
+
+                            updateCart(newCart)
+                        }}>
+                            <Badge count={cart.items.length} showZero>
                                 <Avatar type='primary' icon={<ShoppingCartOutlined />} />
                             </Badge>
                         </Col>

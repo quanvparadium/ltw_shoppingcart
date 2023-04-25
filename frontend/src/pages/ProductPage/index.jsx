@@ -1,146 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './style.css'
 import { addToOrder, getDrinkById, getDrinks } from "../../api";
 import { Button, Form, Col, Image, InputNumber, Layout, Rate, Row, Typography, Divider, Card } from "antd";
 import axios from "axios";
 import Price from "./Price";
+import { MainContext } from "../../components/context";
 
 export const ProductPage = () => {
     const match = useParams({ id: Number });
-    const [product, setProduct] = useState();
-    const [selectedSize, setSelectedSize] = useState();
-    const [quantity, setQuantity] = useState(1);
-    const [productList, setProductList] = useState([]);
-    const [cost, setCost] = useState(0);
-    const breadcrumb = {
-        parent: [
-            {
-                link: "/home",
-                name: "Trang chủ"
-            },
-            {
-                link: "/shop",
-                name: "Menu"
-            },
-        ],
-        current: product?.name
-    }
-
-    const size = [
-        {
-            name: "Vừa",
-            extraPrice: 0
-        },
-
-        {
-            name: "Trung",
-            extraPrice: 6_000
-        },
-        {
-            name: "Lớn",
-            extraPrice: 8_000
-        }
-    ]
-    const toppings = [
-        {
-            id: 1,
-            name: "Đào ngâm",
-            price: 10_000
-        },
-        {
-            id: 2,
-            name: "Trân châu trắng",
-            price: 15_000
-        },
-        {
-            id: 3,
-            name: "Foam Cheese",
-            price: 20_000
-        }
-    ]
-
-    const [toCart, setToCart] = useState({});
-
-
-    const [selectedTopping, setSelectedTopping] = useState([]);
+    const { cart, updateCart } = useContext(MainContext)
 
     useEffect(() => {
         axios.get("http://localhost:80/books.php?id=" + match.id).then((res) => {
             console.log(res.data)
         })
     }, [match.id]);
-
-    const handleSelectSize = (size) => {
-        if (selectedSize) {
-            if (selectedSize.name === size.name) {
-                setSelectedSize(undefined);
-            } else {
-                setSelectedSize(size);
-            }
-        } else {
-            setSelectedSize(size);
-        }
-    };
-
-    const handleSelectTopping = (topping) => {
-        if (selectedTopping.length === 0) {
-            setSelectedTopping([...selectedTopping, topping]);
-        }
-        else {
-            if (selectedTopping.find(i => i.id === topping.id)) {
-                const tmp = selectedTopping.filter(i => i.id !== topping.id)
-                setSelectedTopping(tmp)
-            }
-            else {
-                setSelectedTopping([...selectedTopping, topping]);
-            }
-        }
-    };
-
-    const costPlus = () => {
-        let cost = parseInt((product?.price || 0)) +
-            (selectedSize?.extraPrice || 0);
-
-        selectedTopping.forEach(i => {
-            cost += i.price
-        })
-        return cost * quantity
-    }
-
-    const checkTopping = (topping) => {
-        let tmp = 0
-        selectedTopping.forEach(i => {
-            i.id === topping.id && tmp++
-        })
-        return tmp
-    }
-
-    const handleSub = () => {
-        quantity > 1 && setQuantity(quantity - 1)
-    }
-    const handleAdd = () => {
-        setQuantity(quantity + 1)
-    }
-
-    const handleAddToCartClick = async () => {
-        if (!selectedSize) {
-            alert("Vui lòng chọn size đồ uống!!");
-            return;
-        }
-
-        const tmp = {
-            product,
-            selectedSize,
-            selectedTopping,
-            cost: costPlus(),
-            quantity
-        }
-        // add to cart
-
-        addToOrder(match.id, quantity, selectedSize, selectedTopping);
-        alert("Thêm vào giỏ hàng thành công!!");
-    }
 
     return (
         <Layout.Content style={{ padding: '16px 50px' }}>
@@ -162,7 +37,17 @@ export const ProductPage = () => {
                             </Form.Item>
 
                             <Form.Item>
-                                <Button type="primary" danger size="large">Thêm vào giỏ hàng</Button>
+                                <Button type="primary" danger size="large" onClick={() => {
+                                    const newCart = {
+                                        ...cart,
+                                        items: [
+                                            ...cart.items,
+                                            { id: match.id, name: "Tâm Lý Học Về Tiền", amount: 1, price: 1444 }
+                                        ]
+                                    }
+
+                                    updateCart(newCart)   
+                                }}>Thêm vào giỏ hàng</Button>
                             </Form.Item>
                         </Form>
 

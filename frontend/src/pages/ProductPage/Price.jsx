@@ -41,7 +41,7 @@ const discount = {
 export default function () {
     return (
         <div style={priceStyle}>
-            <div class="style__StyledProductPrice-sc-btng16-0 kaBIQC">
+            <div>
                 <div style={productPrice}>
                     <div style={price}>113.400 ₫</div>
                     <div style={originalprice}>189.000 ₫</div>
