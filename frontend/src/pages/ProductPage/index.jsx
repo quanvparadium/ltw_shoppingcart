@@ -28,7 +28,7 @@ export const ProductPage = () => {
                         <Image src="https://salt.tikicdn.com/cache/750x750/ts/product/83/23/b7/14a42ae4f66c9b8b298aaef4b9671442.jpg.webp" />
                     </Col>
                     <Col span={16}>
-                        <span style={{ fontSize: "16px" }}>Tác giả: Đức Lương</span>
+                        <span style={{ fontSize: "16px" }}>Tác giả: {book?.book_id ? book['book_id'] : "Chưa cập nhật"}</span>
                         <Typography.Title level={3} style={{ margin: "8px 0" }}>Tâm Lý Học Về Tiền</Typography.Title>
                         <Rate disabled defaultValue={2} />
 

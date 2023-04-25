@@ -73,12 +73,12 @@ export const HomePage = () => {
                     {books.map((data) => {
                         const chunkSize = 4
 
-                        return <Card key={data.id}
+                        return <Card key={data.book_id}
                             hoverable
                             style={{ width: 240 }}
-                            cover={<img alt="example" src="https://salt.tikicdn.com/cache/750x750/ts/product/19/57/d2/f8e8ac1e83c74d24ef57d5e1a8194be7.jpg.webp" />}
+                            cover={<img alt="example" src={data.thumbnail} />}
                             onClick={() => {
-                                navigate("/books/" + data.id)
+                                navigate("/books/" + data.book_id)
                             }}
                         >
                             <Card.Meta title={data.name} description={data.genre} />
