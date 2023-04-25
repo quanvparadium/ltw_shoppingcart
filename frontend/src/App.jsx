@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css'
 import { publicRoutes } from './routes';
 import { Fragment } from 'react';
-import { useState, useEffect } from 'react';
 
 function App() {
   return (

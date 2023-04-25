@@ -18,7 +18,7 @@ export const publicRoutes = [
     { path: "/home", component: HomePage, layout: DefaultLayout },
     { path: "/admin", component: AdminPage, layout: DefaultLayout },
     { path: "/contact", component: Contact, layout: DefaultLayout },
-    { path: "/order/:id", component: ProductPage, layout: DefaultLayout },
+    { path: "/books/:id", component: ProductPage, layout: DefaultLayout },
     { path: "/shop", component: ShopPage, layout: DefaultLayout },
     { path: '/login', component: LoginPage, layout: LoginLayout },
     { path: "/cart", component: CartPage, layout: DefaultLayout },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppContext } from '../../context'
 import './style.css'
 import { Avatar, Badge, Button, Col, Input, Layout, Row, Space, Typography } from 'antd';
@@ -52,7 +52,9 @@ export const Header = () => {
                             </Badge>
                         </Col>
                         <Col>
-                            <Button type='primary'>Login</Button>
+                            <Link to={"/login"}>
+                                <Button type='primary'>Login</Button>
+                            </Link>
                         </Col>
                     </Row>
                 </Col>

@@ -1,29 +1,51 @@
 <?php
 require './db.php';
 
-$res = $conn->query("SELECT * from books LIMIT 20;");
-
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization");
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    if ($res->num_rows > 0) {
-        $products = array();
+    if (isset($_GET['id'])) {
+        $book_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
-        while ($row = $res->fetch_assoc()) {
-            $products[] = $row;
+        // Query the database for the book with the provided ID
+        $query = "SELECT * FROM books WHERE id = $book_id";
+        $result = $conn->query($query);
+
+        // If a book was found, return its information
+        if ($result && $result->num_rows > 0) {
+            $book_info = $result->fetch_assoc();
+
+            header('Content-Type: application/json');
+            echo json_encode($book_info);
         }
 
-        // Return the data as JSON with a 200 status code
-        header('Content-Type: application/json');
-        http_response_code(200);
-        echo json_encode($products);
-    }else {
-        // Close the connection
-        // Return an empty array as JSON with a 200 status code
-        header('Content-Type: application/json');
-        http_response_code(200);
-        echo json_encode(array());
+        // Otherwise, return an error message
+        else {
+            http_response_code(404);
+            echo json_encode(array("message" => "Book not found."));
+        }
+    } else {
+        $res = $conn->query("SELECT * from books LIMIT 20;");
+
+        if ($res->num_rows > 0) {
+            $products = array();
+
+            while ($row = $res->fetch_assoc()) {
+                $products[] = $row;
+            }
+
+            // Return the data as JSON with a 200 status code
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode($products);
+        } else {
+            // Close the connection
+            // Return an empty array as JSON with a 200 status code
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode(array());
+        }
     }
 }

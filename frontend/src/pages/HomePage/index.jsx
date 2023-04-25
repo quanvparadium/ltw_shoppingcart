@@ -3,11 +3,14 @@ import { getArticles } from '../../api/article'
 import './style.css'
 import { getDrinks } from "../../api"
 import { getUserByName } from '../../api/user'
-import { Layout, Typography, Card, Space, Row } from "antd"
+import { Layout, Typography, Card, Space, Tabs } from "antd"
 import axios from 'axios'
+import Ads from './Ads'
+import { useNavigate } from "react-router-dom"
 
 export const HomePage = () => {
     const [books, setBooks] = useState([]);
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get("http://localhost:80/books.php").then(res => {
@@ -29,25 +32,57 @@ export const HomePage = () => {
         });
     }, []);
 
+    const tabItems = [
+        {
+            label: "Phổ biến",
+            key: "tab_1",
+            children: "Content of commong"
+        },
+        {
+            label: "Bán chạy",
+            key: "tab_2",
+            children: "Content of best selling"
+        },
+        {
+            label: "Giá thấp đến cao",
+            key: "tab_3",
+            children: "Gia cao thap"
+        },
+        {
+            label: "Giá cao đến thấp",
+            key: "tab_4",
+            children: "Gia cao cao"
+        }
+    ]
+
 
     return (
         <Layout.Content className="site-layout" style={{ padding: '16px 50px' }}>
             <div style={{ padding: 24, minHeight: 380, background: "white" }}>
                 <Typography.Title level={4}>Nhà sách LTW</Typography.Title>
 
-                <Space>
+                <Ads />
+
+                <Tabs
+                    defaultActiveKey="1"
+                    items={tabItems}
+                    style={{ marginTop: "15px"}}
+                />
+
+                <Space wrap style={{ justifyContent: "center" }}>
                     {books.map((data) => {
                         const chunkSize = 4
 
-                        return <Row>
-                            <Card
-                                hoverable
-                                style={{ width: 240 }}
-                                cover={<img alt="example" src="https://salt.tikicdn.com/cache/750x750/ts/product/19/57/d2/f8e8ac1e83c74d24ef57d5e1a8194be7.jpg.webp" />}
-                            >
-                                <Card.Meta title={data.name} description={data.genre} />
-                            </Card>
-                        </Row>
+                        return <Card key={data.id}
+                            hoverable
+                            style={{ width: 240 }}
+                            cover={<img alt="example" src="https://salt.tikicdn.com/cache/750x750/ts/product/19/57/d2/f8e8ac1e83c74d24ef57d5e1a8194be7.jpg.webp" />}
+                            onClick={() => {
+                                navigate("/books/" + data.id)
+                            }}
+                        >
+                            <Card.Meta title={data.name} description={data.genre} />
+                        </Card>
                     })}
                 </Space>
             </div>

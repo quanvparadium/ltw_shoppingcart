@@ -22,10 +22,7 @@ export const DefaultLayout = (props) => {
     return (
         <Layout>
             <Header />
-            <div>{props.children}</div>
-            <p className='to-top' onClick={handleClick}>
-                <i className="fa-sharp fa-solid fa-chevron-up"></i>
-            </p>
+            {props.children}
         </Layout>
     )
 }
