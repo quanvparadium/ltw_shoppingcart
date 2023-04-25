@@ -32,7 +32,7 @@ export const Header = () => {
     return (
         <Layout.Header>
             <Row >
-                <Col span={16}>
+                <Col span={14}>
                     <Link to={"/"}>
                         <Space>
                             <Avatar icon={<AmazonOutlined />} />
@@ -40,13 +40,23 @@ export const Header = () => {
                         </Space>
                     </Link>
                 </Col>
-                <Col span={8}>
+                <Col span={10}>
                     <Row justify={"space-between"}>
-                        <Col span={16} style={{
+                        <Col span={10} style={{
                             display: 'flex',
                             alignItems: "center"
                         }}>
                             <Input.Search />
+                        </Col>
+                        <Col style={{ color: "white" }}>
+                            <Link to={"/articles"}>
+                                Tin tức
+                            </Link>
+                        </Col>
+                        <Col style={{ color: "white" }}>
+                            <Link to={"/about"}>
+                                About
+                            </Link>
                         </Col>
                         <Col onClick={() => {
                             const newCart = {

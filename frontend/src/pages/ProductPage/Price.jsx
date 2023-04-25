@@ -38,14 +38,20 @@ const discount = {
     padding: "0px 4px",
 }
 
-export default function () {
+export default function (props) {
     return (
         <div style={priceStyle}>
             <div>
                 <div style={productPrice}>
-                    <div style={price}>113.400 ₫</div>
-                    <div style={originalprice}>189.000 ₫</div>
-                    <div style={discount}>-40%</div>
+                    <div style={price}>{props.price.toLocaleString('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                    })}</div>
+                    <div style={originalprice}>{props.original_price.toLocaleString('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                    })}</div>
+                    <div style={discount}>-{props.discount_rate}</div>
                 </div>
             </div>
         </div>

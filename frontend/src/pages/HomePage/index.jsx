@@ -1,57 +1,26 @@
-import { useEffect, useState } from "react"
-import { getArticles } from '../../api/article'
 import './style.css'
-import { getDrinks } from "../../api"
-import { getUserByName } from '../../api/user'
-import { Layout, Typography, Card, Space, Tabs } from "antd"
-import axios from 'axios'
+import { Layout, Typography, Card, Space, Tabs, Image } from "antd"
 import Ads from './Ads'
-import { useNavigate } from "react-router-dom"
+import Common from './Common'
+import Up from './Up'
+import Down from './Down'
 
 export const HomePage = () => {
-    const [books, setBooks] = useState([]);
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        axios.get("http://localhost:80/books.php").then(res => {
-            setBooks(res.data)
-        })
-    }, [])
-
-    useEffect(() => {
-        Promise.resolve(getUserByName()).then(data => {
-            //console.log(data);
-        });;
-        Promise.resolve(getDrinks()).then(data => {
-            //console.log(data);
-            setDrinks(data);
-        });
-        Promise.resolve(getArticles()).then(data => {
-            //console.log(data)
-            setNews(data)
-        });
-    }, []);
-
     const tabItems = [
         {
             label: "Phổ biến",
             key: "tab_1",
-            children: "Content of commong"
-        },
-        {
-            label: "Bán chạy",
-            key: "tab_2",
-            children: "Content of best selling"
+            children: <Common />
         },
         {
             label: "Giá thấp đến cao",
             key: "tab_3",
-            children: "Gia cao thap"
+            children: <Up />
         },
         {
             label: "Giá cao đến thấp",
             key: "tab_4",
-            children: "Gia cao cao"
+            children: <Down />
         }
     ]
 
@@ -66,25 +35,9 @@ export const HomePage = () => {
                 <Tabs
                     defaultActiveKey="1"
                     items={tabItems}
-                    style={{ marginTop: "15px"}}
+                    style={{ marginTop: "15px" }}
                 />
 
-                <Space wrap style={{ justifyContent: "center" }}>
-                    {books.map((data) => {
-                        const chunkSize = 4
-
-                        return <Card key={data.id}
-                            hoverable
-                            style={{ width: 240 }}
-                            cover={<img alt="example" src="https://salt.tikicdn.com/cache/750x750/ts/product/19/57/d2/f8e8ac1e83c74d24ef57d5e1a8194be7.jpg.webp" />}
-                            onClick={() => {
-                                navigate("/books/" + data.id)
-                            }}
-                        >
-                            <Card.Meta title={data.name} description={data.genre} />
-                        </Card>
-                    })}
-                </Space>
             </div>
         </Layout.Content>
     )

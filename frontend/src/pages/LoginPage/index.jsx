@@ -2,16 +2,40 @@ import { useState } from 'react'
 import { Login } from '../../components/Login'
 import { SignUp } from '../../components/SignUp'
 import './style.css'
-import { Button, Checkbox, Form, Input, Typography } from 'antd'
+import { Button, Checkbox, Form, Input, Typography, message } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const LoginPage = () => {
     const [choose, setChoose] = useState(0)
+    const [messageApi, contextHolder] = message.useMessage();
+    const navigate = useNavigate()
     const handleClick = () => {
         choose === 0 ? setChoose(1) : setChoose(0);
     }
+
+    const onFinish = (e) => {
+        const formData = new FormData();
+        Object.keys(e).forEach(key => formData.append(key, e[key]));
+
+        axios.post("http://localhost:80/login.php", formData).then(res => {
+            var date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toUTCString();
+
+            // Set the cookie value to the role
+            document.cookie = "userRole=" + res.data.token.role + expires + "; path=/";
+
+            navigate("/")
+        }).catch(err => {
+            message.error(err.response.data.message)
+        })
+    }
+
     return (
         <div className='login-container'>
+            {contextHolder}
             <div className='login-wraper'>
                 <Typography.Title level={3}>Nhà sách LTW</Typography.Title>
                 {
@@ -21,7 +45,7 @@ export const LoginPage = () => {
                             className="login-form"
                             initialValues={{ remember: true }}
                             style={{ width: "300px" }}
-                        // onFinish={onFinish}
+                            onFinish={onFinish}
                         >
                             <Form.Item
                                 name="username"
@@ -50,7 +74,7 @@ export const LoginPage = () => {
                                     Log in
                                 </Button>
                                 Or <Typography.Link onClick={() => {
-                                    setChoose(1)   
+                                    setChoose(1)
                                 }}>Register now!</Typography.Link>
                             </Form.Item>
                         </Form>

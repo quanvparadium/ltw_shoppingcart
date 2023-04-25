@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         $book_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
         // Query the database for the book with the provided ID
-        $query = "SELECT * FROM books WHERE id = $book_id";
+        $query = "SELECT * FROM books WHERE book_id = $book_id";
         $result = $conn->query($query);
 
         // If a book was found, return its information
@@ -27,7 +27,23 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             echo json_encode(array("message" => "Book not found."));
         }
     } else {
-        $res = $conn->query("SELECT * from books LIMIT 20;");
+        $offset = 0;
+        if (isset($_GET["offset"])) {
+            $offset = $_GET["offset"];
+        }
+        
+        $query = "SELECT * from books";
+        if (isset($_GET["type"])) {
+            if ($_GET["type"] == "up") 
+                $query = "$query ORDER BY price ASC";
+            elseif ($_GET["type"] == "down")
+                $query = "$query ORDER BY price DESC";
+        }
+
+        $query = "$query LIMIT 10 OFFSET $offset";
+
+
+        $res = $conn->query($query);
 
         if ($res->num_rows > 0) {
             $products = array();

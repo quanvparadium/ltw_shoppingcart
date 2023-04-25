@@ -17,7 +17,7 @@ export const publicRoutes = [
     { path: "/", component: HomePage, layout: DefaultLayout },
     { path: "/home", component: HomePage, layout: DefaultLayout },
     { path: "/admin", component: AdminPage, layout: DefaultLayout },
-    { path: "/contact", component: Contact, layout: DefaultLayout },
+    { path: "/about", component: Contact, layout: DefaultLayout },
     { path: "/books/:id", component: ProductPage, layout: DefaultLayout },
     { path: "/shop", component: ShopPage, layout: DefaultLayout },
     { path: '/login', component: LoginPage, layout: LoginLayout },
