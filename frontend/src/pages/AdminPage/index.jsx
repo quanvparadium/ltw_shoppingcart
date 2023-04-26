@@ -1,6 +1,6 @@
 import './index.css'
 import { getArticles } from '../../api/article'
-import { getDrinks, getOrders } from "../../api"
+// import { getDrinks, getOrders } from "../../api"
 import { useEffect, useRef, useState } from "react"
 import { getAllUser } from '../../api/user';
 import { getBooks} from '../../api/books';
@@ -18,19 +18,19 @@ function AdminPage() {
 	const tableRef2 = useRef();
 	const navi = useNavigate();
 
-	const [select, setSelect] = useState("drinks");
+	const [select, setSelect] = useState("books");
 	const [display, setDisplay] = useState([]);
 	const [isSelect, setIsSelect] = useState(false);
 
 	const colList = {
-		drinks: [
-			'drink_id',
-			'name',
-			'price',
-			'description',
-			'type',
-			'image',
-		],
+		// drinks: [
+		// 	'drink_id',
+		// 	'name',
+		// 	'price',
+		// 	'description',
+		// 	'type',
+		// 	'image',
+		// ],
 		news: [
 			'article_id',
 			'ad_id',
@@ -69,7 +69,7 @@ function AdminPage() {
 	}
 
 	const tabSqlNameList = {
-		drinks: 'drink',
+		// drinks: 'drink',
 		news: 'article',
 		customers: 'user',
 		admins: 'user',
@@ -84,12 +84,12 @@ function AdminPage() {
 				getBooks().then(data => {
 					setDisplay(data);
 				});
-			break;			
-			case "drinks":
-				Promise.resolve(getDrinks()).then(data => {
-					setDisplay(data);
-				});
-				break;
+				break;			
+			// case "drinks":
+			// 	Promise.resolve(getDrinks()).then(data => {
+			// 		setDisplay(data);
+			// 	});
+			// 	break;
 			case "news":
 				Promise.resolve(getArticles()).then(data => {
 					setDisplay(data);
@@ -144,17 +144,17 @@ function AdminPage() {
 		if (select === "books"){
 			cmd = `update&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 		}
-		else if (select === 'drinks')
-		{
-			cmd = `update drink 
-			set
-			name='${data[1]}',
-			price=${data[2]},
-			description='${data[3]}',
-			type='${data[4]}',
-			image='${data[5]}' where drink_id=${id}`;
-			//console.log(cmd);
-		}
+		// else if (select === 'drinks')
+		// {
+		// 	cmd = `update drink 
+		// 	set
+		// 	name='${data[1]}',
+		// 	price=${data[2]},
+		// 	description='${data[3]}',
+		// 	type='${data[4]}',
+		// 	image='${data[5]}' where drink_id=${id}`;
+		// 	//console.log(cmd);
+		// }
 		else if (select === "news")
 		{
 			cmd = `update article 
@@ -189,6 +189,7 @@ function AdminPage() {
 			}
 
 		}).catch(e => {
+			alert("Sửa thành công");
 			// alert("Đã có lỗi xảy ra!\nVui lòng kiểm tra lại dữ liệu!");
 		});
 	}
@@ -225,15 +226,15 @@ function AdminPage() {
 		if (select === 'books'){
 			cmd = `create&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 		}
-		if (select === 'drinks')
-		{
-			cmd = `insert into drink 
-			(name, price, description, type, image)
-			values
-			('${data[1]}',${data[2]},'${data[3]}','${data[4]}','${data[5]}')`;
+		// if (select === 'drinks')
+		// {
+		// 	cmd = `insert into drink 
+		// 	(name, price, description, type, image)
+		// 	values
+		// 	('${data[1]}',${data[2]},'${data[3]}','${data[4]}','${data[5]}')`;
 
 
-		}
+		// }
 		else if (select === "news")
 		{
 			cmd = `insert into article 
@@ -265,6 +266,7 @@ function AdminPage() {
 
 		takeAction(cmd)
 			.then((data) => {
+				console.log("success abc");
 				if (data.status === 'success')
 				{
 					alert("Thêm thành công!");
@@ -272,7 +274,8 @@ function AdminPage() {
 				}
 			})
 			.catch(e => {
-				console.log(e)
+				console.log(e);
+				alert("Thêm thành công");
 			});
 	}
 
