@@ -12,7 +12,7 @@ const actions = {
 const takeAction = async (command) => {
 	// const data = { command: command };
 	// const formData = objToFormData(data);
-	const res = fetchData(`http://localhost/books_q.php?action=` + command, "");
+	const res = fetchData(command, "");
 	// console.log(res);
 	return res;
 }

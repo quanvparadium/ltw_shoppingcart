@@ -1,5 +1,7 @@
 import { objToFormData, sendRequest } from ".";
-const urlOrder = `http://php_apache/BKCoffee/api/order.php`;
+// const urlOrder = `http://php_apache/BKCoffee/api/order.php`;
+const urlOrder = `http://localhost/order.php`;
+
 
 const actions = {
 	create: '?action=create',
