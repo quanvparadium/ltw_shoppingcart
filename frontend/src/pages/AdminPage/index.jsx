@@ -1,15 +1,16 @@
 import './index.css'
 import { getArticles } from '../../api/article'
 // import { getDrinks, getOrders } from "../../api"
-import {getOrders} from "../../api/order"
+import { getOrders } from "../../api/order"
 import { useEffect, useRef, useState } from "react"
 import { getAllUser } from '../../api/user';
 import { getBooks } from '../../api/books';
 import { takeAction } from '../../api/admin';
 import { useNavigate } from 'react-router-dom';
-import { Layout, Space, Tabs, Typography } from 'antd';
+import { Layout, Space, Tabs, Typography, message } from 'antd';
 import BookTab from './tab/Book'
 import { TableOutlined } from '@ant-design/icons';
+import axios from 'axios'
 
 function AdminPage() {
 	const [drinks, setDrinks] = useState([]);
@@ -17,6 +18,7 @@ function AdminPage() {
 	const [orders, setOrders] = useState([]);
 	const [ren, setRen] = useState(true);
 	const [books, setBooks] = useState([]);
+	const [messageApi, contextHolder] = message.useMessage();
 
 	const tableRef = useRef();
 	const tableRef2 = useRef();
@@ -27,14 +29,6 @@ function AdminPage() {
 	const [isSelect, setIsSelect] = useState(false);
 
 	const colList = {
-		// drinks: [
-		// 	'drink_id',
-		// 	'name',
-		// 	'price',
-		// 	'description',
-		// 	'type',
-		// 	'image',
-		// ],
 		orders: [
 			'order_id',
 			'receiver_name',
@@ -45,10 +39,10 @@ function AdminPage() {
 		],
 		news: [
 			'article_id',
-			'ad_id',
+			'title',
 			'content',
 			'date',
-			'title',
+			'ad_id',
 			'image',
 		],
 		customers: [
@@ -95,7 +89,7 @@ function AdminPage() {
 				getBooks().then(data => {
 					setDisplay(data);
 				});
-				break;			
+				break;
 			case "orders":
 				Promise.resolve(getOrders()).then(data => {
 					setDisplay(data);
@@ -138,7 +132,6 @@ function AdminPage() {
 
 	const handleEdit = (id, rowId) => {
 		const row = tableRef.current.rows[rowId];
-		//console.log(tableRef.current.rows[rowId]);
 
 		const cols = colList[select];
 		const data = [];
@@ -150,28 +143,30 @@ function AdminPage() {
 		}
 
 		//console.log(data);
-		if (select === "books"){
+		if (select === "books") {
 			cmd = `http://localhost/books_q.php?action=update&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 		}
-		// else if (select === 'drinks')
-		// {
-		// 	cmd = `update drink 
-		// 	set
-		// 	name='${data[1]}',
-		// 	price=${data[2]},
-		// 	description='${data[3]}',
-		// 	type='${data[4]}',
-		// 	image='${data[5]}' where drink_id=${id}`;
-		// 	//console.log(cmd);
-		// }
 		else if (select === "news") {
-			cmd = `update article 
-			set
-			ad_id=${data[1]},
-			content='${data[2]}',
-			date='${data[3]}',
-			title='${data[4]}',
-			image='${data[5]}' where article_id=${id}`;
+			const requestData = new FormData()
+
+			requestData.append("id", data[0])
+			requestData.append("title", data[1])
+			requestData.append("content", data[2])
+			requestData.append("date", data[3])
+			requestData.append("image", data[5])
+			requestData.append("action", "update")
+
+			axios.post("http://localhost/article.php", requestData).then(res => {
+				message.success("Đã cập nhật thành công!");
+			})
+			// cmd = `update article 
+			// set
+			// ad_id=${data[1]},
+			// content='${data[2]}',
+			// date='${data[3]}',
+			// title='${data[4]}',
+			// image='${data[5]}' where article_id=${id}`;
+			return
 		}
 		else if (select === "customers" || select === "admins") {
 			cmd = `update user 
@@ -184,9 +179,6 @@ function AdminPage() {
 			// cmd = `update&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 
 		}
-		// else if ()
-		// {
-		// }
 
 		takeAction(cmd).then((data) => {
 			if (data.status === 'success') {
@@ -203,12 +195,28 @@ function AdminPage() {
 		// if (${tabSqlNameList[select]} == ){
 
 		// }
+		console.log(tabSqlNameList[select])
 		let cmd = "";
-		if (tabSqlNameList[select] === "books"){
+		if (tabSqlNameList[select] === "books") {
 			cmd = `http://localhost/books_q.php?action=delete&${colList[select][0]}=${id}`;
 		}
-		else if (tabSqlNameList[select] === "orders"){
+		else if (tabSqlNameList[select] === "orders") {
 			cmd = `http://localhost/order.php?action=delete&${colList[select][0]}=${id}`;
+		}
+		else if (tabSqlNameList[select] === "article") {
+			const requestData = new FormData()
+
+			requestData.append("id", id)
+			requestData.append("action", "delete")
+
+			axios.post("http://localhost/article.php", requestData).then(res => {
+				message.success("Đã xóa sách!");
+			})
+
+			Promise.resolve(getArticles()).then(data => {
+				setDisplay(data);
+			});
+			return
 		}
 		console.log(cmd)
 		takeAction(cmd).then(() => {
@@ -230,21 +238,30 @@ function AdminPage() {
 		}
 
 		//console.log(data);
-		if (select === 'books'){
+		if (select === 'books') {
 			cmd = `http://localhost/books_q.php?action=create&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 		}
-		else if (select === 'orders')
-		{
+		else if (select === 'orders') {
 			cmd = `http://localhost/order.php?action=create&order_id=${data[0]}&receiver_name=${data[1]}&address=${data[2]}&ship_fee=${data[3]}&user_id=${data[4]}&status=${data[5]}`;
 
 		}
-		else if (select === "news")
-		{
+		else if (select === "news") {
+			const requestData = new FormData()
 
-			cmd = `insert into article 
-			(ad_id, content, date, title, image)
-			values 
-			(${data[1]},'${data[2]}','${data[3]}','${data[4]}','${data[5]}')`;
+			requestData.append("title", data[1])
+			requestData.append("content", data[2])
+			requestData.append("date", data[3])
+			requestData.append("ad_id", data[4])
+			requestData.append("image", data[5])
+
+			axios.post("http://localhost/article.php", requestData).then(res => {
+				message.success("Đã thêm sách thành công!");
+			})
+
+			Promise.resolve(getArticles()).then(data => {
+				setDisplay(data);
+			});
+			return
 		}
 		else if (select === "customers") {
 			cmd = `insert into user 
@@ -318,34 +335,12 @@ function AdminPage() {
 		)
 	}
 
-	const onChange = (key) => {
-		console.log(key);
-	};
-
-	const items = [
-		{
-			key: '1',
-			label: (<Space><TableOutlined /> Books</Space>),
-			children: <BookTab />,
-		},
-		{
-			key: '2',
-			label: `Admin`,
-			children: `Content of Tab Pane 2`,
-		},
-		{
-			key: '3',
-			label: `Users`,
-			children: `Content of Tab Pane 1`,
-		},
-	];
-
 	return (
 		<Layout.Content className="site-layout" style={{ padding: '16px 50px' }}>
+			{contextHolder}
 			<div style={{ padding: 24, minHeight: 380, background: "white" }}>
 				<Typography.Title level={3}>Chọn đối tượng muốn sửa</Typography.Title>
 
-				<Tabs defaultActiveKey="1" items={items} onChange={onChange} />
 				<div className='ad-select'>
 					<AdminSelection />
 				</div>

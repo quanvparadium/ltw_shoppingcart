@@ -1,4 +1,4 @@
-const urlArt = `http://php_apache/BKCoffee/api/article.php`;
+const urlArt = `http://localhost/article.php`;
 
 const actions = {
 	create: '?action=create',
@@ -12,7 +12,7 @@ const actions = {
 
 async function getArticles() {
 	const res = await fetch(urlArt + actions.read);
-	const data = await res.jsxon();
+	const data = await res.json();
 
 	return data;
 }

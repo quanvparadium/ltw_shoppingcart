@@ -22,7 +22,7 @@ export const publicRoutes = [
     { path: "/shop", component: ShopPage, layout: DefaultLayout },
     { path: '/login', component: LoginPage, layout: LoginLayout },
     { path: "/cart", component: CartPage, layout: DefaultLayout },
-    { path: "/blog", component: BlogListPage, layout: DefaultLayout },
-    { path: "/blog/:id", component: BlogPage, layout: DefaultLayout },
+    { path: "/articles", component: BlogListPage, layout: DefaultLayout },
+    { path: "/articles/:id", component: BlogPage, layout: DefaultLayout },
     { path: "/user", component: CustomerPage, layout: DefaultLayout }
 ]

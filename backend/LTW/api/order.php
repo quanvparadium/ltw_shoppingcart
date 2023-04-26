@@ -7,9 +7,9 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 class Database
 {
-    private $servername = 'localhost';
-    private $username = 'root';
-    private $password = '';
+    private $servername = 'mysql';
+    private $username = 'php';
+    private $password = 'php_123456';
     private $dbname = 'shop';
     public function __construct(){}
 

@@ -1000,49 +1000,6 @@ CREATE TABLE `user` (
 --
 -- Đang đổ dữ liệu cho bảng `user`
 --
-INSERT INTO
-  `user` (
-    `user_id`,
-    `username`,
-    `password`,
-    `name`,
-    `address`,
-    `role`
-  )
-VALUES
-  (
-    1,
-    'luong',
-    '123',
-    'Nguyễn Trọng Đức Lương',
-    'TP Thủ Đức',
-    'admin'
-  ),
-  (
-    2,
-    'nhut',
-    '123',
-    'Nguyễn Sinh Nhựt',
-    'Huyện Bình Chánh',
-    'cus'
-  ),
-  (
-    3,
-    'quan',
-    '123',
-    'Võ Phan Anh Quân',
-    'Quận 1',
-    'cus'
-  ),
-  (
-    4,
-    'nauq',
-    '123',
-    'Nguyễn Tôn Minh Quân',
-    'Quận 3',
-    'cus'
-  );
-
 INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `address`, `role`) VALUES
 (1, 'luong', '123', 'Nguyễn Trọng Đức Lương', 'TP Thủ Đức', 'admin'),
 (2, 'nhut', '123', 'Nguyễn Sinh Nhựt', 'Huyện Bình Chánh', 'cus'),
@@ -1111,7 +1068,7 @@ Nếu nói về một trong những bộ truyện tranh manga 'hot' nhất hiệ
 Với thời công nghệ kĩ thuật số hiện đại tiên tiến như hiện nay. Chỉ cần một chiếc điện thoại có kết nối internet bạn có thể mua bất kì thứ gì, ở bất kì nơi nào. Hiện nay, có rất nhiều website để mua truyện online. Cùng tham khảo thêm những trang dưới đây nhé!
 
 1. Fahasa
-Ngoài là một nơi uy tín, được nhiều người lựa chọn để mua hàng thì Fahasa.com cũng là một trang web uy tín. Ở đây, có rất nhiều sách và văn phòng phẩm. Về các thể loại khác nhau như sách về kinh tế, ngôn ngữ, sách truyện, dụng cụ học tập, dụng cụ văn phòng phẩm. Là nơi được nhiều người chọn mua vì sản phẩm chất lượng và được chọn lọc kĩ càng. Bây giờ, bạn không cần phải đến trực tiếp cửa hàng cũng có thể mua được những thứ bạn cần bằng trực tuyến. ví dụ, bạn muốn đọc truyện mà rất lười ra cửa hàng, chỉ cần một chiếc điện thoại có kế nối internet, bạn có thể ngồi tại chỗ cũng có thể mua truyện online được. Thật dễ dàng đúng không nè?", "2020-02-05", 4, "https://cdn0.fahasa.com/media/magentothem/blog/sach-ngon-tinh_1.jpg")
+Ngoài là một nơi uy tín, được nhiều người lựa chọn để mua hàng thì Fahasa.com cũng là một trang web uy tín. Ở đây, có rất nhiều sách và văn phòng phẩm. Về các thể loại khác nhau như sách về kinh tế, ngôn ngữ, sách truyện, dụng cụ học tập, dụng cụ văn phòng phẩm. Là nơi được nhiều người chọn mua vì sản phẩm chất lượng và được chọn lọc kĩ càng. Bây giờ, bạn không cần phải đến trực tiếp cửa hàng cũng có thể mua được những thứ bạn cần bằng trực tuyến. ví dụ, bạn muốn đọc truyện mà rất lười ra cửa hàng, chỉ cần một chiếc điện thoại có kế nối internet, bạn có thể ngồi tại chỗ cũng có thể mua truyện online được. Thật dễ dàng đúng không nè?", "2020-02-05", 4, "https://cdn0.fahasa.com/media/magentothem/blog/sach-ngon-tinh_1.jpg");
 
 
 ALTER TABLE `user`
