@@ -218,6 +218,12 @@ function AdminPage() {
 			});
 			return
 		}
+		else if (tabSqlNameList[select] === "news"){
+			cmd = `http://localhost/article.php?action=delete&${colList[select][0]}=${id}`;
+		}		
+		else if (tabSqlNameList[select] === "customers" && tabSqlNameList[select] === "admins"){
+			cmd = `http://localhost/user.php?action=delete&${colList[select][0]}=${id}`;
+		}
 		console.log(cmd)
 		takeAction(cmd).then(() => {
 			alert("Xoá thành công!");
