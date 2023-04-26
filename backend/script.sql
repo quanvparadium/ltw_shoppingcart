@@ -134,7 +134,7 @@ MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `address`, `role`) VALUES
-(1, 'luong', '123', 'Nguyễn Trọng Đức Lương', 'TP Thủ Đức', 'cus'),
+(1, 'luong', '123', 'Nguyễn Trọng Đức Lương', 'TP Thủ Đức', 'admin'),
 (2, 'nhut', '123', 'Nguyễn Sinh Nhựt', 'Huyện Bình Chánh', 'cus'),
 (3, 'quan', '123', 'Võ Phan Anh Quân', 'Quận 1', 'cus'),
 (4, 'nauq', '123', 'Nguyễn Tôn Minh Quân', 'Quận 3', 'cus');

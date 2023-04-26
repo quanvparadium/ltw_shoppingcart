@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { Login } from '../../components/Login'
-import { SignUp } from '../../components/SignUp'
+import Signup from './Signup.jsx'
 import './style.css'
 import { Button, Checkbox, Form, Input, Typography, message } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'universal-cookie'
 
 export const LoginPage = () => {
+    const cookie = new Cookies()
     const [choose, setChoose] = useState(0)
     const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate()
@@ -20,13 +21,8 @@ export const LoginPage = () => {
         Object.keys(e).forEach(key => formData.append(key, e[key]));
 
         axios.post("http://localhost:80/login.php", formData).then(res => {
-            var date = new Date();
-            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-            var expires = "; expires=" + date.toUTCString();
-
-            // Set the cookie value to the role
-            document.cookie = "userRole=" + res.data.token.role + expires + "; path=/";
-
+            cookie.set('userRole', res.data.token.role, { path: '/' });
+            console.log(cookie.get("userRole"), res.data.token.role)
             navigate("/")
         }).catch(err => {
             message.error(err.response.data.message)
@@ -80,8 +76,8 @@ export const LoginPage = () => {
                         </Form>
                         :
                         <div className='login-choose'>
-                            <span className='login-swap'>Đã có tài khoản? <span onClick={handleClick}>Đăng nhập</span></span>
-                            <SignUp switchLogin={handleClick} />
+                            <span className='login-swap'>Đã có tài khoản? <Typography.Link onClick={handleClick}>Đăng nhập</Typography.Link></span>
+                            <Signup switchLogin={handleClick} messageAPI={messageApi} />
                         </div>
                 }
             </div>
