@@ -4,7 +4,7 @@ class Database
 	private $servername = 'mysql';
 	private $username = 'php';
 	private $password = 'php_123456';
-	private $dbname = 'bk_coffee';
+	private $dbname = 'shop';
 	public function __construct()
 	{
 	}

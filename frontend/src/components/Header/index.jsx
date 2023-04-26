@@ -27,6 +27,7 @@ export const Header = () => {
             label: (
                 <div onClick={() => {
                     cookie.remove('userRole', { path: '/' });
+                    navigate("/login")
                 }}>
                     Đăng xuất
                 </div>
@@ -52,7 +53,6 @@ export const Header = () => {
         }
     }
 
-    console.log(cookie.get("userRole"))
     return (
         <Layout.Header>
             <Row >

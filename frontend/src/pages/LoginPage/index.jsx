@@ -22,7 +22,6 @@ export const LoginPage = () => {
 
         axios.post("http://localhost:80/login.php", formData).then(res => {
             cookie.set('userRole', res.data.token.role, { path: '/' });
-            console.log(cookie.get("userRole"), res.data.token.role)
             navigate("/")
         }).catch(err => {
             message.error(err.response.data.message)

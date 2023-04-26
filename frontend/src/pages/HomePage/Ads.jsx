@@ -1,4 +1,4 @@
-import { Carousel, Image } from "antd"
+import { Carousel, Col, Image, Row, Space } from "antd"
 
 const contentStyle = {
     height: '160px',
@@ -9,16 +9,25 @@ const contentStyle = {
 };
 
 export default function () {
-    return <Carousel autoplay style={{ maxWidth: "841px", margin: "0 auto" }}>
-        <div>
-            <Image src="/banner_0.jpg" />
-        </div>
-        <div>
-            <Image src="/banner_1.jpg" />
-        </div>
-        <div>
-            <Image src="/banner_2.jpg" />
-        </div>
-    </Carousel>
-
+    return <Row gutter={12}>
+        <Col span={16}>
+            <Carousel autoplay style={{ maxWidth: "841px", margin: "0 auto" }}>
+                <div>
+                    <Image src="/banner_0.jpg" />
+                </div>
+                <div>
+                    <Image src="/banner_1.jpg" />
+                </div>
+                <div>
+                    <Image src="/banner_2.jpg" />
+                </div>
+            </Carousel>
+        </Col>
+        <Col span={8}>
+            <Space direction="vertical">
+                <Image src="/top.jpg" />
+                <Image src="/bottom.jpg" />
+            </Space>
+        </Col>
+    </Row>
 }

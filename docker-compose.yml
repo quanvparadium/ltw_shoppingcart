@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
 
     volumes:
-      - ./backend/BKCoffee/api:/var/www/html/
+      - ./backend/LTW/api:/var/www/html/
 
     depends_on:
       - mysql

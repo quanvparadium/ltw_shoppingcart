@@ -6,9 +6,9 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization");
 class Database
 {
-    private $servername = 'localhost';
-    private $username = 'root';
-    private $password = '';
+    private $servername = 'mysql';
+    private $username = 'php';
+    private $password = 'php_123456';
     private $dbname = 'shop';
     public function __construct(){}
 

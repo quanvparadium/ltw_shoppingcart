@@ -1,74 +1,35 @@
 import React, { useState } from "react";
-import { Breadcrumb } from "../../components/Breadcrumb";
-import './style.css'
 import { useParams } from "react-router-dom";
-// import { getBlogById } from "../../api/product";
 import { useEffect } from "react";
-// import { blog } from "../../data";
-import { BlogContainer } from "../../components/Blog";
-import { getArticles } from "../../api/article";
+import { Empty, Image, Layout, Space, Typography } from "antd";
+import axios from "axios";
 
 export const BlogPage = () => {
-
-    const [art, setArt] = useState({});
-    const [news, setNews] = useState([]);
+    const [article, setArticle] = useState({});
 
     const match = useParams({ id: Number })
 
     useEffect(() => {
-        Promise.resolve(getArticles()).then(data => {
-            setNews(data)
+        axios.get("http://localhost/article.php?id=" + match.id).then(res => {
+            setArticle(res.data)
         })
-    }, [])
-
-    useEffect(() => {
-        if (news)
-        {
-            setArt(news[match.id]);
-        }
-        // if (response.code === 404)
-        // {
-        //     throw new Error(response.message);
-        // }
-        // setData(response.data);
-
-    }, [match.id, news]);
-
-    const breadcrumb = {
-        parent: [
-            {
-                name: "Home",
-                link: "/home"
-            },
-            {
-                name: "Blog",
-                link: "/blog"
-            },
-        ]
-    }
+    }, [match.id]);
 
     return (
-        <div className="blogpage-container">
-            <div className="blogpage-header"
-                style={{ backgroundImage: `url(${art ? art.image : ""})` }}>
-            </div>
-            <div className="blogpage-wrapper">
-                <Breadcrumb props={breadcrumb} />
-                <h1>{art ? art.title : ""}</h1>
-                <p>{art ? art.content : ""}</p>
-                <img src={art ? art.image : ""} alt="art-img" />
-            </div>
+        <Layout.Content className="site-layout" style={{ padding: '16px 50px' }}>
+            {article === undefined ? <Empty /> :
+                <div style={{ padding: 24, minHeight: 380, background: "white" }}>
+                    <div style={{ maxWidth: "500px", margin: "0 auto" }}>
+                        <Image width={500} src={article.image} />
+                        <Typography.Title level={3} style={{ marginTop: "15px" }}>{article.title}</Typography.Title>
+                        <Typography.Text strong>{article.date}</Typography.Text>
+                        <Space style={{ width: "100%" }} direction="vertical" size={"large"} align="center">
 
-            <div className="container holic row blog">
-                <span>Nội dung liên quan</span>
-                {
-                    news.map((item, index) => index <= 3 ? (
-                        <div key={index} className="col-sm-12 col-md-6 col-lg-4 center">
-                            <BlogContainer blog={item} />
-                        </div>
-                    ) : "")
-                }
-            </div>
-        </div >
+                            <Typography.Paragraph>{article.content}</Typography.Paragraph>
+                        </Space>
+                    </div>
+                </div>
+            }
+        </Layout.Content>
     )
 }

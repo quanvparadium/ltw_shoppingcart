@@ -3,9 +3,12 @@ import { getArticles } from '../../api/article'
 // import { getDrinks, getOrders } from "../../api"
 import { useEffect, useRef, useState } from "react"
 import { getAllUser } from '../../api/user';
-import { getBooks} from '../../api/books';
+import { getBooks } from '../../api/books';
 import { takeAction } from '../../api/admin';
 import { useNavigate } from 'react-router-dom';
+import { Layout, Space, Tabs, Typography } from 'antd';
+import BookTab from './tab/Book'
+import { TableOutlined } from '@ant-design/icons';
 
 function AdminPage() {
 	const [drinks, setDrinks] = useState([]);
@@ -77,19 +80,12 @@ function AdminPage() {
 	}
 
 	const handleAdSelect = (key) => {
-		switch (key)
-		{
+		switch (key) {
 			case "books":
-				console.log("book");
 				getBooks().then(data => {
 					setDisplay(data);
 				});
-				break;			
-			// case "drinks":
-			// 	Promise.resolve(getDrinks()).then(data => {
-			// 		setDisplay(data);
-			// 	});
-			// 	break;
+				break;
 			case "news":
 				Promise.resolve(getArticles()).then(data => {
 					setDisplay(data);
@@ -116,8 +112,7 @@ function AdminPage() {
 	const AdminSelection = () => {
 		const res = []
 		let idx = 0;
-		for (const key in colList)
-		{
+		for (const key in colList) {
 			res.push(<button key={idx} className='btn btn-success border-0 m-1' onClick={() => handleAdSelect(key)}>
 				{key}
 			</button>);
@@ -134,14 +129,13 @@ function AdminPage() {
 		const data = [];
 		let cmd = "";
 
-		for (let i = 0; i < cols.length; i++)
-		{
+		for (let i = 0; i < cols.length; i++) {
 			// data[cols[i]] = row.cells[i].innerText;
 			data[i] = row.cells[i].innerText;
 		}
 
 		//console.log(data);
-		if (select === "books"){
+		if (select === "books") {
 			cmd = `update&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 		}
 		// else if (select === 'drinks')
@@ -155,8 +149,7 @@ function AdminPage() {
 		// 	image='${data[5]}' where drink_id=${id}`;
 		// 	//console.log(cmd);
 		// }
-		else if (select === "news")
-		{
+		else if (select === "news") {
 			cmd = `update article 
 			set
 			ad_id=${data[1]},
@@ -165,8 +158,7 @@ function AdminPage() {
 			title='${data[4]}',
 			image='${data[5]}' where article_id=${id}`;
 		}
-		else if (select === "customers" || select === "admins")
-		{
+		else if (select === "customers" || select === "admins") {
 			cmd = `update user 
 			set
 			username='${data[1]}',
@@ -182,8 +174,7 @@ function AdminPage() {
 		// }
 
 		takeAction(cmd).then((data) => {
-			if (data.status === 'success')
-			{
+			if (data.status === 'success') {
 				alert("Sửa thành công!");
 				window.location.reload();
 			}
@@ -198,7 +189,7 @@ function AdminPage() {
 
 		// }
 		let cmd = "";
-		if (tabSqlNameList[select] === "books"){
+		if (tabSqlNameList[select] === "books") {
 			cmd = `delete&${colList[select][0]}=${id}`;
 
 		}
@@ -217,13 +208,12 @@ function AdminPage() {
 		const data = [];
 		let cmd = "";
 
-		for (let i = 0; i < cols.length; i++)
-		{
+		for (let i = 0; i < cols.length; i++) {
 			data[i] = row.cells[i].innerText;
 		}
 
 		//console.log(data);
-		if (select === 'books'){
+		if (select === 'books') {
 			cmd = `create&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 		}
 		// if (select === 'drinks')
@@ -235,15 +225,13 @@ function AdminPage() {
 
 
 		// }
-		else if (select === "news")
-		{
+		else if (select === "news") {
 			cmd = `insert into article 
 			(ad_id, content, date, title, image)
 			values 
 			(${data[1]},'${data[2]}','${data[3]}','${data[4]}','${data[5]}')`;
 		}
-		else if (select === "customers")
-		{
+		else if (select === "customers") {
 			cmd = `insert into user 
 			(username, password, name, address, role)
 			values
@@ -253,8 +241,7 @@ function AdminPage() {
 			const cmd1 = `insert into customer (cus_id) select user_id from user where username='${data[1]}'`
 			cmd += cmd1;
 		}
-		else if (select === "admins")
-		{
+		else if (select === "admins") {
 			cmd = `insert into user 
 			(username, password, name, address, role)
 			values
@@ -267,8 +254,7 @@ function AdminPage() {
 		takeAction(cmd)
 			.then((data) => {
 				console.log("success abc");
-				if (data.status === 'success')
-				{
+				if (data.status === 'success') {
 					alert("Thêm thành công!");
 					window.location.reload();
 				}
@@ -317,68 +303,92 @@ function AdminPage() {
 		)
 	}
 
+	const onChange = (key) => {
+		console.log(key);
+	};
+
+	const items = [
+		{
+			key: '1',
+			label: (<Space><TableOutlined /> Books</Space>),
+			children: <BookTab />,
+		},
+		{
+			key: '2',
+			label: `Admin`,
+			children: `Content of Tab Pane 2`,
+		},
+		{
+			key: '3',
+			label: `Users`,
+			children: `Content of Tab Pane 1`,
+		},
+	];
 
 	return (
-		<div id="admin-page" className='container'>
-			<h5>Chọn đối tượng muốn sửa</h5>
-			<div className='ad-select'>
-				<AdminSelection />
-			</div>
+		<Layout.Content className="site-layout" style={{ padding: '16px 50px' }}>
+			<div style={{ padding: 24, minHeight: 380, background: "white" }}>
+				<Typography.Title level={3}>Chọn đối tượng muốn sửa</Typography.Title>
 
-			<table className="table table-bordered" ref={tableRef}>
-				<thead className="thead-dark">
-					<tr>
-						{colList[select].map((item, idx) => {
-							return (<th key={idx} scope="row">{colList[select][idx]}</th>);
-						})}
-						<th scope="row">actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{display.map((item, idx) => (
-						<tr key={idx}>
-							{colList[select].map((itm, j) => {
-								if (j === colList[select].length - 1)
-								{
-									return (
-										<td key={j} contentEditable
-											suppressContentEditableWarning
-											className='table-data'
-											style={{ wordBreak: 'break-all' }}>
-											{item[itm]}
-										</td>)
-								}
-								return (<td key={j} contentEditable
-									suppressContentEditableWarning
-									className='table-data'>
-									{item[itm]}
-								</td>)
+				<Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+				<div className='ad-select'>
+					<AdminSelection />
+				</div>
+
+				<table className="table table-bordered" ref={tableRef}>
+					<thead className="thead-dark">
+						<tr>
+							{colList[select].map((item, idx) => {
+								return (<th key={idx} scope="row">{colList[select][idx]}</th>);
 							})}
-							<td className='d-flex flex-column'>
-								<button className='btn btn-primary border-0 m-1'
-									onClick={() => handleEdit(item[colList[select][0]], idx + 1)}>
-									Save
-								</button>
-								<button className='btn btn-danger border-0 m-1'
-									onClick={() => handleDelete(item[colList[select][0]])}>
-									Delete
-								</button>
-							</td>
+							<th scope="row">actions</th>
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{display.map((item, idx) => (
+							<tr key={idx}>
+								{colList[select].map((itm, j) => {
+									if (j === colList[select].length - 1) {
+										return (
+											<td key={j} contentEditable
+												suppressContentEditableWarning
+												className='table-data'
+												style={{ wordBreak: 'break-all' }}>
+												{item[itm]}
+											</td>)
+									}
+									return (<td key={j} contentEditable
+										suppressContentEditableWarning
+										className='table-data'>
+										{item[itm]}
+									</td>)
+								})}
+								<td className='d-flex flex-column'>
+									<button className='btn btn-primary border-0 m-1'
+										onClick={() => handleEdit(item[colList[select][0]], idx + 1)}>
+										Save
+									</button>
+									<button className='btn btn-danger border-0 m-1'
+										onClick={() => handleDelete(item[colList[select][0]])}>
+										Delete
+									</button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
 
-			<br /><br />
+				<br /><br />
 
-			{isSelect ? <RenderAdd /> : ""}
+				{isSelect ? <RenderAdd /> : ""}
 
-			<br />
-			<button className='btn btn-danger border-0 m-1'
-				onClick={handleLogout}>
-				Đăng xuất
-			</button>
-		</div>
+				<br />
+				<button className='btn btn-danger border-0 m-1'
+					onClick={handleLogout}>
+					Đăng xuất
+				</button>
+			</div>
+		</Layout.Content >
 	)
 }
 

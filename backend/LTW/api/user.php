@@ -43,8 +43,9 @@ class User
 			$customers[] = $row;
 		}
 
+		header('Content-Type: application/json');
+		echo json_encode($customers);
 		$conn->close();
-		return $customers;
 	}
 
 	function get_all_admins()
@@ -144,6 +145,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$email = $_POST['email'];
 
 	$user->sign_up($username, $password, $name, $email, $address);
+} elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
+	$user->get_all_customers();
 }
 
 if ($action == 'read_all') {
