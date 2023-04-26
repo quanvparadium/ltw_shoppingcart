@@ -2,15 +2,38 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppContext } from '../../context'
 import './style.css'
-import { Avatar, Badge, Button, Col, Input, Layout, Row, Space, Typography } from 'antd';
-import { AmazonOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import { Avatar, Badge, Button, Col, Dropdown, Empty, Input, Layout, Row, Space, Typography } from 'antd';
+import { AmazonOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 import { MainContext } from '../context';
-
+import Cookies from 'universal-cookie';
 
 export const Header = () => {
     // const user = useAppContext()
     const navigate = useNavigate()
+    const cookie = new Cookies()
     const { cart, updateCart } = useContext(MainContext)
+
+    const items = [
+        {
+            key: '1',
+            label: (
+                <Link to={"/profile"}>
+                    Trang cá nhân
+                </Link>
+            ),
+        },
+        {
+            key: '2',
+            label: (
+                <div onClick={() => {
+                    cookie.remove('userRole', { path: '/' });
+                }}>
+                    Đăng xuất
+                </div>
+            ),
+        },
+    ];
+
 
     const handleUserClick = (e) => {
         e.preventDefault();
@@ -29,6 +52,7 @@ export const Header = () => {
         }
     }
 
+    console.log(cookie.get("userRole"))
     return (
         <Layout.Header>
             <Row >
@@ -71,9 +95,15 @@ export const Header = () => {
                             </Badge>
                         </Col>
                         <Col>
-                            <Link to={"/login"}>
-                                <Button type='primary'>Login</Button>
-                            </Link>
+                            {
+                                cookie.get("userRole") ? <Dropdown menu={{ items }} placement="topRight" arrow>
+                                    <Avatar type='primary' icon={<UserOutlined />} />
+                                </Dropdown> :
+
+                                    <Link to={"/login"}>
+                                        <Button type='primary'>Login</Button>
+                                    </Link>
+                            }
                         </Col>
                     </Row>
                 </Col>

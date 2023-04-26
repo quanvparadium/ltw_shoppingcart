@@ -7,18 +7,20 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 class Database
 {
-    private $servername = 'localhost';
-    private $username = 'root';
-    private $password = '';
-    private $dbname = 'shop';
-    public function __construct(){}
+	private $servername = 'mysql';
+	private $username = 'php';
+	private $password = 'php_123456';
+	private $dbname = 'shop';
+	public function __construct()
+	{
+	}
 
-    public function connect()
-    {
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+	public function connect()
+	{
+		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
-        return $conn;
-    }
+		return $conn;
+	}
 }
 
 
@@ -97,20 +99,22 @@ class User
 		$conn = $this->database->connect();
 		// check duplicate username
 		$id_query = $conn->query("select user_id as id from user where username='{$username}'");
-		if (isset($id_query->fetch_assoc()['id'])) {
-			return ["status" => "DUP_USERNAME"];
-		}
 
-		$conn->query("insert into user (username, password, name, address, role) values 
+		if ($id_query->num_rows > 0) {
+			echo $id_query->fetch_assoc();
+			http_response_code(404);
+			echo json_encode(array("message" => "Username has existed."));
+		} else {
+			$result = $conn->query("insert into user (username, password, name, address, role) values 
 			('{$username}','{$password}','{$name}','{$address}','cus') ");
 
-		$id_query = $conn->query("select max(user_id) as id from user");
-		$id = $id_query->fetch_assoc()['id'];
+			$conn->close();
 
-		$conn->query("insert into customer values ({$id}, 0) ");
-
-		$conn->close();
-		return ['status' => 'OK'];
+			// Return the data as JSON with a 200 status code
+			header('Content-Type: application/json');
+			http_response_code(200);
+			echo json_encode(array("message" => "Success!"));
+		}
 	}
 
 	function alter_user($username, $password, $name, $email, $address)
@@ -132,6 +136,16 @@ class User
 $user = new User();
 $action = $_GET['action'] ?? '';
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	$username = $_POST['username'];
+	$name = $_POST['name'];
+	$password = $_POST['password'];
+	$address = $_POST['address'];
+	$email = $_POST['email'];
+
+	$user->sign_up($username, $password, $name, $email, $address);
+}
+
 if ($action == 'read_all') {
 	$type = $_GET['type'] ?? '';
 	if ($type == 'ad') {
@@ -151,7 +165,7 @@ if ($action == 'read_all') {
 	$address = $_POST['address'];
 	$email = $_POST['email'];
 
-	echo json_encode(($user->sign_up($username, $password, $name, $email, $address)));
+	$user->sign_up($username, $password, $name, $email, $address);
 } else if ($action == 'read') {
 	$username = $_POST['username'];
 	echo json_encode(($user->get_user_by_username($username)));

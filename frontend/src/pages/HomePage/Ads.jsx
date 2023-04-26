@@ -11,13 +11,13 @@ const contentStyle = {
 export default function () {
     return <Carousel autoplay style={{ maxWidth: "841px", margin: "0 auto" }}>
         <div>
-            <Image src="/public/banner_0.jpg" />
+            <Image src="/banner_0.jpg" />
         </div>
         <div>
-            <Image src="/public/banner_1.jpg" />
+            <Image src="/banner_1.jpg" />
         </div>
         <div>
-            <Image src="/public/banner_2.jpg" />
+            <Image src="/banner_2.jpg" />
         </div>
     </Carousel>
 

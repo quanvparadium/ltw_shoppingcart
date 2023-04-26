@@ -1,8 +1,8 @@
 <?php
 
-// $host = "mysql";
-// $username = "php";
-// $password = "php_123456";
+$host = "mysql";
+$username = "php";
+$password = "php_123456";
 $dbname = "shop";
 
 $conn = new mysqli($host, $username, $password, $dbname);
