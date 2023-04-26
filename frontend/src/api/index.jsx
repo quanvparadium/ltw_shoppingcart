@@ -17,10 +17,9 @@ function sendRequest(url, action, formData) {
 	xmlHttp.send(formData);
 }
 
-async function fetchData(url, action, formData) {
+async function fetchData(url, action) {
 	const response = await fetch(url + action, {
 		method: 'GET',
-		body: formData,
 	});
 	const data = await response.json();
 	return data;
