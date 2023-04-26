@@ -53,7 +53,7 @@ class User
 		$conn = $this->database->connect();
 		$data = $conn->query("select * from user where role='ad'");
 
-		$admins = [];
+		$admins = array();
 		while ($row = $data->fetch_assoc()) {
 			$admins[] = $row;
 		}
@@ -145,16 +145,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$email = $_POST['email'];
 
 	$user->sign_up($username, $password, $name, $email, $address);
-} elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
-	$user->get_all_customers();
 }
-
-if ($action == 'read_all') {
+else if ($action == 'read_all') {
 	$type = $_GET['type'] ?? '';
 	if ($type == 'ad') {
 		echo json_encode($user->get_all_admins());
+		return;
 	} else if ($type == 'cus') {
-		echo json_encode($user->get_all_customers());
+		$user->get_all_customers();
+		return;
 	}
 } elseif ($action == 'login') {
 	$username = $_POST['username'];

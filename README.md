@@ -1,11 +1,14 @@
-# BK-Book
+# Nhà sách LTW (Lập trình web)
 
-## Backend:
-- copy backend/BKBook -> htdocs
-- import backend/script.sql -> PhpMyAdmin
-- run Apache + MySQL on XAMPP
+## Run the php server:
+```
+    docker compose up -d
+```
 
-## Frontend
-- npm i
-- npm start
+## Start frontend:
+```
+    cd frontend
+    yarn
+    yarn dev
+```
 

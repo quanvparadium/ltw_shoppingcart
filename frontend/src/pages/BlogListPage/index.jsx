@@ -43,7 +43,7 @@ export const BlogListPage = () => {
 
                 <Divider />
 
-                <Space size={"large"}>
+                <Space size={"large"} wrap>
                     {
                         news.map((data) => {
                             return (

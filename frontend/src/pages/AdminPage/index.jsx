@@ -103,7 +103,6 @@ function AdminPage() {
 			case "customers":
 				Promise.resolve(getAllUser("cus")).then(data => {
 					setDisplay(data);
-					console.log("dlosdf");
 				});
 				break;
 			case "admins":
