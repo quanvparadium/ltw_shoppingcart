@@ -1,6 +1,7 @@
 import './index.css'
 import { getArticles } from '../../api/article'
 // import { getDrinks, getOrders } from "../../api"
+import {getOrders} from "../../api/order"
 import { useEffect, useRef, useState } from "react"
 import { getAllUser } from '../../api/user';
 import { getBooks} from '../../api/books';
@@ -31,6 +32,14 @@ function AdminPage() {
 		// 	'type',
 		// 	'image',
 		// ],
+		orders: [
+			'order_id',
+			'receiver_name',
+			'address',
+			'ship_fee',
+			'user_id',
+			'status'
+		],
 		news: [
 			'article_id',
 			'ad_id',
@@ -70,6 +79,7 @@ function AdminPage() {
 
 	const tabSqlNameList = {
 		// drinks: 'drink',
+		orders: 'orders',
 		news: 'article',
 		customers: 'user',
 		admins: 'user',
@@ -85,11 +95,11 @@ function AdminPage() {
 					setDisplay(data);
 				});
 				break;			
-			// case "drinks":
-			// 	Promise.resolve(getDrinks()).then(data => {
-			// 		setDisplay(data);
-			// 	});
-			// 	break;
+			case "orders":
+				Promise.resolve(getOrders()).then(data => {
+					setDisplay(data);
+				});
+				break;
 			case "news":
 				Promise.resolve(getArticles()).then(data => {
 					setDisplay(data);
@@ -142,7 +152,7 @@ function AdminPage() {
 
 		//console.log(data);
 		if (select === "books"){
-			cmd = `update&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
+			cmd = `http://localhost/books_q.php?action=update&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 		}
 		// else if (select === 'drinks')
 		// {
@@ -199,8 +209,10 @@ function AdminPage() {
 		// }
 		let cmd = "";
 		if (tabSqlNameList[select] === "books"){
-			cmd = `delete&${colList[select][0]}=${id}`;
-
+			cmd = `http://localhost/books_q.php?action=delete&${colList[select][0]}=${id}`;
+		}
+		else if (tabSqlNameList[select] === "orders"){
+			cmd = `http://localhost/order.php?action=delete&${colList[select][0]}=${id}`;
 		}
 		console.log(cmd)
 		takeAction(cmd).then(() => {
@@ -224,19 +236,16 @@ function AdminPage() {
 
 		//console.log(data);
 		if (select === 'books'){
-			cmd = `create&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
+			cmd = `http://localhost/books_q.php?action=create&book_id=${data[0]}&name=${data[1]}&author_name=${data[2]}&short_description=${data[3]}&price=${data[4]}&discount=${data[5]}&discount_rate=${data[6]}&original_price=${data[7]}&thumbnail=${data[8]}`;
 		}
-		// if (select === 'drinks')
-		// {
-		// 	cmd = `insert into drink 
-		// 	(name, price, description, type, image)
-		// 	values
-		// 	('${data[1]}',${data[2]},'${data[3]}','${data[4]}','${data[5]}')`;
+		else if (select === 'orders')
+		{
+			cmd = `http://localhost/order.php?action=create&order_id=${data[0]}&receiver_name=${data[1]}&address=${data[2]}&ship_fee=${data[3]}&user_id=${data[4]}&status=${data[5]}`;
 
-
-		// }
+		}
 		else if (select === "news")
 		{
+
 			cmd = `insert into article 
 			(ad_id, content, date, title, image)
 			values 

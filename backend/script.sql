@@ -137,18 +137,50 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `address`, `role`
 (1, 'luong', '123', 'Nguyễn Trọng Đức Lương', 'TP Thủ Đức', 'cus'),
 (2, 'nhut', '123', 'Nguyễn Sinh Nhựt', 'Huyện Bình Chánh', 'cus'),
 (3, 'quan', '123', 'Võ Phan Anh Quân', 'Quận 1', 'cus'),
-(4, 'nauq', '123', 'Nguyễn Tôn Minh Quân', 'Quận 3', 'cus');
--- (5, 'van', '123', 'Nguyễn Hoàng Vân', 'Quận 10', 'ad'),
--- (6, 'vinh', '123', 'Nguyễn Hoàng Vinh', 'Quận 5', 'ad'),
+(4, 'mquan', '123', 'Nguyễn Tôn Minh Quân', 'Quận 3', 'cus'),
+(5, 'an', '123', 'Nguyễn Hoàng An', 'Quận 10', 'ad'),
+(6, 'hung', '123', 'Nguyễn Hoàng Hung', 'Quận 5', 'ad');
 -- (8, 'toan123', '123', 'Nguyễn Huy Toàn', 'TP Dĩ An', 'cus'),
 -- (9, 'Lanh45', '888', 'Hoàng Lan Anh', 'Quận 5', 'cus'),
 -- (10, 'John', '678', 'John DuDucent', 'Quận 12', 'cus');
 
 
+
+
 ALTER TABLE `user`
 ADD KEY (`user_id`);
 
-
 ALTER TABLE `user`
 MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE orders (
+  `order_id` int(11) NOT NULL,
+  `receiver_name` varchar(100) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `ship_fee` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng orders
+--
+
+INSERT INTO `orders` (`order_id`, `receiver_name`, `address`, `ship_fee`, `user_id`, `status`) VALUES
+(12, 'an', 'Ho Chi Minh', '1000', NULL, 'init'),
+(14, 'nhut', 'Vung Tau', '2000', NULL, 'init'),
+(15, NULL, NULL, NULL, NULL, 'init'),
+(16, NULL, NULL, NULL, NULL, 'init'),
+(17, NULL, NULL, NULL, NULL, 'init'),
+(11, 'luong', 'Ha Noi', '40000', 14, 'init');
+
+
+ALTER TABLE `orders`
+ADD KEY (`order_id`);
+
+ALTER TABLE `orders`
+MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT = 18;
+
 

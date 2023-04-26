@@ -14,30 +14,30 @@ class Order
 		$this->database = new Database();
 	}
 
-	// function get_order_by_id($id)
-	// {
-	// 	$conn = $this->database->connect();
-	// 	$data = $conn->query("select * from orders where order_id='{$id}'");
-	// 	$conn->close();
+	function get_order_by_id($id)
+	{
+		$conn = $this->database->connect();
+		$data = $conn->query("select * from orders where order_id='{$id}'");
+		$conn->close();
 
-	// 	$order =  $data->fetch_object();
+		$order =  $data->fetch_object();
 
-	// 	return $order;
-	// }
+		return $order;
+	}
 
-	// function get_order_by_user_id($id)
-	// {
-	// 	$conn = $this->database->connect();
-	// 	$data = $conn->query("select * from orders where cus_id='{$id}'");
-	// 	$conn->close();
+	function get_order_by_user_id($id)
+	{
+		$conn = $this->database->connect();
+		$data = $conn->query("select * from orders where cus_id='{$id}'");
+		$conn->close();
 
-	// 	$orders = [];
-	// 	while ($row = $data->fetch_object()) {
-	// 		$orders[] = $row;
-	// 	}
+		$orders = [];
+		while ($row = $data->fetch_object()) {
+			$orders[] = $row;
+		}
 
-	// 	return $orders;
-	// }
+		return $orders;
+	}
 
 	function get_drinks_by_order_id($id)
 	{
